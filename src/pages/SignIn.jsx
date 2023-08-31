@@ -1,9 +1,13 @@
 import service from "../services/service.config";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../context/auth.context";
 
 function SignIn() {
   const navigate = useNavigate();
+
+  const { verifyToken } = useContext(AuthContext);
 
   const [invalidEmailErrorMessage, setInvalidEmailErrorMessage] =
     useState(false);
@@ -70,6 +74,10 @@ function SignIn() {
       const signInRequest = await service.post("/auth/signin", formObject);
       //   console.log(signInRequest.data);
       setInvalidEmailErrorMessage("");
+
+      localStorage.setItem("authToken", signInRequest.data.authToken);
+
+      await verifyToken();
 
       navigate("/parent/home");
     } catch (error) {

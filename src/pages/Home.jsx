@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import service from "../services/service.config";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 function Home() {

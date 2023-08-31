@@ -19,14 +19,17 @@ function AuthWrapper(props) {
     try {
       const verifySession = await service.get("/auth/verify");
       console.log(verifySession);
+      setParentId(verifySession.data._id);
+      setChildsOfParent(verifySession.data.childs);
+      setParentIsActive(true);
 
       setIsPageLoading(false);
     } catch (error) {
-      //   console.log(error);
-      //   setParentId(null);
-      //   setChildsOfParent(null);
-      //   setParentIsActive(false);
-      //   setIsPageLoading(false);
+      console.log(error);
+      setParentId(null);
+      setChildsOfParent(null);
+      setParentIsActive(false);
+      setIsPageLoading(false);
     }
   };
 
@@ -38,13 +41,15 @@ function AuthWrapper(props) {
   };
 
   if (isPageloading === true) {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    setTimeout(() => {
+      return <h3>... Loaging Nice Stuff...</h3>;
+    }, 1000);
   }
 
   return (
-    <AuthWrapper.Provider value={passedContext}>
+    <AuthContext.Provider value={passedContext}>
       {props.children}
-    </AuthWrapper.Provider>
+    </AuthContext.Provider>
   );
 }
 
