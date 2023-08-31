@@ -18,9 +18,10 @@ function AuthWrapper(props) {
 
     try {
       const verifySession = await service.get("/auth/verify");
-      console.log(verifySession);
+      // console.log(verifySession);
       setParentId(verifySession.data._id);
       setChildsOfParent(verifySession.data.childs);
+      // console.log(verifySession.data.childs);
       setParentIsActive(true);
 
       setIsPageLoading(false);

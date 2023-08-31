@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 function Navbar() {
   const { parentIsActive } = useContext(AuthContext);
-  console.log(parentIsActive);
+  // console.log(parentIsActive);
   return (
     <div>
       <nav>
