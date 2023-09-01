@@ -10,10 +10,12 @@ import NotFound from "./pages/NotFound";
 import ParentProfile from "./pages/ParentProfile";
 import ChildEdit from "./pages/ChildEdit";
 import PlaylistEdit from "./pages/PlaylistEdit";
+import VideoEdit from "./pages/VideoEdit";
 
 //components
 import IsPrivate from "./components/IsPrivate";
 import IsParent from "./components/IsParent";
+import ChildPlaylist from "./pages/ChildPlaylist";
 
 function App() {
   return (
@@ -62,10 +64,28 @@ function App() {
           }
         />
         <Route
-          path="/parent/playlist/edit"
+          path="/parent/playlist/edit/:childName/:childId"
           element={
             <IsPrivate>
               <PlaylistEdit />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/parent/video/edit/:playlistName/:playlistId"
+          element={
+            <IsPrivate>
+              <VideoEdit />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/playlist"
+          element={
+            <IsPrivate>
+              <ChildPlaylist />
             </IsPrivate>
           }
         />

@@ -30,7 +30,7 @@ function ParentProfile() {
   const getData = async () => {
     try {
       // console.log(parentId);
-      const parentInfo = await service.get("/parent/" + parentId);
+      const parentInfo = await service.get("/parent/");
       setFormObject({
         name: parentInfo.data.name,
         yearOfBirth: parentInfo.data.yearOfBirth,
@@ -69,10 +69,7 @@ function ParentProfile() {
     }
 
     try {
-      const updateParentRequest = await service.put(
-        "/parent/" + parentId,
-        formObject
-      );
+      const updateParentRequest = await service.put("/parent/", formObject);
       //   console.log(signInRequest.data);
 
       //   console.log("update parent request", formObject);

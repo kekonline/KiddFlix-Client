@@ -5,33 +5,24 @@ const AuthContext = createContext();
 
 function AuthWrapper(props) {
   const [parentId, setParentId] = useState(null);
-  const [childsOfParent, setChildsOfParent] = useState(null);
   const [parentIsActive, setParentIsActive] = useState(false);
   const [isPageloading, setIsPageLoading] = useState(true);
+  const [childIsActive, setChildIsActive] = useState(false);
 
   useEffect(() => {
     verifyToken();
-
-    if (parentIsActive === true) {
-    }
-
-    return () => {
-      updateParentChilds();
-    };
   }, []);
 
-  useEffect(() => {}, []);
+  // const updateParentChilds = async () => {
+  //   console.log(parentId);
+  //   try {
+  //     const updatedParentChilds = await service.get("child/all/" + parentId);
 
-  const updateParentChilds = async () => {
-    console.log(parentId);
-    try {
-      const updatedParentChilds = await service.get("child/all/" + parentId);
-      // console.log(updatedParentChilds);
-      setChildsOfParent(updatedParentChilds.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     setChildsOfParent(updatedParentChilds.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const verifyToken = async () => {
     setIsPageLoading(true);
@@ -42,23 +33,30 @@ function AuthWrapper(props) {
       // console.log("session", verifySession.data._id);
       setParentId(verifySession.data._id);
       // console.log("parent", parentId);
-      setParentIsActive(true);
+
+      if (parentIsActive === true) {
+        setChildIsActive(false);
+      } else {
+        setChildIsActive(true);
+      }
+
       setIsPageLoading(false);
     } catch (error) {
       console.log("token error", error);
       setParentId(null);
-      setChildsOfParent(null);
       setParentIsActive(false);
       setIsPageLoading(false);
+      setChildIsActive(false);
     }
   };
 
   const passedContext = {
     parentId,
-    childsOfParent,
     parentIsActive,
     verifyToken,
-    updateParentChilds,
+    setChildIsActive,
+    setParentIsActive,
+    childIsActive,
   };
 
   if (isPageloading === true) {

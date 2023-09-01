@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import service from "../services/service.config";
 
 function ParentHome() {
-  const { childsOfParent } = useContext(AuthContext);
+  const [childsOfParent, setChildsOfParent] = useState(null);
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const requestChildsOfParent = await service.get("child/all/");
+      setChildsOfParent(requestChildsOfParent.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // console.log(childsOfParent);
 
@@ -19,15 +32,16 @@ function ParentHome() {
         <button>Manage</button>
       </Link>
       <br />
-
       {childsOfParent !== null &&
         childsOfParent.map((eachChild) => {
           return (
             <div key={eachChild._id}>
               <h3>{eachChild.name}</h3>
-              <button to={`/parent/playlist/edit/${eachChild._id}`}>
-                Manage Playlist
-              </button>
+              <Link
+                to={`/parent/playlist/edit/${eachChild.name}/${eachChild._id}`}
+              >
+                <button> Manage Playlist </button>
+              </Link>
             </div>
           );
         })}

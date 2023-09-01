@@ -3,10 +3,25 @@ import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
 
 function ChildEdit() {
-  const { parentId, childsOfParent, updateParentChilds } =
-    useContext(AuthContext);
+  const [isPageloading, setIsPageLoading] = useState(true);
+  const [childsOfParent, setChildsOfParent] = useState(null);
+  const { updateParentChilds } = useContext(AuthContext);
   const [addChild, setAddChild] = useState("");
   const [inputErrorMessage, setInputErrorMessage] = useState("");
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const requestChildsOfParent = await service.get("child/all/");
+      setChildsOfParent(requestChildsOfParent.data);
+      setIsPageLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleAddChild = async () => {
     event.preventDefault();
@@ -18,11 +33,11 @@ function ChildEdit() {
     }
 
     try {
-      const newChild = await service.post("/child/new/" + parentId, {
+      const newChild = await service.post("/child/new/", {
         name: addChild,
       });
       setAddChild("");
-      updateParentChilds();
+      getData();
     } catch (error) {
       console.log(error);
     }
@@ -33,12 +48,18 @@ function ChildEdit() {
     try {
       const deleteChildRequest = await service.delete("/child/" + childId);
       console.log("good", deleteChildRequest, childId);
-      updateParentChilds();
+      getData();
       // navigate("/parent/profile");
     } catch (error) {
       console.log(error);
     }
   };
+
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return <h3>... Loaging Nice Stuff...</h3>;
+    // }, 1000);
+  }
 
   return (
     <div>
@@ -60,6 +81,13 @@ function ChildEdit() {
             </div>
           );
         })}
+      <br />
+      {inputErrorMessage && (
+        <p>
+          {inputErrorMessage}
+          <br />
+        </p>
+      )}
       <form>
         <label htmlFor="name">Name</label>
         <input
