@@ -11,7 +11,27 @@ function AuthWrapper(props) {
 
   useEffect(() => {
     verifyToken();
+
+    if (parentIsActive === true) {
+    }
+
+    return () => {
+      updateParentChilds();
+    };
   }, []);
+
+  useEffect(() => {}, []);
+
+  const updateParentChilds = async () => {
+    console.log(parentId);
+    try {
+      const updatedParentChilds = await service.get("child/all/" + parentId);
+      // console.log(updatedParentChilds);
+      setChildsOfParent(updatedParentChilds.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const verifyToken = async () => {
     setIsPageLoading(true);
@@ -19,14 +39,13 @@ function AuthWrapper(props) {
     try {
       const verifySession = await service.get("/auth/verify");
       // console.log(verifySession);
+      // console.log("session", verifySession.data._id);
       setParentId(verifySession.data._id);
-      setChildsOfParent(verifySession.data.childs);
-      // console.log(verifySession.data.childs);
+      // console.log("parent", parentId);
       setParentIsActive(true);
-
       setIsPageLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log("token error", error);
       setParentId(null);
       setChildsOfParent(null);
       setParentIsActive(false);
@@ -39,12 +58,13 @@ function AuthWrapper(props) {
     childsOfParent,
     parentIsActive,
     verifyToken,
+    updateParentChilds,
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return <h3>... Loaging Nice Stuff...</h3>;
-    }, 1000);
+    // setTimeout(() => {
+    return <h3>... Loaging Nice Stuff...</h3>;
+    // }, 1000);
   }
 
   return (

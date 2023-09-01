@@ -3,7 +3,7 @@ import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 function ParentProfile() {
-  const { parentId, childsOfParent, verifyToken } = useContext(AuthContext);
+  const { parentId, verifyToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
@@ -88,17 +88,6 @@ function ParentProfile() {
     }
   };
 
-  const handleDeleteChild = async (childId) => {
-    try {
-      const deleteChildRequest = await service.delete("/child/" + childId);
-      console.log("good", deleteChildRequest, childId);
-      verifyToken();
-      navigate("/parent/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div>
       <h2>Your Profile</h2>
@@ -145,24 +134,6 @@ function ParentProfile() {
           <br />
         </p>
       )}
-
-      <br />
-      <p>Delete Childs</p>
-
-      {childsOfParent.map((eachChild) => {
-        return (
-          <div key={eachChild._id}>
-            <h3>{eachChild.name}</h3>
-            <button
-              onClick={() => {
-                handleDeleteChild(eachChild._id);
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        );
-      })}
     </div>
   );
 }

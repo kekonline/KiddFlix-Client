@@ -14,19 +14,23 @@ function ParentHome() {
         <button>Edit</button>
       </Link>
       <br />
-      <p>Childs</p>
-
-      {childsOfParent.map((eachChild) => {
-        return (
-          <div key={eachChild._id}>
-            <h3>{eachChild.name}</h3>
-            <button to={`parent/child/edit/${eachChild._id}`}>Edit</button>
-          </div>
-        );
-      })}
+      <p>Manage Kids:</p>
+      <Link to="/parent/child/edit">
+        <button>Manage</button>
+      </Link>
       <br />
-      <p>Add A Child</p>
-      <button>Add</button>
+
+      {childsOfParent !== null &&
+        childsOfParent.map((eachChild) => {
+          return (
+            <div key={eachChild._id}>
+              <h3>{eachChild.name}</h3>
+              <button to={`/parent/playlist/edit/${eachChild._id}`}>
+                Manage Playlist
+              </button>
+            </div>
+          );
+        })}
     </div>
   );
 }
