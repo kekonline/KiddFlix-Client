@@ -11,6 +11,8 @@ import ParentProfile from "./pages/ParentProfile";
 import ChildEdit from "./pages/ChildEdit";
 import PlaylistEdit from "./pages/PlaylistEdit";
 import VideoEdit from "./pages/VideoEdit";
+import ChildVideoInPlaylist from "./pages/ChildVideoInPlaylist";
+import ChildVideoCategory from "./pages/ChildVideoCategory";
 
 //components
 import IsPrivate from "./components/IsPrivate";
@@ -18,6 +20,7 @@ import IsParent from "./components/IsParent";
 import ChildPlaylist from "./pages/ChildPlaylist";
 import UsersProfile from "./pages/UsersProfile";
 import ParentLogin from "./pages/ParentLogin";
+import ChildVideoPlay from "./components/ChildVideoPlayer";
 
 function App() {
   return (
@@ -105,6 +108,33 @@ function App() {
           element={
             <IsPrivate>
               <ParentLogin />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/playlist/:playlistName/:playlistId"
+          element={
+            <IsPrivate>
+              <ChildVideoInPlaylist />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/playlist/video/:link"
+          element={
+            <IsPrivate>
+              <ChildVideoPlay />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/video/:category"
+          element={
+            <IsPrivate>
+              <ChildVideoCategory />
             </IsPrivate>
           }
         />

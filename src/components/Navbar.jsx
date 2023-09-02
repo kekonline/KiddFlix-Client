@@ -48,6 +48,9 @@ function Navbar() {
         {childIsActive === true ? (
           <div>
             <NavLink to="/playlist">PlayLists</NavLink>
+            <NavLink to="/video/latest">New Videos</NavLink>
+            <NavLink to="/video/random">Random Videos</NavLink>
+            <NavLink to="/video/unwatched">Un Watched</NavLink>
             <NavLink to="/users-profile">Users Profile</NavLink>
           </div>
         ) : null}
