@@ -22,16 +22,6 @@ function ParentHome() {
 
   return (
     <div>
-      <p>Edit your profile</p>
-      <Link to="/parent/profile">
-        <button>Edit</button>
-      </Link>
-      <br />
-      <p>Manage Kids:</p>
-      <Link to="/parent/child/edit">
-        <button>Manage</button>
-      </Link>
-      <br />
       {childsOfParent !== null &&
         childsOfParent.map((eachChild) => {
           return (
@@ -45,6 +35,11 @@ function ParentHome() {
             </div>
           );
         })}
+      <br /> <br /> <br /> <br />
+      <p>Manage Kids:</p>
+      <Link to="/parent/child/edit">
+        <button>Manage</button>
+      </Link>
     </div>
   );
 }

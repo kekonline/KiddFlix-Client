@@ -13,7 +13,7 @@ function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { verifyToken } = useContext(AuthContext);
+  const { verifyToken, setParentIsActive } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -54,13 +54,14 @@ function Home() {
       console.log(logInRequest);
 
       localStorage.setItem("authToken", logInRequest.data.authToken);
-
+      setParentIsActive(true);
+      setChildIsActive(false);
       await verifyToken();
 
       navigate("/parent/home");
       setInvalidLoginErrorMessage("");
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
       if (
         !error.response.data.validLogin &&
         error.response.data.validLogin !== undefined

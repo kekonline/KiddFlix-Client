@@ -1,19 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState } from "react";
 import service from "../services/service.config";
 
 function Navbar() {
+  const navigate = useNavigate();
   const {
     parentIsActive,
     setParentIsActive,
     childIsActive,
     setChildIsActive,
     setActiveChildId,
+    setChildsOfParent,
   } = useContext(AuthContext);
   // console.log(parentIsActive);
 
-  const [childsOfParent, setChildsOfParent] = useState(null);
+  // const [childsOfParent, ] = useState(null);
 
   const handleParentExit = () => {
     setParentIsActive(false);
@@ -32,6 +34,15 @@ function Navbar() {
     }
   };
 
+  const handleLogout = () => {
+    setParentIsActive(false);
+
+    setChildIsActive(false);
+
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
+
   // console.log("parentIsActive", parentIsActive);
   // console.log("childIsActive", childIsActive);
   return (
@@ -39,10 +50,15 @@ function Navbar() {
       <nav>
         {parentIsActive === true ? (
           <div>
-            <NavLink to="/parent/home">Parent Home</NavLink>
+            <NavLink to="/parent/home">Manage Childs</NavLink>
             <NavLink to="/playlist" onClick={handleParentExit}>
               Exit Parent Mode
             </NavLink>
+
+            <NavLink to="/parent/profile">Your Profile</NavLink>
+            <br />
+
+            <NavLink onClick={handleLogout}>Log Out</NavLink>
           </div>
         ) : null}
         {childIsActive === true ? (

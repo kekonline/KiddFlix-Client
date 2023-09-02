@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";
 function SignIn() {
   const navigate = useNavigate();
 
-  const { verifyToken } = useContext(AuthContext);
+  const { verifyToken, setParentIsActive } = useContext(AuthContext);
 
   const [invalidEmailErrorMessage, setInvalidEmailErrorMessage] =
     useState(false);
@@ -76,7 +76,8 @@ function SignIn() {
       setInvalidEmailErrorMessage("");
 
       localStorage.setItem("authToken", signInRequest.data.authToken);
-
+      setParentIsActive(true);
+      setChildIsActive(false);
       await verifyToken();
 
       navigate("/parent/home");

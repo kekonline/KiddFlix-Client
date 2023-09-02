@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 // import { useEffect, useContext, useState } from "react";
 // import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
+import { Link } from "react-router-dom";
 
 function ChildEdit() {
   const [isPageloading, setIsPageLoading] = useState(true);
@@ -44,17 +45,17 @@ function ChildEdit() {
     }
   };
 
-  const handleDeleteChild = async (childId) => {
-    event.preventDefault();
-    try {
-      const deleteChildRequest = await service.delete("/child/" + childId);
-      console.log("good", deleteChildRequest, childId);
-      getData();
-      // navigate("/parent/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleDeleteChild = async (childId) => {
+  //   event.preventDefault();
+  //   try {
+  //     const deleteChildRequest = await service.delete("/child/" + childId);
+  //     console.log("good", deleteChildRequest, childId);
+  //     getData();
+  //     // navigate("/parent/profile");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   if (isPageloading === true) {
     // setTimeout(() => {
@@ -70,14 +71,23 @@ function ChildEdit() {
           return (
             <div key={eachChild._id}>
               <h3>{eachChild.name}</h3>
-              <button
-                onClick={() => {
+              <Link to={"/parent/child/edit/" + eachChild._id}>
+                <button>Edit</button>
+              </Link>
+              {/* path="/parent/child/edit/:childId" 
+              
+                 onClick={() => {
                   handleDeleteChild(eachChild._id);
                 }}
-              >
-                Delete
-              </button>
-
+              
+              
+              
+              
+              
+              
+              
+              
+              */}
               <br />
             </div>
           );
@@ -109,6 +119,9 @@ function ChildEdit() {
           </p>
         )}
       </form>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

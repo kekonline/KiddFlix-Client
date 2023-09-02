@@ -60,13 +60,7 @@ function ChildPlaylistPreview(props) {
         </Link>
       </div>
       <div style={ContainerPlayer}>
-        <ReactPlayer
-          url={url}
-          volume={0.5}
-          width="700px"
-          height="400px"
-          style={player}
-        />
+        <ReactPlayer url={url} width="700px" height="400px" style={player} />
       </div>
     </div>
   );

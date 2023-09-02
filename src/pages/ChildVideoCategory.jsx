@@ -26,16 +26,19 @@ function ChildVideoCategory() {
     }
   };
 
+  console.log("video of category", videosOfCategory);
+
   return (
     <div>
       {category === "random" && <h1>Random Videos</h1>}
       {category === "unwatched" && <h1>Un Watched Videos</h1>}
       {category === "latest" && <h1>Latest Videos</h1>}
+
       {videosOfCategory &&
         videosOfCategory.map((eachVideo) => {
           return (
             <div key={eachVideo._id}>
-              <ChildVideoPreview link={eachVideo.link} />
+              <ChildVideoPreview link={eachVideo.link} _id={eachVideo._id} />
             </div>
           );
         })}

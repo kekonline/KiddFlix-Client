@@ -35,18 +35,21 @@ function AuthWrapper(props) {
       setParentId(verifySession.data._id);
       // console.log("parent", parentId);
 
-      if (parentIsActive === true) {
-        setChildIsActive(false);
-      } else {
-        setChildIsActive(true);
-      }
+      // if (parentIsActive === true) {
+      //   setChildIsActive(false);
+      // }
+
+      // else {
+      setChildIsActive(true);
+      // }
 
       const ChildId = await service.get("child/all/");
 
       // console.log(ChildId.data[0]._id);
       setActiveChildId(ChildId.data[0]._id);
 
-      // setParentIsActive(true);
+      //only for dev purpouse
+      setParentIsActive(true);
 
       setIsPageLoading(false);
     } catch (error) {
@@ -57,6 +60,8 @@ function AuthWrapper(props) {
       setChildIsActive(false);
     }
   };
+
+  console.log("is child active", childIsActive);
 
   const passedContext = {
     parentId,

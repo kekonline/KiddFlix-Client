@@ -38,13 +38,12 @@ function ChildVideoPreview(props) {
 
   return (
     <div>
-      <Link to={"/playlist/video/" + link}>
+      <Link to={`/playlist/video/${link}/${props._id}`}>
         <div style={topLayer}></div>
       </Link>
       <div style={ContainerPlayer}>
         <ReactPlayer
           url={props.link}
-          volume={0.5}
           width="700px"
           height="400px"
           style={player}

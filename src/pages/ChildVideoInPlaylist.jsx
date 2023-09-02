@@ -34,7 +34,7 @@ function ChildVideoInPlaylist() {
         videosOfPlaylist.map((eachVideo) => {
           return (
             <div key={eachVideo._id}>
-              <ChildVideoPreview link={eachVideo.link} />
+              <ChildVideoPreview link={eachVideo.link} _id={eachVideo._id} />
             </div>
           );
         })}

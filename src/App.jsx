@@ -21,6 +21,7 @@ import ChildPlaylist from "./pages/ChildPlaylist";
 import UsersProfile from "./pages/UsersProfile";
 import ParentLogin from "./pages/ParentLogin";
 import ChildVideoPlay from "./components/ChildVideoPlayer";
+import ChildEditCard from "./pages/ChildEditCard";
 
 function App() {
   return (
@@ -122,7 +123,7 @@ function App() {
         />
 
         <Route
-          path="/playlist/video/:link"
+          path="/playlist/video/:link/:videoId"
           element={
             <IsPrivate>
               <ChildVideoPlay />
@@ -135,6 +136,15 @@ function App() {
           element={
             <IsPrivate>
               <ChildVideoCategory />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/parent/child/edit/:childId"
+          element={
+            <IsPrivate>
+              <ChildEditCard />
             </IsPrivate>
           }
         />
