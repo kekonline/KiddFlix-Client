@@ -16,6 +16,8 @@ import VideoEdit from "./pages/VideoEdit";
 import IsPrivate from "./components/IsPrivate";
 import IsParent from "./components/IsParent";
 import ChildPlaylist from "./pages/ChildPlaylist";
+import UsersProfile from "./pages/UsersProfile";
+import ParentLogin from "./pages/ParentLogin";
 
 function App() {
   return (
@@ -86,6 +88,23 @@ function App() {
           element={
             <IsPrivate>
               <ChildPlaylist />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/users-profile"
+          element={
+            <IsPrivate>
+              <UsersProfile />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/parent-login"
+          element={
+            <IsPrivate>
+              <ParentLogin />
             </IsPrivate>
           }
         />

@@ -1,11 +1,12 @@
-import { useEffect, useContext, useState } from "react";
-import { AuthContext } from "../context/auth.context";
+import { useEffect, useState } from "react";
+// import { useEffect, useContext, useState } from "react";
+// import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
 
 function ChildEdit() {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [childsOfParent, setChildsOfParent] = useState(null);
-  const { updateParentChilds } = useContext(AuthContext);
+  // const { updateParentChilds } = useContext(AuthContext);
   const [addChild, setAddChild] = useState("");
   const [inputErrorMessage, setInputErrorMessage] = useState("");
 

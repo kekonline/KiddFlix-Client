@@ -1,16 +1,37 @@
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import service from "../services/service.config";
 
 function Navbar() {
-  const { parentIsActive, setParentIsActive, childIsActive, setChildIsActive } =
-    useContext(AuthContext);
+  const {
+    parentIsActive,
+    setParentIsActive,
+    childIsActive,
+    setChildIsActive,
+    setActiveChildId,
+  } = useContext(AuthContext);
   // console.log(parentIsActive);
+
+  const [childsOfParent, setChildsOfParent] = useState(null);
 
   const handleParentExit = () => {
     setParentIsActive(false);
     setChildIsActive(true);
+    getData();
   };
+
+  const getData = async () => {
+    try {
+      const ChildId = await service.get("child/all/");
+      setChildsOfParent(ChildId.data);
+      // console.log(ChildId.data[0]._id);
+      setActiveChildId(ChildId.data[0]._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // console.log("parentIsActive", parentIsActive);
   // console.log("childIsActive", childIsActive);
   return (
@@ -27,6 +48,7 @@ function Navbar() {
         {childIsActive === true ? (
           <div>
             <NavLink to="/playlist">PlayLists</NavLink>
+            <NavLink to="/users-profile">Users Profile</NavLink>
           </div>
         ) : null}
         {parentIsActive === false && childIsActive === false ? (

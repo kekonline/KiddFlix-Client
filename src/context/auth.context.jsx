@@ -6,8 +6,9 @@ const AuthContext = createContext();
 function AuthWrapper(props) {
   const [parentId, setParentId] = useState(null);
   const [parentIsActive, setParentIsActive] = useState(false);
-  const [isPageloading, setIsPageLoading] = useState(true);
   const [childIsActive, setChildIsActive] = useState(false);
+  const [isPageloading, setIsPageLoading] = useState(true);
+  const [activeChildId, setActiveChildId] = useState(null);
 
   useEffect(() => {
     verifyToken();
@@ -40,6 +41,13 @@ function AuthWrapper(props) {
         setChildIsActive(true);
       }
 
+      const ChildId = await service.get("child/all/");
+
+      // console.log(ChildId.data[0]._id);
+      setActiveChildId(ChildId.data[0]._id);
+
+      // setParentIsActive(true);
+
       setIsPageLoading(false);
     } catch (error) {
       console.log("token error", error);
@@ -57,6 +65,8 @@ function AuthWrapper(props) {
     setChildIsActive,
     setParentIsActive,
     childIsActive,
+    setActiveChildId,
+    activeChildId,
   };
 
   if (isPageloading === true) {
@@ -65,6 +75,7 @@ function AuthWrapper(props) {
     // }, 1000);
   }
 
+  // console.log("activeChildId", activeChildId);
   return (
     <AuthContext.Provider value={passedContext}>
       {props.children}
