@@ -59,21 +59,28 @@ function PlaylistEdit() {
     <div className="mainContainer">
       <br />
       <h2>{childName}'s Playlists</h2>
+
       {playlistOfChild &&
         playlistOfChild.map((eachPlaylist) => {
           return (
             <div key={eachPlaylist._id}>
+              <br />
               <Link
                 to={`/parent/video/edit/${eachPlaylist.name}/${eachPlaylist._id}`}
               >
-                <Button variant="outlined"> {eachPlaylist.name}</Button>
+                <Button variant="outlined" size="large">
+                  {" "}
+                  {eachPlaylist.name}
+                </Button>
               </Link>
             </div>
           );
         })}
+      <br />
       <form>
         {/* <label htmlFor="name">Name</label> */}
         <TextField
+          size="small"
           label="New Playlist Name"
           type="text"
           name="name"
@@ -83,7 +90,7 @@ function PlaylistEdit() {
             // console.log(event.target.value);
           }}
         ></TextField>
-        <br />
+
         <Button variant="contained" onClick={handleAddPlaylist}>
           Add{" "}
         </Button>
@@ -94,6 +101,8 @@ function PlaylistEdit() {
           </Alert>
         )}
       </form>
+      <br />
+      <br />
       <Button
         variant="contained"
         onClick={() => {

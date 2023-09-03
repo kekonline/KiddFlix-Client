@@ -29,7 +29,7 @@ function ChildVideoCategory() {
   // console.log("video of category", videosOfCategory);
 
   return (
-    <div>
+    <div className="mainContainer">
       {category === "random" && <h1>Random Videos</h1>}
       {category === "unwatched" && <h1>Un Watched Videos</h1>}
       {category === "latest" && <h1>Latest Videos</h1>}
@@ -42,6 +42,7 @@ function ChildVideoCategory() {
             </div>
           );
         })}
+      <br />
     </div>
   );
 }

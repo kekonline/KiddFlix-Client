@@ -2,6 +2,8 @@ import service from "../services/service.config";
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
+import { Alert, Button, TextField } from "@mui/material";
+
 function ParentProfile() {
   const { parentId, verifyToken } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ function ParentProfile() {
       });
 
       // console.log(parentInfo.data.yearOfBirth);
+      // console.log(formObject.yearOfBirth);
       // console.log(parentInfo.data);
     } catch (error) {
       console.log(error);
@@ -47,9 +50,11 @@ function ParentProfile() {
     let validRequest = true;
     event.preventDefault();
 
+    console.log(formObject.yearOfBirth.toString().length);
+
     if (
-      typeof formObject.yearOfBirth === "number" ||
-      formObject.yearOfBirth.length !== 4
+      typeof parseInt(formObject.yearOfBirth) !== "number" ||
+      formObject.yearOfBirth.toString().length !== 4
     ) {
       setyearOfBirthErrorMessage("Introduce a valid year of birth ");
       validRequest = false;
@@ -86,50 +91,64 @@ function ParentProfile() {
   };
 
   return (
-    <div>
-      <h2>Your Profile</h2>
-      <form>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          name="name"
-          onChange={handleAnyInput}
-          value={formObject.name}
-        ></input>
-        <br />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleAnyInput}
-        ></input>
-        <br />
-        <label htmlFor="yearOfBirth">Year Of Birth: </label>
-        <input
-          type="number"
-          name="yearOfBirth"
-          onChange={handleAnyInput}
-          value={formObject.yearOfBirth}
-        ></input>
-        <br />
-        <button onClick={handleEditProfile}>Save</button>
-        <button
-          onClick={() => (event.preventDefault(), navigate("/parent/home"))}
-        >
-          Cancel
-        </button>
-      </form>
+    <div className="mainContainer ">
+      <br />
+      <div className="childCard">
+        <h2>Your Profile</h2>
+        <form>
+          {/* <label htmlFor="name">Name: </label> */}
+          <TextField
+            label="Name"
+            type="text"
+            name="name"
+            onChange={handleAnyInput}
+            value={formObject.name}
+          ></TextField>
+          <br />
+          {/* <label htmlFor="password">Password: </label> */}
+          <TextField
+            label="Password"
+            type="password"
+            name="password"
+            onChange={handleAnyInput}
+          ></TextField>
+          <br />
+          {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
+          <TextField
+            label="Year Of Birth"
+            type="number"
+            name="yearOfBirth"
+            onChange={handleAnyInput}
+            value={formObject.yearOfBirth}
+          ></TextField>
+          <br />
+          <br />
+          <div className="videoContainer">
+            <Button variant="contained" onClick={handleEditProfile}>
+              Save
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => (event.preventDefault(), navigate("/parent/home"))}
+            >
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </div>
+      <br />
       {yearOfBirthErrorMessage && (
-        <p>
+        <Alert severity="error">
           {yearOfBirthErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
+      <br />
       {blancFieldsErrorMessage && (
-        <p>
+        <Alert severity="error">
           {blancFieldsErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
     </div>
   );

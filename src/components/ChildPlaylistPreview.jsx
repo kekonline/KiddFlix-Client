@@ -2,6 +2,7 @@ import ReactPlayer from "react-player";
 import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 function ChildPlaylistPreview(props) {
   const [url, setUrl] = useState("");
@@ -36,7 +37,7 @@ function ChildPlaylistPreview(props) {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderRadius: "50px",
+    borderRadius: "30px",
   };
 
   const player = {
@@ -48,20 +49,23 @@ function ChildPlaylistPreview(props) {
     backgroundColor: "black",
     width: "700px",
     height: "400px",
-    borderRadius: "50px",
+    borderRadius: "30px",
   };
 
   return (
-    <div>
-      <div style={topLayer}>
-        <h1>{props.playlistName}</h1>
-        <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
-          <button>See More</button>
-        </Link>
-      </div>
-      <div style={ContainerPlayer}>
-        <ReactPlayer url={url} width="700px" height="400px" style={player} />
-      </div>
+    <div className="mainContainer">
+      <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
+        {" "}
+        <div style={topLayer}>
+          <h1 style={{ fontSize: "4rem" }}>{props.playlistName}</h1>
+
+          <Button variant="outlined"> See More</Button>
+        </div>
+        <div style={ContainerPlayer}>
+          <ReactPlayer url={url} width="700px" height="400px" style={player} />
+        </div>
+        <br />{" "}
+      </Link>
     </div>
   );
 }

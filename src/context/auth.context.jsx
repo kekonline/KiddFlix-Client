@@ -35,13 +35,11 @@ function AuthWrapper(props) {
       setParentId(verifySession.data._id);
       // console.log("parent", parentId);
 
-      // if (parentIsActive === true) {
-      //   setChildIsActive(false);
-      // }
-
-      // else {
-      setChildIsActive(true);
-      // }
+      if (parentIsActive === true) {
+        setChildIsActive(false);
+      } else {
+        setChildIsActive(true);
+      }
 
       const ChildId = await service.get("child/all/");
 

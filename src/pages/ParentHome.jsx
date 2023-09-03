@@ -27,20 +27,22 @@ function ParentHome() {
       {childsOfParent !== null &&
         childsOfParent.map((eachChild) => {
           return (
-            <div key={eachChild._id} className="childCard">
-              <h2>{eachChild.name}</h2>
-              <Link
-                to={`/parent/playlist/edit/${eachChild.name}/${eachChild._id}`}
-              >
-                <Button variant="contained">
-                  {" "}
-                  Manage {eachChild.name}'s Playlist{" "}
-                </Button>
-              </Link>
+            <div key={eachChild._id}>
+              <div className="childCard">
+                <h2>{eachChild.name}</h2>
+                <Link
+                  to={`/parent/playlist/edit/${eachChild.name}/${eachChild._id}`}
+                >
+                  <Button variant="contained">
+                    Manage {eachChild.name}'s Playlist
+                  </Button>
+                </Link>
+              </div>
+              <br />
             </div>
           );
         })}
-      <br /> <br /> <br /> <br />
+      <br /> <br /> <br />
       <div className="childCard mainContainer">
         <p>Manage You Childs</p>
         <Link to="/parent/child/edit">

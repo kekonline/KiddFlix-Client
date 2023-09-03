@@ -20,7 +20,9 @@ function ChildVideoPlay() {
   };
 
   return (
-    <div>
+    <div className="mainContainer">
+      <br />
+      <br />
       <ReactPlayer url={link} playing controls />
     </div>
   );

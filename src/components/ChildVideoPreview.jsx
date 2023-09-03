@@ -21,7 +21,7 @@ function ChildVideoPreview(props) {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderRadius: "50px",
+    borderRadius: "30px",
   };
 
   const player = {
@@ -33,7 +33,7 @@ function ChildVideoPreview(props) {
     backgroundColor: "black",
     width: "700px",
     height: "400px",
-    borderRadius: "50px",
+    borderRadius: "30px",
   };
 
   return (
@@ -49,6 +49,7 @@ function ChildVideoPreview(props) {
           style={player}
         />
       </div>
+      <br />
     </div>
   );
 }

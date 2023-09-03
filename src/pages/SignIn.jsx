@@ -7,7 +7,8 @@ import { Alert, Button, TextField } from "@mui/material";
 function SignIn() {
   const navigate = useNavigate();
 
-  const { verifyToken, setParentIsActive } = useContext(AuthContext);
+  const { verifyToken, setParentIsActive, setChildIsActive } =
+    useContext(AuthContext);
 
   const [invalidEmailErrorMessage, setInvalidEmailErrorMessage] =
     useState(false);
@@ -76,9 +77,10 @@ function SignIn() {
       setInvalidEmailErrorMessage("");
 
       localStorage.setItem("authToken", signInRequest.data.authToken);
+
+      await verifyToken();
       setParentIsActive(true);
       setChildIsActive(false);
-      await verifyToken();
 
       navigate("/parent/home");
     } catch (error) {
@@ -95,53 +97,65 @@ function SignIn() {
   };
 
   return (
-    <div>
-      <h1>Welcome to KiddFlix</h1>
-      <form>
-        {/* <label htmlFor="name">Name: </label> */}
-        <TextField
-          label="Name"
-          type="text"
-          name="name"
-          onChange={handleAnyInput}
-        ></TextField>
-        <br />
-        {/* <label htmlFor="email">Email: </label> */}
-        <TextField
-          label="Email"
-          type="email"
-          name="email"
-          onChange={handleAnyInput}
-        ></TextField>
-        <br />
-        {/* <label htmlFor="password">Password: </label> */}
-        <TextField
-          label="Password"
-          type="password"
-          name="password"
-          onChange={handleAnyInput}
-        ></TextField>
-        <br />
-        {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
-        <TextField
-          label="Year Of Birth"
-          type="number"
-          name="yearOfBirth"
-          onChange={handleAnyInput}
-        ></TextField>
-        <br />
-        {/* <label htmlFor="childName">Child Name: </label> */}
-        <TextField
-          label="Child Name"
-          type="text"
-          name="childName"
-          onChange={handleAnyInput}
-        ></TextField>
-        <br />
-        <Button variant="contained" onClick={handleSignIn}>
-          Sign In
-        </Button>
-      </form>
+    <div className="mainContainer ">
+      <br />
+      <h1>Sign In To KiddFlix</h1>
+      <br />
+      <div className="childCard">
+        <form>
+          {/* <label htmlFor="name">Name: </label> */}
+          <TextField
+            size="small"
+            label="Name"
+            type="text"
+            name="name"
+            onChange={handleAnyInput}
+          ></TextField>
+          <br /> <br />
+          {/* <label htmlFor="email">Email: </label> */}
+          <TextField
+            size="small"
+            label="Email"
+            type="email"
+            name="email"
+            onChange={handleAnyInput}
+          ></TextField>
+          <br /> <br />
+          {/* <label htmlFor="password">Password: </label> */}
+          <TextField
+            size="small"
+            label="Password"
+            type="password"
+            name="password"
+            onChange={handleAnyInput}
+          ></TextField>
+          <br /> <br />
+          {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
+          <TextField
+            size="small"
+            label="Year Of Birth"
+            type="number"
+            name="yearOfBirth"
+            onChange={handleAnyInput}
+          ></TextField>
+          <br /> <br />
+          {/* <label htmlFor="childName">Child Name: </label> */}
+          <TextField
+            size="small"
+            label="Child Name"
+            type="text"
+            name="childName"
+            onChange={handleAnyInput}
+          ></TextField>
+          <br /> <br />
+          <div className="videoContainer">
+            <Button variant="contained" onClick={handleSignIn}>
+              Sign In
+            </Button>
+          </div>
+          <br />
+        </form>
+      </div>
       {emailErrorMessage && (
         <Alert severity="error">
           {emailErrorMessage}

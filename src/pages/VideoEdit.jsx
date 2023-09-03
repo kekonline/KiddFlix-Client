@@ -160,12 +160,13 @@ function VideoEdit() {
   }
 
   return (
-    <div>
+    <div className="mainContainer">
       {activeEditName === true ? (
-        <div>
+        <div className="playlistTitle">
           <form>
             {/* <label htmlFor="name">Choose A New Name</label> */}
             <TextField
+              size="small"
               label="Playlist Name"
               type="text"
               onChange={handelEditNameInput}
@@ -181,7 +182,7 @@ function VideoEdit() {
           </form>
         </div>
       ) : (
-        <div>
+        <div className="playlistTitle">
           <h1>{playlistNameInput}</h1>
           <Button variant="contained" onClick={handelActiveButton}>
             Edit Name
@@ -199,24 +200,28 @@ function VideoEdit() {
         videosOfPlaylist.map((eachVideo) => {
           return (
             <div key={eachVideo._id}>
-              <ParentPlayer url={eachVideo.link} />
+              <div className="videoContainer">
+                <ParentPlayer url={eachVideo.link} />
 
-              <Button
-                variant="contained"
-                color="error"
-                onClick={() => {
-                  handleDeleteVideo(eachVideo._id);
-                }}
-              >
-                {" "}
-                Delete
-              </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => {
+                    handleDeleteVideo(eachVideo._id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </div>
+              <br />
+              <br />
             </div>
           );
         })}
       <form>
         {/* <label htmlFor="name">Video Link</label> */}
         <TextField
+          size="small"
           label="New Video Link"
           type="text"
           name="name"
@@ -240,7 +245,6 @@ function VideoEdit() {
       <br />
       <br />
 
-      <br />
       <Button
         variant="contained"
         onClick={() => {
@@ -249,6 +253,8 @@ function VideoEdit() {
       >
         Back
       </Button>
+      <br />
+      <br />
       <br />
       <br />
       <br />
@@ -262,6 +268,9 @@ function VideoEdit() {
           Delete This Playlist
         </Button>
       )}
+
+      <br />
+      <br />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 function UsersProfile() {
   const navigate = useNavigate();
@@ -42,33 +43,42 @@ function UsersProfile() {
   // console.log(parentInfo);
 
   return (
-    <div>
+    <div className="mainContainer">
       <h2>Switch Users</h2>
+      <br />
       {childsOfParent &&
         childsOfParent.map((eachChild) => {
           return (
             <div key={eachChild._id}>
-              <h3>{eachChild.name}</h3>
-              <button
-                onClick={() => {
-                  handleSwitchChild(eachChild._id);
-                }}
-              >
-                Switch
-              </button>
+              <div className="login">
+                <h3>{eachChild.name}</h3>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    handleSwitchChild(eachChild._id);
+                  }}
+                >
+                  Switch
+                </Button>
 
+                <br />
+              </div>
               <br />
             </div>
           );
         })}
+      <br />
+      <br />
       {parentInfo && (
-        <div>
+        <div className="login">
           <h3>{parentInfo.name}</h3>
           <Link to="/parent-login">
-            <button>Switch</button>
+            <Button variant="contained">Switch</Button>
           </Link>
         </div>
       )}
+      <br />
+      <br />
     </div>
   );
 }

@@ -28,7 +28,7 @@ function ChildVideoInPlaylist() {
   };
 
   return (
-    <div>
+    <div className="mainContainer">
       <h1>{playlistName}</h1>
       {videosOfPlaylist &&
         videosOfPlaylist.map((eachVideo) => {

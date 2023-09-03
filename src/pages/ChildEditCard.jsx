@@ -82,16 +82,18 @@ function ChildEditCard() {
   }
 
   return (
-    <div>
-      ChildEditCard
+    <div className="mainContainer">
+      <h2>Edit Your Child</h2>
       <form>
         {/* <label htmlFor="name">Name</label> */}
         <TextField
+          size="small"
           label="Childs Name"
           type="text"
           value={nameInput}
           onChange={handleInputChange}
         />
+
         <Button variant="contained" onClick={handleSave}>
           Save
         </Button>
@@ -110,6 +112,8 @@ function ChildEditCard() {
           <br />
         </Alert>
       )}
+      <br />
+      <br />
       <Button
         variant="contained"
         onClick={() => {
@@ -123,6 +127,7 @@ function ChildEditCard() {
       <br />
       {canDeleteChild && (
         <Button
+          color="error"
           variant="contained"
           onClick={() => {
             handleDeleteChild(oneChildInfo._id);
@@ -131,6 +136,8 @@ function ChildEditCard() {
           Delete
         </Button>
       )}
+      <br />
+      <br />
     </div>
   );
 }

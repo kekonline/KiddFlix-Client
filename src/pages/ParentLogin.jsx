@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
+import { Alert, Button, TextField } from "@mui/material";
 function ParentLogin() {
   const navigate = useNavigate();
 
@@ -54,22 +55,29 @@ function ParentLogin() {
   };
 
   return (
-    <div>
+    <div className="mainContainer">
+      <br />
       <h2>Enter year of birth</h2>
+      <br />
       <form>
-        <input
+        <TextField
+          label="Year of birth"
+          size="small"
           type="password"
           name="yearOfBirth"
           onChange={handleInput}
           value={YOBInput}
-        ></input>
-        <button onClick={handleLogIn}>Login</button>
+        ></TextField>
+        <Button variant="contained" onClick={handleLogIn}>
+          Login
+        </Button>
       </form>
+      <br />{" "}
       {invalidLoginErrorMessage && (
-        <p>
+        <Alert severity="error">
           {invalidLoginErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
     </div>
   );

@@ -3,9 +3,12 @@
 }
 
 body {
-  height: 100vh;
+  height: 90vh;
 
-  background: linear-gradient(to bottom, #3a3a3a, #000000);
+  background: linear-gradient(to bottom, #3a3a3a, #252525, #000000);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000000;
 }
 
 .mainContainer {
@@ -15,12 +18,20 @@ body {
   justify-content: center;
 }
 h2,
+h1,
+h3,
+li,
 p {
   color: white;
   text-align: center;
 }
 
 .childCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   padding: 10px;
   border-radius: 10px;
   background: linear-gradient(
@@ -39,5 +50,63 @@ input {
 }
 .MuiTextField-root {
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.295);
+}
+
+.playlistTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  gap: 30px;
+}
+
+.videoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.1)
+  );
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+}
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.secondRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.thirdRow {
+  width: 600px;
+}
+.ParentNavBar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }

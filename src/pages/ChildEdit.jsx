@@ -65,30 +65,27 @@ function ChildEdit() {
   }
 
   return (
-    <div>
-      ChildEdit
+    <div className="mainContainer">
+      <h1>Your Childs To Manage</h1>
       {childsOfParent &&
         childsOfParent.map((eachChild) => {
           return (
             <div key={eachChild._id}>
-              <h3>{eachChild.name}</h3>
-              <Link to={"/parent/child/edit/" + eachChild._id}>
-                <Button variant="contained">Edit</Button>
-              </Link>
-              {/* path="/parent/child/edit/:childId" 
+              <div className="childCard">
+                <h2>{eachChild.name}</h2>
+                <Link to={"/parent/child/edit/" + eachChild._id}>
+                  <Button variant="contained">Edit</Button>
+                </Link>
+                {/* path="/parent/child/edit/:childId" 
               
                  onClick={() => {
                   handleDeleteChild(eachChild._id);
                 }}
-              
-              
-              
-              
-              
-              
-              
-              
+
+        
               */}
+                <br />
+              </div>
               <br />
             </div>
           );
@@ -97,6 +94,7 @@ function ChildEdit() {
       <form>
         {/* <label htmlFor="name">Name</label> */}
         <TextField
+          size="small"
           label="New Childs Name"
           type="text"
           name="name"
@@ -107,7 +105,7 @@ function ChildEdit() {
           }}
         />
 
-        <Button variant="contained" size="large" onClick={handleAddChild}>
+        <Button variant="contained" onClick={handleAddChild}>
           Add
         </Button>
         {inputErrorMessage && (
@@ -117,6 +115,8 @@ function ChildEdit() {
           </Alert>
         )}
       </form>
+      <br />
+      <br />
       <Button
         variant="contained"
         onClick={() => {
@@ -125,6 +125,8 @@ function ChildEdit() {
       >
         Back
       </Button>
+      <br />
+      <br />
     </div>
   );
 }
