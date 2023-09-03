@@ -51,6 +51,8 @@ function ChildPlaylist() {
         return false;
       }
     });
+
+    setAllPlaylistsFromChild(searchResults);
   };
 
   if (isPageloading === true) {

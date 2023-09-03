@@ -49,15 +49,16 @@ function VideoEdit() {
       if (!childId) {
         return;
       }
-
+      console.log("in data");
       const allPlaylistRequest = await service.get("playlist/all/" + childId);
 
       // console.log(allPlaylistRequest.data.length);
 
       if (allPlaylistRequest.data.length > 1) {
         setCanDeletePlaylist(true);
-        setIsPageLoading(false);
       }
+
+      setIsPageLoading(false);
     } catch (error) {
       setIsPageLoading(false);
       console.log(error);
