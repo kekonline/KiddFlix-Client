@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Navigate } from "react-router-dom";
 
-function IsPrivate(props) {
-  const { parentIsActive, childIsActive } = useContext(AuthContext);
+function IsChild(props) {
+  const { childIsActive } = useContext(AuthContext);
 
-  if (parentIsActive === true || childIsActive === true) {
+  if (childIsActive === true) {
     return props.children;
   } else {
     return <Navigate to="/" />;
   }
 }
 
-export default IsPrivate;
+export default IsChild;

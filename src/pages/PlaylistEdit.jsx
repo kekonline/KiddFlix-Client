@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
+import { Alert, Button, TextField } from "@mui/material";
 
 function PlaylistEdit() {
   const { childName, childId } = useParams();
@@ -8,7 +9,7 @@ function PlaylistEdit() {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [inputErrorMessage, setInputErrorMessage] = useState("");
   const [addPlayList, setAddPlayList] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
@@ -55,9 +56,9 @@ function PlaylistEdit() {
   }
 
   return (
-    <div>
-      <h2>{childName}</h2>
-
+    <div className="mainContainer">
+      <br />
+      <h2>{childName}'s Playlists</h2>
       {playlistOfChild &&
         playlistOfChild.map((eachPlaylist) => {
           return (
@@ -65,15 +66,15 @@ function PlaylistEdit() {
               <Link
                 to={`/parent/video/edit/${eachPlaylist.name}/${eachPlaylist._id}`}
               >
-                <button> {eachPlaylist.name}</button>
+                <Button variant="outlined"> {eachPlaylist.name}</Button>
               </Link>
             </div>
           );
         })}
-
       <form>
-        <label htmlFor="name">Name</label>
-        <input
+        {/* <label htmlFor="name">Name</label> */}
+        <TextField
+          label="New Playlist Name"
           type="text"
           name="name"
           value={addPlayList}
@@ -81,16 +82,26 @@ function PlaylistEdit() {
             setAddPlayList(event.target.value);
             // console.log(event.target.value);
           }}
-        ></input>
+        ></TextField>
         <br />
-        <button onClick={handleAddPlaylist}>Add </button>
+        <Button variant="contained" onClick={handleAddPlaylist}>
+          Add{" "}
+        </Button>
         {inputErrorMessage && (
-          <p>
+          <Alert severity="error">
             {inputErrorMessage}
             <br />
-          </p>
+          </Alert>
         )}
       </form>
+      <Button
+        variant="contained"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>
     </div>
   );
 }

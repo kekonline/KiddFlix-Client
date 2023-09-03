@@ -26,7 +26,7 @@ function ChildVideoCategory() {
     }
   };
 
-  console.log("video of category", videosOfCategory);
+  // console.log("video of category", videosOfCategory);
 
   return (
     <div>

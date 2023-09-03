@@ -1,8 +1,8 @@
 import service from "../services/service.config";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../context/auth.context";
+import { Alert, Button, TextField } from "@mui/material";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -98,54 +98,73 @@ function SignIn() {
     <div>
       <h1>Welcome to KiddFlix</h1>
       <form>
-        <label htmlFor="name">Name: </label>
-        <input type="text" name="name" onChange={handleAnyInput}></input>
+        {/* <label htmlFor="name">Name: </label> */}
+        <TextField
+          label="Name"
+          type="text"
+          name="name"
+          onChange={handleAnyInput}
+        ></TextField>
         <br />
-        <label htmlFor="email">Email: </label>
-        <input type="email" name="email" onChange={handleAnyInput}></input>
+        {/* <label htmlFor="email">Email: </label> */}
+        <TextField
+          label="Email"
+          type="email"
+          name="email"
+          onChange={handleAnyInput}
+        ></TextField>
         <br />
-        <label htmlFor="password">Password: </label>
-        <input
+        {/* <label htmlFor="password">Password: </label> */}
+        <TextField
+          label="Password"
           type="password"
           name="password"
           onChange={handleAnyInput}
-        ></input>
+        ></TextField>
         <br />
-        <label htmlFor="yearOfBirth">Year Of Birth: </label>
-        <input
+        {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
+        <TextField
+          label="Year Of Birth"
           type="number"
           name="yearOfBirth"
           onChange={handleAnyInput}
-        ></input>
+        ></TextField>
         <br />
-        <label htmlFor="childName">Child Name: </label>
-        <input type="text" name="childName" onChange={handleAnyInput}></input>
+        {/* <label htmlFor="childName">Child Name: </label> */}
+        <TextField
+          label="Child Name"
+          type="text"
+          name="childName"
+          onChange={handleAnyInput}
+        ></TextField>
         <br />
-        <button onClick={handleSignIn}>Sign In</button>
+        <Button variant="contained" onClick={handleSignIn}>
+          Sign In
+        </Button>
       </form>
       {emailErrorMessage && (
-        <p>
+        <Alert severity="error">
           {emailErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
       {yearOfBirthErrorMessage && (
-        <p>
+        <Alert severity="error">
           {yearOfBirthErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
       {blancFieldsErrorMessage && (
-        <p>
+        <Alert severity="error">
           {blancFieldsErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
       {invalidEmailErrorMessage && (
-        <p>
+        <Alert severity="error">
           {invalidEmailErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
     </div>
   );

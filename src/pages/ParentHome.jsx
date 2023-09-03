@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import service from "../services/service.config";
+import { Button } from "@mui/material";
 
 function ParentHome() {
   const [childsOfParent, setChildsOfParent] = useState(null);
@@ -21,25 +22,31 @@ function ParentHome() {
   // console.log(childsOfParent);
 
   return (
-    <div>
+    <div className="mainContainer">
+      <br /> <br />
       {childsOfParent !== null &&
         childsOfParent.map((eachChild) => {
           return (
-            <div key={eachChild._id}>
-              <h3>{eachChild.name}</h3>
+            <div key={eachChild._id} className="childCard">
+              <h2>{eachChild.name}</h2>
               <Link
                 to={`/parent/playlist/edit/${eachChild.name}/${eachChild._id}`}
               >
-                <button> Manage Playlist </button>
+                <Button variant="contained">
+                  {" "}
+                  Manage {eachChild.name}'s Playlist{" "}
+                </Button>
               </Link>
             </div>
           );
         })}
       <br /> <br /> <br /> <br />
-      <p>Manage Kids:</p>
-      <Link to="/parent/child/edit">
-        <button>Manage</button>
-      </Link>
+      <div className="childCard mainContainer">
+        <p>Manage You Childs</p>
+        <Link to="/parent/child/edit">
+          <Button variant="contained">Manage</Button>
+        </Link>
+      </div>
     </div>
   );
 }

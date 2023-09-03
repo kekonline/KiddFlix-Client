@@ -38,7 +38,7 @@ function ParentLogin() {
         yearOfBirth: YOBInput,
       });
 
-      console.log(responseValidYOB.data);
+      // console.log(responseValidYOB.data);
 
       if (responseValidYOB.data) {
         setParentIsActive(true);

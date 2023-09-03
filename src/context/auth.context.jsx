@@ -48,8 +48,8 @@ function AuthWrapper(props) {
       // console.log(ChildId.data[0]._id);
       setActiveChildId(ChildId.data[0]._id);
 
-      //only for dev purpouse
-      setParentIsActive(true);
+      //!only for dev purpouse
+      // setParentIsActive(true);
 
       setIsPageLoading(false);
     } catch (error) {
@@ -61,7 +61,7 @@ function AuthWrapper(props) {
     }
   };
 
-  console.log("is child active", childIsActive);
+  // console.log("is child active", childIsActive);
 
   const passedContext = {
     parentId,
@@ -73,6 +73,8 @@ function AuthWrapper(props) {
     setActiveChildId,
     activeChildId,
   };
+
+  // console.log("activeChildId", activeChildId);
 
   if (isPageloading === true) {
     // setTimeout(() => {

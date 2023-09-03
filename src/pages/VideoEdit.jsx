@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import ParentPlayer from "../components/ParentPlayer";
+import { Alert, Button, TextField } from "@mui/material";
 
 function VideoEdit() {
   const { playlistName, playlistId } = useParams();
@@ -12,12 +13,16 @@ function VideoEdit() {
   const [playlistNameInput, setPlaylistNameInput] = useState("");
   const [backUpPlaylistName, setBackUpPlaylistName] = useState("");
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
+  const [childId, setChildId] = useState("");
+  const [canDeletePlaylist, setCanDeletePlaylist] = useState(false);
+  const [isPageloading, setIsPageLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getData();
-  }, []);
+    getNumberOfPlaylist();
+  }, [childId]);
 
   const getData = async () => {
     try {
@@ -25,6 +30,9 @@ function VideoEdit() {
         "playlist/videos/" + playlistId
       );
       // console.log(playlistId);
+
+      setChildId(allVideosFromPlaylist.data.child);
+      // console.log(allVideosFromPlaylist.data.child);
       setBackUpPlaylistName(allVideosFromPlaylist.data.name);
       setPlaylistNameInput(allVideosFromPlaylist.data.name);
       setVideosOfPlaylist(allVideosFromPlaylist.data.video);
@@ -34,7 +42,30 @@ function VideoEdit() {
     }
   };
 
+  const getNumberOfPlaylist = async () => {
+    try {
+      // console.log(childId);
+
+      if (!childId) {
+        return;
+      }
+
+      const allPlaylistRequest = await service.get("playlist/all/" + childId);
+
+      // console.log(allPlaylistRequest.data.length);
+
+      if (allPlaylistRequest.data.length > 1) {
+        setCanDeletePlaylist(true);
+        setIsPageLoading(false);
+      }
+    } catch (error) {
+      setIsPageLoading(false);
+      console.log(error);
+    }
+  };
+
   const handleAddVideo = async () => {
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     event.preventDefault();
     if (addVideo === "") {
       setInputErrorMessage("Introduce a valid name");
@@ -43,9 +74,12 @@ function VideoEdit() {
       setInputErrorMessage("");
     }
 
+    const splitURL = addVideo.split("&");
+    console.log(splitURL);
+
     try {
       const newVideo = await service.post("/video/new/", {
-        link: addVideo,
+        link: splitURL[0],
         playlistId: playlistId,
       });
       setAddVideo("");
@@ -119,33 +153,46 @@ function VideoEdit() {
     }
   };
 
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return <h3>... Loaging Nice Stuff...</h3>;
+    // }, 1000);
+  }
+
   return (
     <div>
       {activeEditName === true ? (
         <div>
           <form>
-            <label htmlFor="name">Choose A New Name</label>
-            <input
+            {/* <label htmlFor="name">Choose A New Name</label> */}
+            <TextField
+              label="Playlist Name"
               type="text"
               onChange={handelEditNameInput}
               name="name"
               value={playlistNameInput}
-            ></input>
-            <button onClick={handelSaveEditName}>Save</button>
-            <button onClick={handelCancelEditName}>Cancel</button>
+            ></TextField>
+            <Button variant="contained" onClick={handelSaveEditName}>
+              Save
+            </Button>
+            <Button variant="contained" onClick={handelCancelEditName}>
+              Cancel
+            </Button>
           </form>
         </div>
       ) : (
         <div>
           <h1>{playlistNameInput}</h1>
-          <button onClick={handelActiveButton}>Edit Name</button>
+          <Button variant="contained" onClick={handelActiveButton}>
+            Edit Name
+          </Button>
         </div>
       )}
       {blancFieldsErrorMessage && (
-        <p>
+        <Alert severity="error">
           {blancFieldsErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
 
       {videosOfPlaylist &&
@@ -154,19 +201,23 @@ function VideoEdit() {
             <div key={eachVideo._id}>
               <ParentPlayer url={eachVideo.link} />
 
-              <button
+              <Button
+                variant="contained"
+                color="error"
                 onClick={() => {
                   handleDeleteVideo(eachVideo._id);
                 }}
               >
+                {" "}
                 Delete
-              </button>
+              </Button>
             </div>
           );
         })}
       <form>
-        <label htmlFor="name">Video Link</label>
-        <input
+        {/* <label htmlFor="name">Video Link</label> */}
+        <TextField
+          label="New Video Link"
           type="text"
           name="name"
           value={addVideo}
@@ -174,25 +225,43 @@ function VideoEdit() {
             setAddVideo(event.target.value);
             // console.log(event.target.value);
           }}
-        ></input>
-        <br />
-        <button onClick={handleAddVideo}>Add </button>
+        ></TextField>
+
+        <Button variant="contained" onClick={handleAddVideo}>
+          Add{" "}
+        </Button>
         {inputErrorMessage && (
-          <p>
+          <Alert severity="error">
             {inputErrorMessage}
             <br />
-          </p>
+          </Alert>
         )}
       </form>
       <br />
       <br />
 
       <br />
+      <Button
+        variant="contained"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>
+      <br />
+      <br />
+      <br />
 
-      <br />
-      <br />
-      <br />
-      <button onClick={handleDeletePlaylist}>Delete This Playlist</button>
+      {canDeletePlaylist && (
+        <Button
+          variant="contained"
+          color="error"
+          onClick={handleDeletePlaylist}
+        >
+          Delete This Playlist
+        </Button>
+      )}
     </div>
   );
 }

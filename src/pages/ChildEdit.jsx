@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 // import { useEffect, useContext, useState } from "react";
 // import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { TextField, Alert, Button } from "@mui/material";
 function ChildEdit() {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [childsOfParent, setChildsOfParent] = useState(null);
   // const { updateParentChilds } = useContext(AuthContext);
   const [addChild, setAddChild] = useState("");
   const [inputErrorMessage, setInputErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
@@ -72,7 +73,7 @@ function ChildEdit() {
             <div key={eachChild._id}>
               <h3>{eachChild.name}</h3>
               <Link to={"/parent/child/edit/" + eachChild._id}>
-                <button>Edit</button>
+                <Button variant="contained">Edit</Button>
               </Link>
               {/* path="/parent/child/edit/:childId" 
               
@@ -93,15 +94,10 @@ function ChildEdit() {
           );
         })}
       <br />
-      {inputErrorMessage && (
-        <p>
-          {inputErrorMessage}
-          <br />
-        </p>
-      )}
       <form>
-        <label htmlFor="name">Name</label>
-        <input
+        {/* <label htmlFor="name">Name</label> */}
+        <TextField
+          label="New Childs Name"
           type="text"
           name="name"
           value={addChild}
@@ -109,19 +105,26 @@ function ChildEdit() {
             setAddChild(event.target.value);
             // console.log(event.target.value);
           }}
-        ></input>
-        <br />
-        <button onClick={handleAddChild}>Add </button>
+        />
+
+        <Button variant="contained" size="large" onClick={handleAddChild}>
+          Add
+        </Button>
         {inputErrorMessage && (
-          <p>
+          <Alert severity="error">
             {inputErrorMessage}
             <br />
-          </p>
+          </Alert>
         )}
       </form>
-      <br />
-      <br />
-      <br />
+      <Button
+        variant="contained"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>
     </div>
   );
 }

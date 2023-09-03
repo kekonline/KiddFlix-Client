@@ -1,3 +1,5 @@
+import "./App.css";
+
 import { Routes, Route } from "react-router-dom";
 
 //pages
@@ -15,7 +17,8 @@ import ChildVideoInPlaylist from "./pages/ChildVideoInPlaylist";
 import ChildVideoCategory from "./pages/ChildVideoCategory";
 
 //components
-import IsPrivate from "./components/IsPrivate";
+import IsKickBack from "./components/IsKickBack";
+import IsChild from "./components/IsChild";
 import IsParent from "./components/IsParent";
 import ChildPlaylist from "./pages/ChildPlaylist";
 import UsersProfile from "./pages/UsersProfile";
@@ -31,121 +34,122 @@ function App() {
         <Route
           path="/"
           element={
-            <IsParent>
-              <Home />
-            </IsParent>
+            <IsKickBack>
+              <Home />{" "}
+            </IsKickBack>
           }
         />
+
         <Route
           path="/signin"
           element={
-            <IsParent>
-              <SignIn />
-            </IsParent>
+            <IsKickBack>
+              <SignIn />{" "}
+            </IsKickBack>
           }
         />
         <Route
           path="/parent/home"
           element={
-            <IsPrivate>
+            <IsParent>
               <ParentHome />
-            </IsPrivate>
+            </IsParent>
           }
         />
         <Route
           path="/parent/profile"
           element={
-            <IsPrivate>
+            <IsParent>
               <ParentProfile />
-            </IsPrivate>
+            </IsParent>
           }
         />
 
         <Route
           path="/parent/child/edit"
           element={
-            <IsPrivate>
+            <IsParent>
               <ChildEdit />
-            </IsPrivate>
+            </IsParent>
           }
         />
         <Route
           path="/parent/playlist/edit/:childName/:childId"
           element={
-            <IsPrivate>
+            <IsParent>
               <PlaylistEdit />
-            </IsPrivate>
+            </IsParent>
           }
         />
 
         <Route
           path="/parent/video/edit/:playlistName/:playlistId"
           element={
-            <IsPrivate>
+            <IsParent>
               <VideoEdit />
-            </IsPrivate>
+            </IsParent>
           }
         />
 
         <Route
           path="/playlist"
           element={
-            <IsPrivate>
+            <IsChild>
               <ChildPlaylist />
-            </IsPrivate>
+            </IsChild>
           }
         />
 
         <Route
           path="/users-profile"
           element={
-            <IsPrivate>
+            <IsChild>
               <UsersProfile />
-            </IsPrivate>
+            </IsChild>
           }
         />
         <Route
           path="/parent-login"
           element={
-            <IsPrivate>
+            <IsChild>
               <ParentLogin />
-            </IsPrivate>
+            </IsChild>
           }
         />
 
         <Route
           path="/playlist/:playlistName/:playlistId"
           element={
-            <IsPrivate>
+            <IsChild>
               <ChildVideoInPlaylist />
-            </IsPrivate>
+            </IsChild>
           }
         />
 
         <Route
           path="/playlist/video/:link/:videoId"
           element={
-            <IsPrivate>
+            <IsChild>
               <ChildVideoPlay />
-            </IsPrivate>
+            </IsChild>
           }
         />
 
         <Route
           path="/video/:category"
           element={
-            <IsPrivate>
+            <IsChild>
               <ChildVideoCategory />
-            </IsPrivate>
+            </IsChild>
           }
         />
 
         <Route
           path="/parent/child/edit/:childId"
           element={
-            <IsPrivate>
+            <IsParent>
               <ChildEditCard />
-            </IsPrivate>
+            </IsParent>
           }
         />
 

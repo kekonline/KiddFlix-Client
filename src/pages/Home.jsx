@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import service from "../services/service.config";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+// import Button from "@mui/material/Button";
 
 import { AuthContext } from "../context/auth.context";
+import { TextField, Alert, Button } from "@mui/material";
 
 function Home() {
   const [invalidLoginErrorMessage, setInvalidLoginErrorMessage] =
@@ -61,11 +63,8 @@ function Home() {
       navigate("/parent/home");
       setInvalidLoginErrorMessage("");
     } catch (error) {
-      // console.log(error.response.data);
-      if (
-        !error.response.data.validLogin &&
-        error.response.data.validLogin !== undefined
-      ) {
+      console.log(error);
+      if (error.response !== undefined) {
         setInvalidLoginErrorMessage("Invalid email or password");
       }
     }
@@ -75,41 +74,50 @@ function Home() {
     <div>
       <h1>Welcome to KiddFlix</h1>
       <form>
-        <label htmlFor="email">Email: </label>
-        <input type="email" name="email" onChange={handleEmailInput}></input>
+        {/* <label htmlFor="email">Email: </label> */}
+        <TextField
+          label="Email"
+          type="email"
+          name="email"
+          onChange={handleEmailInput}
+        ></TextField>
         <br />
-        <label htmlFor="password">Password: </label>
-        <input
+        {/* <label htmlFor="password">Password: </label> */}
+        <TextField
+          label="Password"
           type="password"
           name="password"
           onChange={handlePasswordInput}
-        ></input>
+        ></TextField>
         <br />
       </form>
-      <button type="login" onClick={handleLogIn}>
+      <Button variant="contained" type="login" onClick={handleLogIn}>
         Login
-      </button>
+      </Button>
       <br />
       {emailErrorMessage && (
-        <p>
+        <Alert severity="error">
           {emailErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
       {invalidLoginErrorMessage && (
-        <p>
+        <Alert severity="error">
           {invalidLoginErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
       {blancFieldsErrorMessage && (
-        <p>
+        <Alert severity="error">
           {blancFieldsErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
       <p>
-        Not not registered yet? <Link to="/signin">Sign In</Link>
+        Not not registered yet?{" "}
+        <Link to="/signin">
+          <Button variant="outlined">Sign In</Button>
+        </Link>
       </p>
     </div>
   );

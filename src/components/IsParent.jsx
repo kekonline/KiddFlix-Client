@@ -6,10 +6,11 @@ function IsParent(props) {
   const { parentIsActive } = useContext(AuthContext);
 
   if (parentIsActive === true) {
-    return <Navigate to="/parent/home" />;
+    return props.children;
+
     // return props.children;
   } else {
-    return props.children;
+    return <Navigate to="/" />;
   }
 }
 

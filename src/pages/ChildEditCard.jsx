@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { useParams, useNavigate } from "react-router-dom";
+import { TextField, Alert, Button } from "@mui/material";
 
 function ChildEditCard() {
   const [inputErrorMessage, setInputErrorMessage] = useState("");
   const [isPageloading, setIsPageLoading] = useState(true);
   const [oneChildInfo, setOneChildInfo] = useState(null);
   const [nameInput, setNameInput] = useState("");
+  const [canDeleteChild, setCanDeleteChild] = useState(false);
   const { childId } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     getData();
+    checkNumberChilds();
   }, []);
 
   const getData = async () => {
@@ -24,13 +27,26 @@ function ChildEditCard() {
     }
   };
 
+  const checkNumberChilds = async () => {
+    try {
+      const RequestChilds = await service.get("child/all/");
+      if (RequestChilds.data.length > 1) {
+        setCanDeleteChild(true);
+      }
+
+      // console.log(RequestChilds.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDeleteChild = async (childId) => {
     event.preventDefault();
     try {
       const deleteChildRequest = await service.delete("/child/" + childId);
       console.log("good", deleteChildRequest, childId);
 
-      navigate("/parent/child/edit/");
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -69,33 +85,52 @@ function ChildEditCard() {
     <div>
       ChildEditCard
       <form>
-        <label htmlFor="name">Name</label>
-        <input type="text" value={nameInput} onChange={handleInputChange} />
-        <button onClick={handleSave}>Save</button>
-        <button
+        {/* <label htmlFor="name">Name</label> */}
+        <TextField
+          label="Childs Name"
+          type="text"
+          value={nameInput}
+          onChange={handleInputChange}
+        />
+        <Button variant="contained" onClick={handleSave}>
+          Save
+        </Button>
+        <Button
+          variant="contained"
           onClick={() => {
             navigate("/parent/child/edit/");
           }}
         >
           Cancel
-        </button>
+        </Button>
       </form>
       {inputErrorMessage && (
-        <p>
+        <Alert severity="error">
           {inputErrorMessage}
           <br />
-        </p>
+        </Alert>
       )}
-      <br />
-      <br />
-      <br />
-      <button
+      <Button
+        variant="contained"
         onClick={() => {
-          handleDeleteChild(oneChildInfo._id);
+          navigate(-1);
         }}
       >
-        Delete
-      </button>
+        Back
+      </Button>
+      <br />
+      <br />
+      <br />
+      {canDeleteChild && (
+        <Button
+          variant="contained"
+          onClick={() => {
+            handleDeleteChild(oneChildInfo._id);
+          }}
+        >
+          Delete
+        </Button>
+      )}
     </div>
   );
 }
