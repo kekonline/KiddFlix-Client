@@ -4,11 +4,17 @@
 
 body {
   height: 90vh;
-
+  margin-top: 50px;
   background: linear-gradient(to bottom, #3a3a3a, #252525, #000000);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #000000;
+}
+
+.player-container {
+  width: 100%; /* Set the desired width for the player */
+  max-width: 800px; /* Optional: Set a maximum width */
+  height: auto; /* Auto-adjust height to maintain the aspect ratio */
 }
 
 .mainContainer {
@@ -103,14 +109,30 @@ p {
 }
 
 .thirdRow {
-  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  width: 80%;
+}
+.kiddflixLogo {
+  width: 700px;
 }
 .ParentNavBar {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 100vw;
+  align-content: center;
+  width: 99vw;
   height: 50px;
+
+  position: fixed;
+
+  z-index: 100;
+  backdrop-filter: blur(5px);
+
+  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .profilePicture {
@@ -137,4 +159,34 @@ p {
   width: 50%;
   opacity: 0.6;
   border-radius: 20px;
+}
+/* MEDIA QUERYS */
+
+@media (min-width: 701px) {
+  .ParentNavBar {
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #000000bb, #ffffff00);
+  }
+}
+
+@media (max-width: 700px) {
+  .kiddflixLogo {
+    width: 80vw;
+  }
+
+  .secondRow {
+    flex-direction: column;
+  }
+
+  .ParentNavBar {
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #ffffff00, #0000009d);
+    height: 60px;
+  }
+
+  .childButton {
+    font-size: xx-small;
+  }
 }

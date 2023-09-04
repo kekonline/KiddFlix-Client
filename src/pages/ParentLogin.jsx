@@ -68,13 +68,13 @@ function ParentLogin() {
           onChange={handleInput}
           value={YOBInput}
         ></TextField>
-        <Button variant="contained" onClick={handleLogIn}>
+        <Button variant="contained" color="secondary" onClick={handleLogIn}>
           Login
         </Button>
       </form>
       <br />{" "}
       {invalidLoginErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {invalidLoginErrorMessage}
           <br />
         </Alert>

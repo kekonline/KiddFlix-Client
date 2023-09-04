@@ -234,14 +234,14 @@ function ParentProfile() {
       </div>
       <br />
       {yearOfBirthErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {yearOfBirthErrorMessage}
           <br />
         </Alert>
       )}
       <br />
       {blancFieldsErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {blancFieldsErrorMessage}
           <br />
         </Alert>

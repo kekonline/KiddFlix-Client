@@ -1,12 +1,19 @@
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import service from "../services/service.config";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ChildVideoPlay() {
   const { link, videoId } = useParams();
+  const [width, setWidth] = useState(700);
+  const [height, setHeight] = useState(400);
 
   useEffect(() => {
+    if (window.innerWidth < 800) {
+      setWidth(window.innerWidth * 0.9);
+      setHeight((width * 9) / 16);
+    }
+
     sendData();
   });
 
@@ -23,7 +30,7 @@ function ChildVideoPlay() {
     <div className="mainContainer">
       <br />
       <br />
-      <ReactPlayer url={link} width="700px" height="400px" playing controls />
+      <ReactPlayer url={link} width={width} height={height} playing controls />
     </div>
   );
 }

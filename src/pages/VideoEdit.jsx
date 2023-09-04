@@ -4,6 +4,9 @@ import service from "../services/service.config";
 import ParentPlayer from "../components/ParentPlayer";
 import { Alert, Button, TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 function VideoEdit() {
   const { playlistName, playlistId } = useParams();
   const [videosOfPlaylist, setVideosOfPlaylist] = useState(null);
@@ -194,8 +197,9 @@ function VideoEdit() {
           </Button>
         </div>
       )}
+      <br />
       {blancFieldsErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {blancFieldsErrorMessage}
           <br />
         </Alert>
@@ -208,7 +212,18 @@ function VideoEdit() {
               <div className="videoContainer">
                 <ParentPlayer url={eachVideo.link} />
 
-                <Button
+                <IconButton
+                  onClick={() => {
+                    handleDeleteVideo(eachVideo._id);
+                  }}
+                  aria-label="delete"
+                  size="large"
+                  color="error"
+                >
+                  <DeleteIcon fontSize="inherit" />
+                </IconButton>
+
+                {/* <Button
                   variant="contained"
                   color="error"
                   onClick={() => {
@@ -216,7 +231,7 @@ function VideoEdit() {
                   }}
                 >
                   Delete
-                </Button>
+                </Button> */}
               </div>
               <br />
               <br />
@@ -237,11 +252,11 @@ function VideoEdit() {
           }}
         ></TextField>
 
-        <Button variant="contained" onClick={handleAddVideo}>
-          Add{" "}
+        <Button variant="contained" color="success" onClick={handleAddVideo}>
+          Add
         </Button>
         {inputErrorMessage && (
-          <Alert severity="error">
+          <Alert variant="filled" severity="error">
             {inputErrorMessage}
             <br />
           </Alert>

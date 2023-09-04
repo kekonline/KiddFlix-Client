@@ -166,6 +166,8 @@ function ChildEditCard() {
         <form>
           {/* <label htmlFor="name">Name</label> */}
           <TextField
+            variant="filled"
+            color="secondary"
             size="small"
             label="Childs Name"
             type="text"
@@ -185,8 +187,9 @@ function ChildEditCard() {
             Cancel
           </Button>
         </form>
+        <br />
         {inputErrorMessage && (
-          <Alert severity="error">
+          <Alert variant="filled" severity="error">
             {inputErrorMessage}
             <br />
           </Alert>

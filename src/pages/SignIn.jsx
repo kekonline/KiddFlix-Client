@@ -105,6 +105,8 @@ function SignIn() {
         <form>
           {/* <label htmlFor="name">Name: </label> */}
           <TextField
+            variant="filled"
+            color="secondary"
             size="small"
             label="Name"
             type="text"
@@ -114,6 +116,8 @@ function SignIn() {
           <br /> <br />
           {/* <label htmlFor="email">Email: </label> */}
           <TextField
+            variant="filled"
+            color="secondary"
             size="small"
             label="Email"
             type="email"
@@ -123,6 +127,8 @@ function SignIn() {
           <br /> <br />
           {/* <label htmlFor="password">Password: </label> */}
           <TextField
+            variant="filled"
+            color="secondary"
             size="small"
             label="Password"
             type="password"
@@ -132,6 +138,8 @@ function SignIn() {
           <br /> <br />
           {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
           <TextField
+            variant="filled"
+            color="secondary"
             size="small"
             label="Year Of Birth"
             type="number"
@@ -141,6 +149,8 @@ function SignIn() {
           <br /> <br />
           {/* <label htmlFor="childName">Child Name: </label> */}
           <TextField
+            variant="filled"
+            color="secondary"
             size="small"
             label="Child Name"
             type="text"
@@ -149,33 +159,41 @@ function SignIn() {
           ></TextField>
           <br /> <br />
           <div className="videoContainer">
-            <Button variant="contained" onClick={handleSignIn}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleSignIn}
+            >
               Sign In
             </Button>
           </div>
           <br />
         </form>
-      </div>
+      </div>{" "}
+      <br />
       {emailErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {emailErrorMessage}
           <br />
         </Alert>
       )}
+      <br />
       {yearOfBirthErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {yearOfBirthErrorMessage}
           <br />
         </Alert>
       )}
+      <br />
       {blancFieldsErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {blancFieldsErrorMessage}
           <br />
         </Alert>
       )}
+      <br />
       {invalidEmailErrorMessage && (
-        <Alert severity="error">
+        <Alert variant="filled" severity="error">
           {invalidEmailErrorMessage}
           <br />
         </Alert>

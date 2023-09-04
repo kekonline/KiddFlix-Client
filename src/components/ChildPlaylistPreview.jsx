@@ -9,6 +9,13 @@ function ChildPlaylistPreview(props) {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [url, setUrl] = useState("");
   // console.log(props);
+  let width = 700;
+  let height = 400;
+
+  if (window.innerWidth < 800) {
+    width = window.innerWidth * 0.9;
+    height = (width * 9) / 16;
+  }
 
   useEffect(() => {
     getData();
@@ -31,8 +38,8 @@ function ChildPlaylistPreview(props) {
   const topLayer = {
     color: "white",
     position: "absolute",
-    width: "700px",
-    height: "400px",
+    width: width + "px",
+    height: height + "px",
     zIndex: "1",
     backdropFilter: "blur(3px)",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -51,8 +58,8 @@ function ChildPlaylistPreview(props) {
   const ContainerPlayer = {
     overflow: "hidden",
     backgroundColor: "black",
-    width: "700px",
-    height: "400px",
+    width: width + "px",
+    height: height + "px",
     borderRadius: "30px",
   };
 
@@ -67,7 +74,7 @@ function ChildPlaylistPreview(props) {
             <Button variant="outlined"> See More</Button>
           </div>
           <div style={ContainerPlayer}>
-            <img width="700px" height="400px" src={LoadingPic} />;
+            <img width={width} height={height} src={LoadingPic} />;
           </div>
           <br />
         </Link>

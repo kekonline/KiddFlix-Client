@@ -94,11 +94,12 @@ function PlaylistEdit() {
           }}
         ></TextField>
 
-        <Button variant="contained" onClick={handleAddPlaylist}>
+        <Button variant="contained" color="success" onClick={handleAddPlaylist}>
           Add{" "}
         </Button>
+        <br />
         {inputErrorMessage && (
-          <Alert severity="error">
+          <Alert variant="filled" severity="error">
             {inputErrorMessage}
             <br />
           </Alert>

@@ -80,7 +80,7 @@ function Home() {
       <br />
       <br />
       <div className="homeContainer">
-        <img src={KiddFlixLogo} width={700} />
+        <img src={KiddFlixLogo} className="kiddflixLogo" />
         <div>
           <div className="secondRow">
             <h2>
@@ -96,6 +96,8 @@ function Home() {
               <form>
                 {/* <label htmlFor="email">Email: </label> */}
                 <TextField
+                  variant="filled"
+                  color="secondary"
                   size="small"
                   label="Email"
                   type="email"
@@ -106,6 +108,8 @@ function Home() {
                 <br />
                 {/* <label htmlFor="password">Password: </label> */}
                 <TextField
+                  variant="filled"
+                  color="secondary"
                   size="small"
                   label="Password"
                   type="password"
@@ -115,23 +119,30 @@ function Home() {
                 <br />
               </form>
               <br />
-              <Button variant="contained" type="login" onClick={handleLogIn}>
+              <Button
+                variant="contained"
+                type="login"
+                color="secondary"
+                onClick={handleLogIn}
+              >
                 Login
               </Button>
               <br />
               {emailErrorMessage && (
-                <Alert severity="error">
+                <Alert variant="filled" severity="error">
                   {emailErrorMessage}
                   <br />
                 </Alert>
               )}
-
+              <br />
               {invalidLoginErrorMessage && (
-                <Alert severity="error">{invalidLoginErrorMessage}</Alert>
+                <Alert variant="filled" severity="error">
+                  {invalidLoginErrorMessage}
+                </Alert>
               )}
               <br />
               {blancFieldsErrorMessage && (
-                <Alert severity="error">
+                <Alert variant="filled" severity="error">
                   {blancFieldsErrorMessage}
                   <br />
                 </Alert>
@@ -139,7 +150,9 @@ function Home() {
               <p>
                 Not not registered yet?{" "}
                 <Link to="/signin">
-                  <Button variant="outlined">Sign In</Button>
+                  <Button variant="outlined" color="secondary">
+                    Sign In
+                  </Button>
                 </Link>
               </p>
             </div>
@@ -213,6 +226,8 @@ function Home() {
           </p>
         </div>
       </div>
+      <br />
+      <br />
     </div>
   );
 }

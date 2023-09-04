@@ -116,11 +116,12 @@ function ChildEdit() {
           }}
         />
 
-        <Button variant="contained" onClick={handleAddChild}>
+        <Button variant="contained" color="success" onClick={handleAddChild}>
           Add
         </Button>
+        <br />
         {inputErrorMessage && (
-          <Alert severity="error">
+          <Alert variant="filled" severity="error">
             {inputErrorMessage}
             <br />
           </Alert>

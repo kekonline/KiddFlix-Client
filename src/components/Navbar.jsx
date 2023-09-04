@@ -3,6 +3,10 @@ import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import service from "../services/service.config";
 import { Button } from "@mui/material";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
+import FiberNewIcon from "@mui/icons-material/FiberNew";
 
 function Navbar() {
   const [profilePicture, setProfilePicture] = useState(null);
@@ -15,6 +19,11 @@ function Navbar() {
     setActiveChildId,
   } = useContext(AuthContext);
   // console.log(parentIsActive);
+
+  let smallScreen = false;
+  if (window.innerWidth < 600) {
+    smallScreen = true;
+  }
 
   // const [childsOfParent, ] = useState(null);
 
@@ -98,10 +107,15 @@ function Navbar() {
             </div>
           </div>
         ) : null}
-        {childIsActive === true ? (
+        {childIsActive === true && smallScreen === false ? (
           <div className="ParentNavBar">
             <NavLink to="/playlist" style={toggleStyles}>
-              <Button variant="text" size="small" color="secondary">
+              <Button
+                variant="text"
+                size="small"
+                color="secondary"
+                className="childButton"
+              >
                 PlayLists
               </Button>
             </NavLink>
@@ -128,6 +142,44 @@ function Navbar() {
               <Button variant="text" size="small" color="primary">
                 <img src={profilePicture} className="microProfilePicture" />
                 Users Profile
+              </Button>
+            </NavLink>
+          </div>
+        ) : null}
+        {childIsActive === true && smallScreen === true ? (
+          <div className="ParentNavBar">
+            <NavLink to="/playlist" style={toggleStyles}>
+              <Button
+                variant="text"
+                size="small"
+                color="secondary"
+                className="childButton"
+              >
+                <SubscriptionsIcon />
+              </Button>
+            </NavLink>
+
+            <NavLink to="/video/latest" style={toggleStyles}>
+              <Button variant="text" size="small" color="secondary">
+                <FiberNewIcon />
+              </Button>
+            </NavLink>
+
+            <NavLink to="/video/random" style={toggleStyles}>
+              <Button variant="text" size="small" color="secondary">
+                <ShuffleIcon />
+              </Button>
+            </NavLink>
+
+            <NavLink to="/video/unwatched" style={toggleStyles}>
+              <Button variant="text" size="small" color="secondary">
+                <RemoveRedEyeIcon />
+              </Button>
+            </NavLink>
+
+            <NavLink to="/users-profile" style={toggleStyles}>
+              <Button variant="text" size="small" color="primary">
+                <img src={profilePicture} className="microProfilePicture" />
               </Button>
             </NavLink>
           </div>

@@ -5,6 +5,8 @@ import ChildPlaylistPreview from "../components/ChildPlaylistPreview";
 import ReactPlayer from "react-player";
 import { TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
+import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from "@mui/material/InputAdornment";
 
 function ChildPlaylist() {
   const { activeChildId } = useContext(AuthContext);
@@ -69,12 +71,21 @@ function ChildPlaylist() {
   return (
     <div className="mainContainer">
       <br />
+
       <TextField
+        variant="filled"
+        color="secondary"
         value={searchInput}
         onChange={handleSearch}
         id="outlined-basic"
         label="Search For A Playlist"
-        variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
       />
 
       <br />
