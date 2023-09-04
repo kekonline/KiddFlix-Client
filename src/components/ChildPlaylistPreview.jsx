@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import LoadingPic from "../../src/assets/Static_TV.gif";
 
 function ChildPlaylistPreview(props) {
+  const [isPageloading, setIsPageLoading] = useState(true);
   const [url, setUrl] = useState("");
   // console.log(props);
 
@@ -19,8 +21,10 @@ function ChildPlaylistPreview(props) {
       );
       // console.log(firstVideoFromPlaylistRequest.data);
       setUrl(firstVideoFromPlaylistRequest.data);
+      setIsPageLoading(false);
     } catch (error) {
       console.log(error);
+      setIsPageLoading(false);
     }
   };
 
@@ -52,10 +56,29 @@ function ChildPlaylistPreview(props) {
     borderRadius: "30px",
   };
 
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return (
+      <div className="mainContainer">
+        <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
+          <div style={topLayer}>
+            <h1 style={{ fontSize: "4rem" }}>{props.playlistName}</h1>
+
+            <Button variant="outlined"> See More</Button>
+          </div>
+          <div style={ContainerPlayer}>
+            <img width="700px" height="400px" src={LoadingPic} />;
+          </div>
+          <br />
+        </Link>
+      </div>
+    );
+    // }, 1000);
+  }
+
   return (
     <div className="mainContainer">
       <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
-        {" "}
         <div style={topLayer}>
           <h1 style={{ fontSize: "4rem" }}>{props.playlistName}</h1>
 
@@ -64,7 +87,7 @@ function ChildPlaylistPreview(props) {
         <div style={ContainerPlayer}>
           <ReactPlayer url={url} width="700px" height="400px" style={player} />
         </div>
-        <br />{" "}
+        <br />
       </Link>
     </div>
   );

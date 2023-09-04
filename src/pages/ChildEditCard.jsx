@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { useParams, useNavigate } from "react-router-dom";
 import { TextField, Alert, Button } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
 
@@ -128,7 +129,11 @@ function ChildEditCard() {
 
   if (isPageloading === true) {
     // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
     // }, 1000);
   }
 

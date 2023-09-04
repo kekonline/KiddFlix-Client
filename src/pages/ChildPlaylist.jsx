@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import ChildPlaylistPreview from "../components/ChildPlaylistPreview";
 import ReactPlayer from "react-player";
 import { TextField } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 function ChildPlaylist() {
   const { activeChildId } = useContext(AuthContext);
@@ -57,7 +58,11 @@ function ChildPlaylist() {
 
   if (isPageloading === true) {
     // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
     // }, 1000);
   }
 

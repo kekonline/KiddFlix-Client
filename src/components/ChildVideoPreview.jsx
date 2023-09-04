@@ -1,13 +1,17 @@
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import LoadingPic from "../../src/assets/Static_TV.gif";
 
 function ChildVideoPreview(props) {
+  const [isPageloading, setIsPageLoading] = useState(true);
   // console.log(props);
   const [link, setLink] = useState("");
 
   useEffect(() => {
     setLink(encodeURIComponent(props.link));
+
+    setIsPageLoading(false);
   });
 
   const topLayer = {
@@ -35,6 +39,24 @@ function ChildVideoPreview(props) {
     height: "400px",
     borderRadius: "30px",
   };
+
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return (
+      <div className="mainContainer">
+        <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
+          <div style={topLayer}>
+            <h1 style={{ fontSize: "4rem" }}>{props.playlistName}</h1>
+          </div>
+          <div style={ContainerPlayer}>
+            <img width="700px" height="400px" src={LoadingPic} />;
+          </div>
+          <br />
+        </Link>
+      </div>
+    );
+    // }, 1000);
+  }
 
   return (
     <div>

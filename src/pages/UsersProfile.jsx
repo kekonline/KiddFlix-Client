@@ -3,6 +3,7 @@ import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 function UsersProfile() {
   const navigate = useNavigate();
@@ -36,7 +37,11 @@ function UsersProfile() {
 
   if (isPageloading === true) {
     // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
     // }, 1000);
   }
 

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import ParentPlayer from "../components/ParentPlayer";
 import { Alert, Button, TextField } from "@mui/material";
-
+import LoadingPic from "../../src/assets/Loading.gif";
 function VideoEdit() {
   const { playlistName, playlistId } = useParams();
   const [videosOfPlaylist, setVideosOfPlaylist] = useState(null);
@@ -49,7 +49,7 @@ function VideoEdit() {
       if (!childId) {
         return;
       }
-      console.log("in data");
+      // console.log("in data");
       const allPlaylistRequest = await service.get("playlist/all/" + childId);
 
       // console.log(allPlaylistRequest.data.length);
@@ -156,7 +156,11 @@ function VideoEdit() {
 
   if (isPageloading === true) {
     // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
     // }, 1000);
   }
 

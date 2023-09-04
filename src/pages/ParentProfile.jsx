@@ -3,6 +3,7 @@ import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, TextField } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
 
@@ -13,7 +14,7 @@ import { uploadImageService } from "../services/upload.services";
 function ParentProfile() {
   const { parentId, verifyToken } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [isPageloading, setIsPageLoading] = useState(true);
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
   const [yearOfBirthErrorMessage, setyearOfBirthErrorMessage] = useState(false);
   const [formObject, setFormObject] = useState({
@@ -90,7 +91,9 @@ function ParentProfile() {
       // console.log(parentInfo.data.yearOfBirth);
       // console.log(formObject.yearOfBirth);
       // console.log(parentInfo.data);
+      setIsPageLoading(false);
     } catch (error) {
+      setIsPageLoading(false);
       console.log(error);
     }
   };
@@ -151,6 +154,16 @@ function ParentProfile() {
       //   navigate("/error");
     }
   };
+
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 1000);
+  }
 
   return (
     <div className="mainContainer ">

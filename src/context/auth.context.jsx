@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import service from "../services/service.config";
-
 const AuthContext = createContext();
+import LoadingPic from "../../src/assets/Loading.gif";
 
 function AuthWrapper(props) {
   const [parentId, setParentId] = useState(null);
@@ -76,7 +76,11 @@ function AuthWrapper(props) {
 
   if (isPageloading === true) {
     // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
     // }, 1000);
   }
 

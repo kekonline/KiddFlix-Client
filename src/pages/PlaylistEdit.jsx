@@ -86,7 +86,10 @@ function PlaylistEdit() {
           name="name"
           value={addPlayList}
           onChange={() => {
-            setAddPlayList(event.target.value);
+            setAddPlayList(
+              event.target.value.charAt(0).toUpperCase() +
+                event.target.value.slice(1)
+            );
             // console.log(event.target.value);
           }}
         ></TextField>

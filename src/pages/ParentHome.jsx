@@ -3,9 +3,12 @@ import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import service from "../services/service.config";
 import { Button } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 function ParentHome() {
   const [childsOfParent, setChildsOfParent] = useState(null);
+  const [isPageloading, setIsPageLoading] = useState(true);
+
   useEffect(() => {
     getData();
   }, []);
@@ -14,12 +17,23 @@ function ParentHome() {
     try {
       const requestChildsOfParent = await service.get("child/all/");
       setChildsOfParent(requestChildsOfParent.data);
-      console.log(requestChildsOfParent.data);
+      // console.log(requestChildsOfParent.data);
+      setIsPageLoading(false);
     } catch (error) {
+      setIsPageLoading(false);
       console.log(error);
     }
   };
 
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 1000);
+  }
   // console.log(childsOfParent);
 
   return (

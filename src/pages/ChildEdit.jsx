@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Alert, Button } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 function ChildEdit() {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [childsOfParent, setChildsOfParent] = useState(null);
@@ -60,7 +61,11 @@ function ChildEdit() {
 
   if (isPageloading === true) {
     // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
     // }, 1000);
   }
 

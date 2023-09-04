@@ -4,11 +4,13 @@ import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
 import ChildVideoPreview from "../components/ChildVideoPreview";
 import ReactPlayer from "react-player";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 function ChildVideoCategory() {
   const { category } = useParams();
   const { activeChildId } = useContext(AuthContext);
   const [videosOfCategory, setVideosOfCategory] = useState(null);
+  const [isPageloading, setIsPageLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -21,12 +23,24 @@ function ChildVideoCategory() {
       );
       //   console.log(requestedVideos.data);
       setVideosOfCategory(requestedVideos.data);
+      setIsPageLoading(false);
     } catch (error) {
       console.log(error);
+      setIsPageLoading(false);
     }
   };
 
   // console.log("video of category", videosOfCategory);
+
+  if (isPageloading === true) {
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 1000);
+  }
 
   return (
     <div className="mainContainer">

@@ -33,10 +33,10 @@ function Navbar() {
     try {
       const ChildId = await service.get("child/all/");
       // setChildsOfParent(ChildId.data);
-      console.log("childId from navbar", ChildId.data[0]._id);
+      // console.log("childId from navbar", ChildId.data[0]._id);
       setActiveChildId(ChildId.data[0]._id);
       setProfilePicture(ChildId.data[0].picture);
-      console.log(profilePicture);
+      // console.log(profilePicture);
     } catch (error) {
       console.log(error);
     }
@@ -105,21 +105,25 @@ function Navbar() {
                 PlayLists
               </Button>
             </NavLink>
+
             <NavLink to="/video/latest" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 New Videos
               </Button>
             </NavLink>
+
             <NavLink to="/video/random" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 Random Videos
               </Button>
             </NavLink>
+
             <NavLink to="/video/unwatched" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 Un Watched
               </Button>
             </NavLink>
+
             <NavLink to="/users-profile" style={toggleStyles}>
               <Button variant="text" size="small" color="primary">
                 <img src={profilePicture} className="microProfilePicture" />
