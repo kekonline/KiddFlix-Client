@@ -50,8 +50,14 @@ function UsersProfile() {
         childsOfParent.map((eachChild) => {
           return (
             <div key={eachChild._id}>
-              <div className="login">
+              <div className="childCard">
                 <h3>{eachChild.name}</h3>
+                <img
+                  className="profilePicture"
+                  src={eachChild.picture}
+                  alt="img"
+                />
+                <br />
                 <Button
                   variant="contained"
                   onClick={() => {
@@ -70,8 +76,10 @@ function UsersProfile() {
       <br />
       <br />
       {parentInfo && (
-        <div className="login">
+        <div className="childCard">
           <h3>{parentInfo.name}</h3>
+          <img className="profilePicture" src={parentInfo.picture} alt="img" />
+          <br />
           <Link to="/parent-login">
             <Button variant="contained">Switch</Button>
           </Link>

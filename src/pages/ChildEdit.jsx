@@ -73,6 +73,12 @@ function ChildEdit() {
             <div key={eachChild._id}>
               <div className="childCard">
                 <h2>{eachChild.name}</h2>
+                <img
+                  className="profilePicture"
+                  src={eachChild.picture}
+                  alt="img"
+                />
+                <br />
                 <Link to={"/parent/child/edit/" + eachChild._id}>
                   <Button variant="contained">Edit</Button>
                 </Link>

@@ -110,3 +110,13 @@ input {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.profilePicture {
+  width: 300px;
+  border-radius: 10px;
+}
+.microProfilePicture {
+  width: 30px;
+  border-radius: 5px;
+  margin-right: 10px;
+}

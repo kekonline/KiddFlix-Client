@@ -14,6 +14,7 @@ function ParentHome() {
     try {
       const requestChildsOfParent = await service.get("child/all/");
       setChildsOfParent(requestChildsOfParent.data);
+      console.log(requestChildsOfParent.data);
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +31,12 @@ function ParentHome() {
             <div key={eachChild._id}>
               <div className="childCard">
                 <h2>{eachChild.name}</h2>
+                <img
+                  className="profilePicture"
+                  src={eachChild.picture}
+                  alt="img"
+                />
+                <br />
                 <Link
                   to={`/parent/playlist/edit/${eachChild.name}/${eachChild._id}`}
                 >

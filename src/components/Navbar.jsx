@@ -1,10 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import service from "../services/service.config";
 import { Button } from "@mui/material";
 
 function Navbar() {
+  const [profilePicture, setProfilePicture] = useState(null);
   const navigate = useNavigate();
   const {
     parentIsActive,
@@ -16,6 +17,10 @@ function Navbar() {
   // console.log(parentIsActive);
 
   // const [childsOfParent, ] = useState(null);
+
+  useEffect(() => {
+    getData();
+  });
 
   const handleParentExit = () => {
     setParentIsActive(false);
@@ -30,6 +35,8 @@ function Navbar() {
       // setChildsOfParent(ChildId.data);
       console.log("childId from navbar", ChildId.data[0]._id);
       setActiveChildId(ChildId.data[0]._id);
+      setProfilePicture(ChildId.data[0].picture);
+      console.log(profilePicture);
     } catch (error) {
       console.log(error);
     }
@@ -115,6 +122,7 @@ function Navbar() {
             </NavLink>
             <NavLink to="/users-profile" style={toggleStyles}>
               <Button variant="text" size="small" color="primary">
+                <img src={profilePicture} className="microProfilePicture" />
                 Users Profile
               </Button>
             </NavLink>
@@ -125,12 +133,12 @@ function Navbar() {
             <div className="ParentNavBar">
               <NavLink to="/" style={toggleStyles}>
                 <Button variant="text" size="small" color="secondary">
-                  Home{" "}
+                  Home
                 </Button>
               </NavLink>
               <NavLink to="/signin" style={toggleStyles}>
                 <Button variant="text" size="small" color="secondary">
-                  Sign In{" "}
+                  Sign In
                 </Button>
               </NavLink>
             </div>
