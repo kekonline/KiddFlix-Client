@@ -70,6 +70,8 @@ function ParentHome() {
           <Button variant="contained">Manage</Button>
         </Link>
       </div>
+      <br />
+      <br />
     </div>
   );
 }

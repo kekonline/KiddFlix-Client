@@ -15,21 +15,43 @@ function SignIn() {
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState(false);
   const [yearOfBirthErrorMessage, setyearOfBirthErrorMessage] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(false);
+  const [password2Input, setPassword2Input] = useState("");
   const [formObject, setFormObject] = useState({
     name: "",
     email: "",
     password: "",
-    yearOfBirth: 0,
+    yearOfBirth: "",
     childName: "",
   });
 
   const handleAnyInput = (event) => {
     const { name, value } = event.target;
+
+    // console.log(name);
+
+    if (name === "yearOfBirth" && value.toString().length > 4) {
+      return;
+    }
+
     let formObjectClone = { ...formObject };
     formObjectClone[name] = value;
     setFormObject(formObjectClone);
     // console.log(formObjectClone);
     // console.log(name, formObjectClone[name]);
+  };
+
+  const handlePassword2Input = (event) => {
+    const { name, value } = event.target;
+    // let formObjectClone = { ...formObject };
+    // formObjectClone[name] = value;
+    // setFormObject(formObjectClone);
+    // console.log(formObjectClone);
+    // console.log(name, formObjectClone[name]);
+
+    setPassword2Input(value);
+
+    // console.log(password2Input);
   };
 
   const handleSignIn = async (event) => {
@@ -54,12 +76,18 @@ function SignIn() {
       setyearOfBirthErrorMessage(false);
     }
 
+    if (password2Input !== formObject.password) {
+      setPasswordErrorMessage("Passwords do not match");
+      validRequest = false;
+    }
+
     if (
       !formObject.name ||
       !formObject.email ||
       !formObject.password ||
       !formObject.yearOfBirth ||
-      !formObject.childName
+      !formObject.childName ||
+      !password2Input
     ) {
       setBlancFieldsErrorMessage("All fields are required");
       validRequest = false;
@@ -136,6 +164,16 @@ function SignIn() {
             onChange={handleAnyInput}
           ></TextField>
           <br /> <br />
+          <TextField
+            variant="filled"
+            color="secondary"
+            size="small"
+            label="Password Second Time"
+            type="password"
+            name="password2"
+            onChange={handlePassword2Input}
+          ></TextField>
+          <br /> <br />
           {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
           <TextField
             variant="filled"
@@ -145,6 +183,7 @@ function SignIn() {
             type="number"
             name="yearOfBirth"
             onChange={handleAnyInput}
+            value={formObject.yearOfBirth}
           ></TextField>
           <br /> <br />
           {/* <label htmlFor="childName">Child Name: </label> */}
@@ -167,10 +206,8 @@ function SignIn() {
               Sign In
             </Button>
           </div>
-          <br />
         </form>
       </div>{" "}
-      <br />
       {emailErrorMessage && (
         <Alert variant="filled" severity="error">
           {emailErrorMessage}
@@ -198,6 +235,15 @@ function SignIn() {
           <br />
         </Alert>
       )}
+      <br />
+      {passwordErrorMessage && (
+        <Alert variant="filled" severity="error">
+          {passwordErrorMessage}
+          <br />
+        </Alert>
+      )}
+      <br />
+      <br />
     </div>
   );
 }

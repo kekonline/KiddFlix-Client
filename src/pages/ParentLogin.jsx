@@ -11,6 +11,10 @@ function ParentLogin() {
     useState(false);
   const { setParentIsActive, setChildIsActive } = useContext(AuthContext);
   const handleInput = (event) => {
+    if (event.target.value.toString().length > 4) {
+      return;
+    }
+
     setYOBInput(event.target.value);
   };
 
@@ -67,6 +71,7 @@ function ParentLogin() {
           name="yearOfBirth"
           onChange={handleInput}
           value={YOBInput}
+          inputProps={{ autoFocus: true }}
         ></TextField>
         <Button variant="contained" color="secondary" onClick={handleLogIn}>
           Login

@@ -15,6 +15,7 @@ import PlaylistEdit from "./pages/PlaylistEdit";
 import VideoEdit from "./pages/VideoEdit";
 import ChildVideoInPlaylist from "./pages/ChildVideoInPlaylist";
 import ChildVideoCategory from "./pages/ChildVideoCategory";
+import ParentPasswordChange from "./pages/ParentPasswordChange";
 
 //components
 import IsKickBack from "./components/IsKickBack";
@@ -78,6 +79,15 @@ function App() {
           element={
             <IsParent>
               <PlaylistEdit />
+            </IsParent>
+          }
+        />
+
+        <Route
+          path="/parent/password-change"
+          element={
+            <IsParent>
+              <ParentPasswordChange />
             </IsParent>
           }
         />

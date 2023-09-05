@@ -1,7 +1,7 @@
 import service from "../services/service.config";
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Alert, Button, TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 
@@ -31,6 +31,10 @@ function ParentProfile() {
 
   const handleAnyInput = (event) => {
     const { name, value } = event.target;
+    if (name === "yearOfBirth" && value.toString().length > 4) {
+      return;
+    }
+
     let formObjectClone = { ...formObject };
     formObjectClone[name] = value;
     setFormObject(formObjectClone);
@@ -231,6 +235,10 @@ function ParentProfile() {
             </Button>
           </div>
         </form>
+        <br />
+        <Link to="/parent/password-change">
+          <Button variant="outlined">Want To Change Your Password?</Button>{" "}
+        </Link>
       </div>
       <br />
       {yearOfBirthErrorMessage && (
@@ -246,6 +254,8 @@ function ParentProfile() {
           <br />
         </Alert>
       )}
+      <br />
+      <br />
     </div>
   );
 }
