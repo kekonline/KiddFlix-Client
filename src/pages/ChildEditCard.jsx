@@ -3,6 +3,7 @@ import service from "../services/service.config";
 import { useParams, useNavigate } from "react-router-dom";
 import { TextField, Alert, Button } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
 
@@ -35,6 +36,7 @@ function ChildEditCard() {
       setOneChildInfo(requestOneChild.data);
       setNameInput(requestOneChild.data.name);
       setIsPageLoading(false);
+      // console.log(requestOneChild.data);
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +59,7 @@ function ChildEditCard() {
     event.preventDefault();
     try {
       const deleteChildRequest = await service.delete("/child/" + childId);
-      console.log("good", deleteChildRequest, childId);
+      // console.log("good", deleteChildRequest, childId);
 
       navigate(-1);
     } catch (error) {
@@ -134,17 +136,22 @@ function ChildEditCard() {
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 1000);
+    // }, 500);
   }
 
   return (
     <div className="mainContainer">
       <h2>Edit Your Child</h2>
       <div className="childCard">
+        {/* {console.log(oneChildInfo.name)} */}
         <img className="profilePicture" src={oneChildInfo.picture} alt="img" />
         <div>
           <br />
-          <Button variant="contained" component="label">
+          <Button
+            variant="contained"
+            component="label"
+            startIcon={<CloudUploadIcon />}
+          >
             upload
             <input
               hidden
@@ -175,10 +182,11 @@ function ChildEditCard() {
             onChange={handleInputChange}
           />
 
-          <Button variant="contained" onClick={handleSave}>
+          <Button variant="contained" size="large" onClick={handleSave}>
             Save
           </Button>
           <Button
+            size="large"
             variant="contained"
             onClick={() => {
               navigate("/parent/child/edit/");

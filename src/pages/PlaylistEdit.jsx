@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { Alert, Button, TextField } from "@mui/material";
+import LoadingPic from "../../src/assets/Loading.gif";
 
 function PlaylistEdit() {
   const { childName, childId } = useParams();
@@ -50,9 +51,13 @@ function PlaylistEdit() {
   // console.log(playlistOfChild);
 
   if (isPageloading === true) {
-    // setTimeout(() => {
-    return <h3>... Loaging Nice Stuff...</h3>;
-    // }, 1000);
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   return (

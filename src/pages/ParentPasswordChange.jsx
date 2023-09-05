@@ -19,7 +19,7 @@ function ParentPasswordChange() {
     let formObjectClone = { ...formObject };
     formObjectClone[name] = value;
     setFormObject(formObjectClone);
-    console.log(formObject);
+    // console.log(formObject);
   };
 
   const handleEditPassword = async (event) => {
@@ -50,7 +50,7 @@ function ParentPasswordChange() {
         password: formObject.password,
         newPassword: formObject.newPassword,
       });
-      console.log(newPasswordChangeRequest.data);
+      // console.log(newPasswordChangeRequest.data);
 
       if (newPasswordChangeRequest.data.passwordUpdated) {
         navigate("/parent/profile");

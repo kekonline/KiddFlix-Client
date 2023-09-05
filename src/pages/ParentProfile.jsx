@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert, Button, TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
 
@@ -19,7 +20,6 @@ function ParentProfile() {
   const [yearOfBirthErrorMessage, setyearOfBirthErrorMessage] = useState(false);
   const [formObject, setFormObject] = useState({
     name: "",
-    password: "",
     yearOfBirth: 0,
     picture: "",
   });
@@ -118,7 +118,7 @@ function ParentProfile() {
       setyearOfBirthErrorMessage(false);
     }
 
-    if (!formObject.name || !formObject.password || !formObject.yearOfBirth) {
+    if (!formObject.name || !formObject.yearOfBirth) {
       setBlancFieldsErrorMessage("All fields are required");
       validRequest = false;
     } else {
@@ -160,13 +160,13 @@ function ParentProfile() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
-    // }, 1000);
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   return (
@@ -177,7 +177,11 @@ function ParentProfile() {
         <img className="profilePicture" src={formObject.picture} alt="img" />
         <div>
           <br />
-          <Button variant="contained" component="label">
+          <Button
+            variant="contained"
+            component="label"
+            startIcon={<CloudUploadIcon />}
+          >
             upload
             <input
               hidden
@@ -206,13 +210,13 @@ function ParentProfile() {
           ></TextField>
           <br /> <br />
           {/* <label htmlFor="password">Password: </label> */}
-          <TextField
+          {/* <TextField
             label="Password"
             type="password"
             name="password"
             onChange={handleAnyInput}
           ></TextField>
-          <br /> <br />
+          <br /> <br /> */}
           {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
           <TextField
             label="Year Of Birth"

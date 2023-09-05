@@ -6,6 +6,7 @@ import { Alert, Button, TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 function VideoEdit() {
   const { playlistName, playlistId } = useParams();
@@ -19,12 +20,14 @@ function VideoEdit() {
   const [childId, setChildId] = useState("");
   const [canDeletePlaylist, setCanDeletePlaylist] = useState(false);
   const [isPageloading, setIsPageLoading] = useState(true);
+  const [topVideosMostSeen, setTopVideosMostSeen] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getData();
     getNumberOfPlaylist();
+    getToVideoNotInThisChild();
   }, [childId]);
 
   const getData = async () => {
@@ -35,12 +38,30 @@ function VideoEdit() {
       // console.log(playlistId);
 
       setChildId(allVideosFromPlaylist.data.child);
+
       // console.log(allVideosFromPlaylist.data.child);
       setBackUpPlaylistName(allVideosFromPlaylist.data.name);
       setPlaylistNameInput(allVideosFromPlaylist.data.name);
       setVideosOfPlaylist(allVideosFromPlaylist.data.video);
       // console.log(allVideosFromPlaylist);
+      //!
+
+      console.log(childId);
     } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getToVideoNotInThisChild = async () => {
+    try {
+      const top20VideosMostWatchedNotInThisChild = await service.get(
+        "video/top20/" + childId
+      );
+      setTopVideosMostSeen(top20VideosMostWatchedNotInThisChild.data);
+      // console.log(top20VideosMostWatchedNotInThisChild.data);
+      setIsPageLoading(false);
+    } catch (error) {
+      setIsPageLoading(false);
       console.log(error);
     }
   };
@@ -60,10 +81,7 @@ function VideoEdit() {
       if (allPlaylistRequest.data.length > 1) {
         setCanDeletePlaylist(true);
       }
-
-      setIsPageLoading(false);
     } catch (error) {
-      setIsPageLoading(false);
       console.log(error);
     }
   };
@@ -88,7 +106,7 @@ function VideoEdit() {
       });
       setAddVideo("");
 
-      console.log(newVideo);
+      // console.log(newVideo);
       getData();
     } catch (error) {
       console.log(error);
@@ -99,6 +117,21 @@ function VideoEdit() {
     try {
       await service.delete("/video/" + videoId);
       getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAddVideoFromTop = async (videoLink) => {
+    try {
+      const newVideo = await service.post("/video/new/", {
+        link: videoLink,
+        playlistId: playlistId,
+      });
+
+      // await service.delete("/video/" + videoId);
+      getData();
+      getToVideoNotInThisChild();
     } catch (error) {
       console.log(error);
     }
@@ -157,14 +190,18 @@ function VideoEdit() {
     }
   };
 
+  const IconStyle = {
+    color: "green",
+  };
+
   if (isPageloading === true) {
-    // setTimeout(() => {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
-    // }, 1000);
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   return (
@@ -264,6 +301,46 @@ function VideoEdit() {
       </form>
       <br />
       <br />
+      <br />
+      <br />
+      {/* FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFff */}
+      <h1>Feeling Lazy Get A Shortcut</h1>
+      <h2>Top Most Watched Videos In KiddFlix</h2>
+      <br />
+      <br />
+
+      {topVideosMostSeen &&
+        topVideosMostSeen.map((eachVideo) => {
+          return (
+            <div key={eachVideo._id}>
+              <div className="videoContainer">
+                <ParentPlayer url={eachVideo.link} />
+
+                <IconButton
+                  onClick={() => {
+                    handleAddVideoFromTop(eachVideo.link);
+                  }}
+                  aria-label="delete"
+                  size="large"
+                >
+                  <AddCircleIcon fontSize="inherit" style={IconStyle} />
+                </IconButton>
+
+                {/* <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => {
+                    handleDeleteVideo(eachVideo._id);
+                  }}
+                >
+                  Delete
+                </Button> */}
+              </div>
+              <br />
+              <br />
+            </div>
+          );
+        })}
 
       <Button
         variant="contained"

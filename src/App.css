@@ -109,12 +109,13 @@ p {
 }
 
 .thirdRow {
+  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 60px;
-  width: 80%;
+  width: 550px;
 }
 .kiddflixLogo {
   width: 700px;
@@ -188,6 +189,10 @@ p {
     left: 0;
     background: linear-gradient(to bottom, #ffffff00, #0000009d);
     height: 60px;
+  }
+
+  .thirdRow {
+    width: 80%;
   }
 
   .childButton {

@@ -7,6 +7,7 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import FiberNewIcon from "@mui/icons-material/FiberNew";
+import StarIcon from "@mui/icons-material/Star";
 
 function Navbar() {
   const [profilePicture, setProfilePicture] = useState(null);
@@ -21,7 +22,7 @@ function Navbar() {
   // console.log(parentIsActive);
 
   let smallScreen = false;
-  if (window.innerWidth < 600) {
+  if (window.innerWidth < 700) {
     smallScreen = true;
   }
 
@@ -109,6 +110,12 @@ function Navbar() {
         ) : null}
         {childIsActive === true && smallScreen === false ? (
           <div className="ParentNavBar">
+            <NavLink to="/video/favorite" style={toggleStyles}>
+              <Button variant="text" size="small" color="secondary">
+                favorites
+              </Button>
+            </NavLink>
+
             <NavLink to="/playlist" style={toggleStyles}>
               <Button
                 variant="text"
@@ -148,6 +155,12 @@ function Navbar() {
         ) : null}
         {childIsActive === true && smallScreen === true ? (
           <div className="ParentNavBar">
+            <NavLink to="/video/favorite" style={toggleStyles}>
+              <Button variant="text" size="small" color="secondary">
+                <StarIcon />
+              </Button>
+            </NavLink>
+
             <NavLink to="/playlist" style={toggleStyles}>
               <Button
                 variant="text"

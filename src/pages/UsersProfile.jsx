@@ -36,13 +36,13 @@ function UsersProfile() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
-    // }, 1000);
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   // console.log(parentInfo);

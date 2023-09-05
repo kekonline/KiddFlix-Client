@@ -81,7 +81,7 @@ function AuthWrapper(props) {
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 1000);
+    // }, 500);
   }
 
   // console.log("activeChildId", activeChildId);

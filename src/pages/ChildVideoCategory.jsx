@@ -33,13 +33,13 @@ function ChildVideoCategory() {
   // console.log("video of category", videosOfCategory);
 
   if (isPageloading === true) {
-    // setTimeout(() => {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
-    // }, 1000);
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   return (
@@ -47,7 +47,7 @@ function ChildVideoCategory() {
       {category === "random" && <h1>Random Videos</h1>}
       {category === "unwatched" && <h1>Un Watched Videos</h1>}
       {category === "latest" && <h1>Latest Videos</h1>}
-
+      {category === "favorite" && <h1>Favorites</h1>}
       {videosOfCategory &&
         videosOfCategory.map((eachVideo) => {
           return (
