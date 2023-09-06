@@ -12,9 +12,9 @@ body {
 }
 
 .player-container {
-  width: 100%; /* Set the desired width for the player */
-  max-width: 800px; /* Optional: Set a maximum width */
-  height: auto; /* Auto-adjust height to maintain the aspect ratio */
+  width: 100%;
+  max-width: 800px;
+  height: auto;
 }
 
 .mainContainer {
@@ -51,9 +51,7 @@ p {
 p {
   color: white;
 }
-/* input {
-  background-color: aliceblue;
-} */
+
 .MuiTextField-root {
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.295);
@@ -117,9 +115,11 @@ p {
   gap: 60px;
   width: 550px;
 }
+
 .kiddflixLogo {
   width: 700px;
 }
+
 .ParentNavBar {
   display: flex;
   justify-content: space-evenly;
@@ -127,13 +127,9 @@ p {
   align-content: center;
   width: 99vw;
   height: 50px;
-
   position: fixed;
-
   z-index: 100;
   backdrop-filter: blur(5px);
-
-  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .profilePicture {
@@ -161,6 +157,7 @@ p {
   opacity: 0.6;
   border-radius: 20px;
 }
+
 /* MEDIA QUERYS */
 
 @media (min-width: 701px) {

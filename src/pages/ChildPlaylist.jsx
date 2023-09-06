@@ -42,7 +42,6 @@ function ChildPlaylist() {
 
   const handleSearch = (event) => {
     setSearchInput(event.target.value);
-
     const searchResults = backUpPlaylistsFromChild.filter((eachPlaylist) => {
       if (
         eachPlaylist.name
@@ -59,13 +58,11 @@ function ChildPlaylist() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   return (

@@ -11,6 +11,7 @@ function UsersProfile() {
   const [childsOfParent, setChildsOfParent] = useState(null);
   const [parentInfo, setParentInfo] = useState(null);
   const [isPageloading, setIsPageLoading] = useState(true);
+
   useEffect(() => {
     getData();
   }, []);
@@ -31,20 +32,16 @@ function UsersProfile() {
 
   const handleSwitchChild = (childId, picture) => {
     setActiveChildId(childId);
-
     setProfilePicture(picture);
-
     navigate("/playlist");
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   // console.log(parentInfo);
@@ -73,7 +70,6 @@ function UsersProfile() {
                 >
                   Switch
                 </Button>
-
                 <br />
               </div>
               <br />

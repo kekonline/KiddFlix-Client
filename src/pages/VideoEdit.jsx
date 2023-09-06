@@ -36,16 +36,12 @@ function VideoEdit() {
         "playlist/videos/" + playlistId
       );
       // console.log(playlistId);
-
       setChildId(allVideosFromPlaylist.data.child);
-
       // console.log(allVideosFromPlaylist.data.child);
       setBackUpPlaylistName(allVideosFromPlaylist.data.name);
       setPlaylistNameInput(allVideosFromPlaylist.data.name);
       setVideosOfPlaylist(allVideosFromPlaylist.data.video);
       // console.log(allVideosFromPlaylist);
-      //!
-
       console.log(childId);
     } catch (error) {
       console.log(error);
@@ -69,15 +65,12 @@ function VideoEdit() {
   const getNumberOfPlaylist = async () => {
     try {
       // console.log(childId);
-
       if (!childId) {
         return;
       }
       // console.log("in data");
       const allPlaylistRequest = await service.get("playlist/all/" + childId);
-
       // console.log(allPlaylistRequest.data.length);
-
       if (allPlaylistRequest.data.length > 1) {
         setCanDeletePlaylist(true);
       }
@@ -87,7 +80,6 @@ function VideoEdit() {
   };
 
   const handleAddVideo = async () => {
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     event.preventDefault();
     if (addVideo === "") {
       setInputErrorMessage("Introduce a valid name");
@@ -95,17 +87,14 @@ function VideoEdit() {
     } else {
       setInputErrorMessage("");
     }
-
     const splitURL = addVideo.split("&");
     console.log(splitURL);
-
     try {
       const newVideo = await service.post("/video/new/", {
         link: splitURL[0],
         playlistId: playlistId,
       });
       setAddVideo("");
-
       // console.log(newVideo);
       getData();
     } catch (error) {
@@ -128,7 +117,6 @@ function VideoEdit() {
         link: videoLink,
         playlistId: playlistId,
       });
-
       // await service.delete("/video/" + videoId);
       getData();
       getToVideoNotInThisChild();
@@ -151,11 +139,9 @@ function VideoEdit() {
     } else {
       setBlancFieldsErrorMessage(false);
     }
-
     if (!validRequest) {
       return;
     }
-
     try {
       await service.put("/playlist/name/" + playlistId, {
         name: playlistNameInput,
@@ -163,12 +149,8 @@ function VideoEdit() {
     } catch (error) {
       console.log(error);
     }
-
     setBackUpPlaylistName(playlistNameInput);
-
     setActiveEditName(false);
-
-    // getData();
   };
 
   const handelCancelEditName = () => {
@@ -263,16 +245,6 @@ function VideoEdit() {
                 >
                   <DeleteIcon fontSize="inherit" />
                 </IconButton>
-
-                {/* <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    handleDeleteVideo(eachVideo._id);
-                  }}
-                >
-                  Delete
-                </Button> */}
               </div>
               <br />
               <br />
@@ -280,7 +252,6 @@ function VideoEdit() {
           );
         })}
       <form>
-        {/* <label htmlFor="name">Video Link</label> */}
         <TextField
           size="small"
           label="New Video Link"
@@ -289,7 +260,6 @@ function VideoEdit() {
           value={addVideo}
           onChange={() => {
             setAddVideo(event.target.value);
-            // console.log(event.target.value);
           }}
           onKeyPress={(event) => {
             if (event.key === "Enter") {
@@ -297,7 +267,6 @@ function VideoEdit() {
             }
           }}
         ></TextField>
-
         <Button variant="contained" color="success" onClick={handleAddVideo}>
           Add
         </Button>
@@ -320,7 +289,6 @@ function VideoEdit() {
       </Button>
       <br />
       <br />
-      {/* FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFff */}
       <h1>Feeling Lazy Get A Shortcut</h1>
       <h2>Top Most Watched Videos In KiddFlix</h2>
       <br />
@@ -331,7 +299,6 @@ function VideoEdit() {
             <div key={eachVideo._id}>
               <div className="videoContainer">
                 <ParentPlayer url={eachVideo.link} />
-
                 <IconButton
                   onClick={() => {
                     handleAddVideoFromTop(eachVideo.link);
@@ -341,16 +308,6 @@ function VideoEdit() {
                 >
                   <AddCircleIcon fontSize="inherit" style={IconStyle} />
                 </IconButton>
-
-                {/* <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    handleDeleteVideo(eachVideo._id);
-                  }}
-                >
-                  Delete
-                </Button> */}
               </div>
               <br />
               <br />

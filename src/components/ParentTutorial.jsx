@@ -14,9 +14,7 @@ function ParentTutorial() {
         <br />
         <div className="childCard">
           <br />
-
           <h1>Watch KiddFlix Tutorial Video</h1>
-
           <br />
           <ReactPlayer
             url="https://youtu.be/1L1koATTSSM"
@@ -42,9 +40,7 @@ function ParentTutorial() {
         <br />
         <div className="childCard">
           <br />
-
           <h1>Watch KiddFlix Tutorial Video</h1>
-
           <br />
           <ReactPlayer
             url="https://youtu.be/1L1koATTSSM"

@@ -4,11 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { TextField, Alert, Button } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-
-//! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-
-// add to component where you are creating an item
-
 import { uploadImageService } from "../services/upload.services";
 
 function ChildEditCard() {
@@ -19,11 +14,7 @@ function ChildEditCard() {
   const [canDeleteChild, setCanDeleteChild] = useState(false);
   const { childId } = useParams();
   const navigate = useNavigate();
-
-  //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-  // below state will hold the image URL from cloudinary. This will come from the backend.
-  // const [imageUrl, setImageUrl] = useState(null);
-  const [isUploading, setIsUploading] = useState(false); // for a loading animation effect
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     getData();
@@ -48,7 +39,6 @@ function ChildEditCard() {
       if (RequestChilds.data.length > 1) {
         setCanDeleteChild(true);
       }
-
       // console.log(RequestChilds.data);
     } catch (error) {
       console.log(error);
@@ -60,7 +50,6 @@ function ChildEditCard() {
     try {
       const deleteChildRequest = await service.delete("/child/" + childId);
       // console.log("good", deleteChildRequest, childId);
-
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -79,7 +68,6 @@ function ChildEditCard() {
     } else {
       setInputErrorMessage("");
     }
-
     try {
       const newChild = await service.put("/child/" + oneChildInfo._id, {
         name: nameInput,
@@ -90,53 +78,31 @@ function ChildEditCard() {
     }
   };
 
-  //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-  // below function should be the only function invoked when the file type input changes => onChange={handleFileUpload}
   const handleFileUpload = async (event) => {
     // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     if (!event.target.files[0]) {
-      // to prevent accidentally clicking the choose file button and not selecting a file
       return;
     }
-
-    setIsUploading(true); // to start the loading animation
-
-    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    setIsUploading(true);
+    const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
-    //                   |
-    //     this name needs to match the name used in the middleware => uploader.single("image")
-
     try {
       const response = await uploadImageService(uploadData);
-      // or below line if not using services
-      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
-
-      // setImageUrl(response.data.imageUrl);
-      //                          |
-      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
-
-      // await service.put("/parent/", { picture: response.data.imageUrl });
       await service.put("/child/" + oneChildInfo._id, {
         picture: response.data.imageUrl,
       });
-
-      setIsUploading(false); // to stop the loading animation
+      setIsUploading(false);
     } catch (error) {
       navigate("/error");
     }
   };
 
-  //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   return (
@@ -161,17 +127,10 @@ function ChildEditCard() {
               disabled={isUploading}
             />
           </Button>
-          {/* below disabled prevents the user from attempting another upload while one is already happening */}
         </div>
-
-        {/* to render a loading message or spinner while uploading the picture */}
         {isUploading ? <h3>... uploading image</h3> : null}
-
         <br />
-        {/* below line will render a preview of the image from cloudinary */}
-
         <form>
-          {/* <label htmlFor="name">Name</label> */}
           <TextField
             variant="filled"
             color="secondary"
@@ -181,7 +140,6 @@ function ChildEditCard() {
             value={nameInput}
             onChange={handleInputChange}
           />
-
           <Button variant="contained" size="large" onClick={handleSave}>
             Save
           </Button>

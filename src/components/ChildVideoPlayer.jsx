@@ -51,7 +51,6 @@ function ChildVideoPlay() {
 
   const handleAddToFavorites = async () => {
     setFilledStar(!filledStar);
-
     try {
       const updateStar = await service.put("/video/star/" + videoId, {
         favorite: !filledStar,
@@ -71,15 +70,15 @@ function ChildVideoPlay() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
+
   // console.log(filledStar);
+
   return (
     <div className="mainContainer">
       <br /> <br />

@@ -10,16 +10,13 @@ import FiberNewIcon from "@mui/icons-material/FiberNew";
 import StarIcon from "@mui/icons-material/Star";
 
 function Navbar() {
-  // const [profilePicture, setProfilePicture] = useState(null);
   const navigate = useNavigate();
   const {
     parentIsActive,
     setParentIsActive,
     childIsActive,
     setChildIsActive,
-    // setActiveChildId,
     profilePicture,
-    // setProfilePicture,
   } = useContext(AuthContext);
   // console.log(parentIsActive);
 
@@ -28,8 +25,6 @@ function Navbar() {
     smallScreen = true;
   }
 
-  // const [childsOfParent, ] = useState(null);
-
   useEffect(() => {
     getData();
   });
@@ -37,29 +32,12 @@ function Navbar() {
   const handleParentExit = () => {
     setParentIsActive(false);
     setChildIsActive(true);
-    getData();
     navigate("/playlist");
-  };
-
-  const getData = async () => {
-    try {
-      // const ChildId = await service.get("child/all/");
-      // setChildsOfParent(ChildId.data);
-      // console.log("childId from navbar", ChildId.data[0]._id);
-      //setActiveChildId(ChildId.data[0]._id);
-      //!testing
-      // setProfilePicture(ChildId.data[0].picture);
-      // console.log(profilePicture);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   const handleLogout = () => {
     setParentIsActive(false);
-
     setChildIsActive(false);
-
     localStorage.removeItem("authToken");
     navigate("/");
   };
@@ -132,7 +110,6 @@ function Navbar() {
                 PlayLists
               </Button>
             </NavLink>
-
             <NavLink to="/video/latest" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 New Videos
@@ -144,7 +121,6 @@ function Navbar() {
                 Random Videos
               </Button>
             </NavLink>
-
             <NavLink to="/video/unwatched" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 Un Watched
@@ -166,7 +142,6 @@ function Navbar() {
                 <StarIcon />
               </Button>
             </NavLink>
-
             <NavLink to="/playlist" style={toggleStyles}>
               <Button
                 variant="text"
@@ -177,25 +152,21 @@ function Navbar() {
                 <SubscriptionsIcon />
               </Button>
             </NavLink>
-
             <NavLink to="/video/latest" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 <FiberNewIcon />
               </Button>
             </NavLink>
-
             <NavLink to="/video/random" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 <ShuffleIcon />
               </Button>
             </NavLink>
-
             <NavLink to="/video/unwatched" style={toggleStyles}>
               <Button variant="text" size="small" color="secondary">
                 <RemoveRedEyeIcon />
               </Button>
             </NavLink>
-
             <NavLink to="/users-profile" style={toggleStyles}>
               <Button variant="text" size="small" color="primary">
                 <img src={profilePicture} className="microProfilePicture" />

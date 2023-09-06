@@ -5,11 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Alert, Button, TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-
-//! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-
-// add to component where you are creating an item
-
 import { uploadImageService } from "../services/upload.services";
 
 function ParentProfile() {
@@ -23,64 +18,40 @@ function ParentProfile() {
     yearOfBirth: 0,
     picture: "",
   });
-
-  //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-  // below state will hold the image URL from cloudinary. This will come from the backend.
   const [imageUrl, setImageUrl] = useState(null);
-  const [isUploading, setIsUploading] = useState(false); // for a loading animation effect
-
+  const [isUploading, setIsUploading] = useState(false);
   const handleAnyInput = (event) => {
     const { name, value } = event.target;
     if (name === "yearOfBirth" && value.toString().length > 4) {
       return;
     }
-
     let formObjectClone = { ...formObject };
     formObjectClone[name] = value;
     setFormObject(formObjectClone);
-    // console.log(formObjectClone);
-    // console.log(name, formObjectClone[name]);
   };
 
   useEffect(() => {
     getData();
   }, [isUploading]);
 
-  //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-  // below function should be the only function invoked when the file type input changes => onChange={handleFileUpload}
   const handleFileUpload = async (event) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     if (!event.target.files[0]) {
-      // to prevent accidentally clicking the choose file button and not selecting a file
       return;
     }
 
-    setIsUploading(true); // to start the loading animation
+    setIsUploading(true);
 
-    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
-    //                   |
-    //     this name needs to match the name used in the middleware => uploader.single("image")
-
     try {
       const response = await uploadImageService(uploadData);
-      // or below line if not using services
-      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
-
       setImageUrl(response.data.imageUrl);
-      //                          |
-      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
-
       await service.put("/parent/", { picture: response.data.imageUrl });
-
       setIsUploading(false); // to stop the loading animation
     } catch (error) {
       navigate("/error");
     }
   };
-
-  //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
 
   const getData = async () => {
     try {
@@ -105,9 +76,7 @@ function ParentProfile() {
   const handleEditProfile = async (event) => {
     let validRequest = true;
     event.preventDefault();
-
     console.log(formObject.yearOfBirth.toString().length);
-
     if (
       typeof parseInt(formObject.yearOfBirth) !== "number" ||
       formObject.yearOfBirth.toString().length !== 4
@@ -128,29 +97,8 @@ function ParentProfile() {
     if (!validRequest) {
       return;
     }
-
     try {
       const updateParentRequest = await service.put("/parent/", formObject);
-      //   console.log(signInRequest.data);
-
-      //   console.log("update parent request", formObject);
-      //   localStorage.setItem("authToken", signInRequest.data.authToken);
-
-      //   await verifyToken();
-
-      //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-      //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-      //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-
-      // add to component where you are creating an item
-
-      // import { uploadImageService } from "../services/upload.services";
-
-      // ...
-
-      //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-      //! CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST CLOUDINARY TEST
-
       navigate("/parent/home");
     } catch (error) {
       //   console.log(error.response.data);
@@ -160,13 +108,11 @@ function ParentProfile() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   return (
@@ -191,16 +137,10 @@ function ParentProfile() {
               disabled={isUploading}
             />
           </Button>
-          {/* below disabled prevents the user from attempting another upload while one is already happening */}
         </div>
-
-        {/* to render a loading message or spinner while uploading the picture */}
         {isUploading ? <h3>... uploading image</h3> : null}
-
         <br />
-        {/* below line will render a preview of the image from cloudinary */}
         <form>
-          {/* <label htmlFor="name">Name: </label> */}
           <TextField
             label="Name"
             type="text"
@@ -209,15 +149,6 @@ function ParentProfile() {
             value={formObject.name}
           ></TextField>
           <br /> <br />
-          {/* <label htmlFor="password">Password: </label> */}
-          {/* <TextField
-            label="Password"
-            type="password"
-            name="password"
-            onChange={handleAnyInput}
-          ></TextField>
-          <br /> <br /> */}
-          {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
           <TextField
             label="Year Of Birth"
             type="number"

@@ -72,7 +72,6 @@ function ChildPlaylistPreview(props) {
         <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
           <div style={topLayer}>
             <h1 className="playListName">{props.playlistName}</h1>
-
             <Button variant="none">See More See More</Button>
           </div>
           <div style={ContainerPlayer}>
@@ -89,7 +88,6 @@ function ChildPlaylistPreview(props) {
       <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
         <div style={topLayer}>
           <h1 className="playListName">{props.playlistName}</h1>
-
           <Button variant="none">See More</Button>
         </div>
         <div style={ContainerPlayer}>

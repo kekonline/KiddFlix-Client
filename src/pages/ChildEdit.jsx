@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useEffect, useContext, useState } from "react";
-// import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Alert, Button } from "@mui/material";
@@ -8,7 +6,6 @@ import LoadingPic from "../../src/assets/Loading.gif";
 function ChildEdit() {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [childsOfParent, setChildsOfParent] = useState(null);
-  // const { updateParentChilds } = useContext(AuthContext);
   const [addChild, setAddChild] = useState("");
   const [inputErrorMessage, setInputErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -47,26 +44,12 @@ function ChildEdit() {
     }
   };
 
-  // const handleDeleteChild = async (childId) => {
-  //   event.preventDefault();
-  //   try {
-  //     const deleteChildRequest = await service.delete("/child/" + childId);
-  //     console.log("good", deleteChildRequest, childId);
-  //     getData();
-  //     // navigate("/parent/profile");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   return (
@@ -87,14 +70,6 @@ function ChildEdit() {
                 <Link to={"/parent/child/edit/" + eachChild._id}>
                   <Button variant="contained">Edit</Button>
                 </Link>
-                {/* path="/parent/child/edit/:childId" 
-              
-                 onClick={() => {
-                  handleDeleteChild(eachChild._id);
-                }}
-
-        
-              */}
                 <br />
               </div>
               <br />
@@ -103,7 +78,6 @@ function ChildEdit() {
         })}
       <br />
       <form>
-        {/* <label htmlFor="name">Name</label> */}
         <TextField
           size="small"
           label="New Childs Name"
@@ -112,10 +86,8 @@ function ChildEdit() {
           value={addChild}
           onChange={() => {
             setAddChild(event.target.value);
-            // console.log(event.target.value);
           }}
         />
-
         <Button variant="contained" color="success" onClick={handleAddChild}>
           Add
         </Button>

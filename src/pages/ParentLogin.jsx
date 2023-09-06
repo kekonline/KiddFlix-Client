@@ -14,14 +14,12 @@ function ParentLogin() {
     if (event.target.value.toString().length > 4) {
       return;
     }
-
     setYOBInput(event.target.value);
   };
 
   const handleLogIn = async () => {
     event.preventDefault();
     let validRequest = true;
-
     if (YOBInput === "") {
       //   console.log(YOBInput);
       setInvalidLoginErrorMessage("All fields are required");
@@ -32,19 +30,15 @@ function ParentLogin() {
     } else {
       setInvalidLoginErrorMessage(false);
     }
-
     if (!validRequest) {
       setYOBInput("");
       return;
     }
-
     try {
       const responseValidYOB = await service.post("/parent/YOBCheck", {
         yearOfBirth: YOBInput,
       });
-
       // console.log(responseValidYOB.data);
-
       if (responseValidYOB.data) {
         setParentIsActive(true);
         setChildIsActive(false);

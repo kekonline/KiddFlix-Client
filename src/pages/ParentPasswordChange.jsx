@@ -35,23 +35,19 @@ function ParentPasswordChange() {
     } else {
       setBlancFieldsErrorMessage(false);
     }
-
     if (formObject.newPassword2Input !== formObject.newPasswordInput) {
       setPasswordErrorMessage("New Passwords do not match");
       validRequest = false;
     }
-
     if (!validRequest) {
       return;
     }
-
     try {
       const newPasswordChangeRequest = await service.post("/auth/newPassword", {
         password: formObject.password,
         newPassword: formObject.newPassword,
       });
       // console.log(newPasswordChangeRequest.data);
-
       if (newPasswordChangeRequest.data.passwordUpdated) {
         navigate("/parent/profile");
       } else {

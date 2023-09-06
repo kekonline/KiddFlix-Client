@@ -17,8 +17,6 @@ function ParentPlayer({ url }) {
       </div>
     );
   }
-
-  // console.log(`Browser width: ${browserWidth}px`);
 }
 
 export default ParentPlayer;

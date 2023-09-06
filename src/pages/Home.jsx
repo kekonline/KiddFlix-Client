@@ -31,38 +31,31 @@ function Home() {
 
   const handleLogIn = async (event) => {
     let validRequest = true;
-    // event.preventDefault();
     if (!email.includes("@") || !email.includes(".")) {
       setEmailErrorMessage("Introduce a valid email ");
       validRequest = false;
     } else {
       setEmailErrorMessage(false);
     }
-
     if (!email || !password) {
       setBlancFieldsErrorMessage("All fields are required");
       validRequest = false;
     } else {
       setBlancFieldsErrorMessage(false);
     }
-
     if (!validRequest) {
       return;
     }
-
     try {
       const logInRequest = await service.post("/auth/login", {
         email,
         password,
       });
       console.log(logInRequest);
-
       localStorage.setItem("authToken", logInRequest.data.authToken);
-
       await verifyToken();
       setParentIsActive(true);
       setChildIsActive(false);
-
       navigate("/parent/home");
       setInvalidLoginErrorMessage("");
     } catch (error) {
@@ -89,12 +82,9 @@ function Home() {
               for Safe and Personalized <br />
               Kids' Entertainment
             </h2>
-
             <div className="login">
               <br />
-
               <form>
-                {/* <label htmlFor="email">Email: </label> */}
                 <TextField
                   variant="filled"
                   color="secondary"
@@ -106,7 +96,6 @@ function Home() {
                 ></TextField>
                 <br />
                 <br />
-                {/* <label htmlFor="password">Password: </label> */}
                 <TextField
                   variant="filled"
                   color="secondary"

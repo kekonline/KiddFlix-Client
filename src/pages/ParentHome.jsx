@@ -26,13 +26,11 @@ function ParentHome() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
   // console.log(childsOfParent);
 

@@ -51,13 +51,11 @@ function PlaylistEdit() {
   // console.log(playlistOfChild);
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   return (
@@ -82,7 +80,6 @@ function PlaylistEdit() {
         })}
       <br />
       <form>
-        {/* <label htmlFor="name">Name</label> */}
         <TextField
           size="small"
           label="New Playlist Name"
@@ -99,7 +96,6 @@ function PlaylistEdit() {
               event.target.value.charAt(0).toUpperCase() +
                 event.target.value.slice(1)
             );
-            // console.log(event.target.value);
           }}
         ></TextField>
 

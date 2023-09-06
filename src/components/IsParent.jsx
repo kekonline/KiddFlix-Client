@@ -7,8 +7,6 @@ function IsParent(props) {
 
   if (parentIsActive === true) {
     return props.children;
-
-    // return props.children;
   } else {
     return <Navigate to="/" />;
   }

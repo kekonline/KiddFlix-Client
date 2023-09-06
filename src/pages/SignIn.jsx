@@ -6,10 +6,8 @@ import { Alert, Button, TextField } from "@mui/material";
 
 function SignIn() {
   const navigate = useNavigate();
-
   const { verifyToken, setParentIsActive, setChildIsActive } =
     useContext(AuthContext);
-
   const [invalidEmailErrorMessage, setInvalidEmailErrorMessage] =
     useState(false);
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
@@ -27,13 +25,10 @@ function SignIn() {
 
   const handleAnyInput = (event) => {
     const { name, value } = event.target;
-
     // console.log(name);
-
     if (name === "yearOfBirth" && value.toString().length > 4) {
       return;
     }
-
     let formObjectClone = { ...formObject };
     formObjectClone[name] = value;
     setFormObject(formObjectClone);
@@ -43,14 +38,7 @@ function SignIn() {
 
   const handlePassword2Input = (event) => {
     const { name, value } = event.target;
-    // let formObjectClone = { ...formObject };
-    // formObjectClone[name] = value;
-    // setFormObject(formObjectClone);
-    // console.log(formObjectClone);
-    // console.log(name, formObjectClone[name]);
-
     setPassword2Input(value);
-
     // console.log(password2Input);
   };
 
@@ -80,7 +68,6 @@ function SignIn() {
       setPasswordErrorMessage("Passwords do not match");
       validRequest = false;
     }
-
     if (
       !formObject.name ||
       !formObject.email ||
@@ -98,18 +85,14 @@ function SignIn() {
     if (!validRequest) {
       return;
     }
-
     try {
       const signInRequest = await service.post("/auth/signin", formObject);
       //   console.log(signInRequest.data);
       setInvalidEmailErrorMessage("");
-
       localStorage.setItem("authToken", signInRequest.data.authToken);
-
       await verifyToken();
       setParentIsActive(true);
       setChildIsActive(false);
-
       navigate("/parent/tutorial");
     } catch (error) {
       //   console.log(error.response.data);
@@ -131,7 +114,6 @@ function SignIn() {
       <br />
       <div className="childCard">
         <form>
-          {/* <label htmlFor="name">Name: </label> */}
           <TextField
             variant="filled"
             color="secondary"
@@ -142,7 +124,6 @@ function SignIn() {
             onChange={handleAnyInput}
           ></TextField>
           <br /> <br />
-          {/* <label htmlFor="email">Email: </label> */}
           <TextField
             variant="filled"
             color="secondary"
@@ -153,7 +134,6 @@ function SignIn() {
             onChange={handleAnyInput}
           ></TextField>
           <br /> <br />
-          {/* <label htmlFor="password">Password: </label> */}
           <TextField
             variant="filled"
             color="secondary"
@@ -174,7 +154,6 @@ function SignIn() {
             onChange={handlePassword2Input}
           ></TextField>
           <br /> <br />
-          {/* <label htmlFor="yearOfBirth">Year Of Birth: </label> */}
           <TextField
             variant="filled"
             color="secondary"
@@ -186,7 +165,6 @@ function SignIn() {
             value={formObject.yearOfBirth}
           ></TextField>
           <br /> <br />
-          {/* <label htmlFor="childName">Child Name: </label> */}
           <TextField
             variant="filled"
             color="secondary"

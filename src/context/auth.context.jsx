@@ -15,17 +15,6 @@ function AuthWrapper(props) {
     verifyToken();
   }, []);
 
-  // const updateParentChilds = async () => {
-  //   console.log(parentId);
-  //   try {
-  //     const updatedParentChilds = await service.get("child/all/" + parentId);
-
-  //     setChildsOfParent(updatedParentChilds.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const verifyToken = async () => {
     setIsPageLoading(true);
 
@@ -35,21 +24,17 @@ function AuthWrapper(props) {
       // console.log("session", verifySession.data._id);
       setParentId(verifySession.data._id);
       // console.log("parent", parentId);
-
       if (parentIsActive === true) {
         setChildIsActive(false);
       } else {
         setChildIsActive(true);
       }
-
       const ChildId = await service.get("child/all/");
-
       // console.log(ChildId.data[0]._id);
       setActiveChildId(ChildId.data[0]._id);
       setProfilePicture(ChildId.data[0].picture);
       //!only for dev purpouse
       // setParentIsActive(true);
-
       setIsPageLoading(false);
     } catch (error) {
       console.log("token error", error);
@@ -78,13 +63,11 @@ function AuthWrapper(props) {
   // console.log("activeChildId", activeChildId);
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="loadingContainer">
         <img className="loadingImage" src={LoadingPic} />;
       </div>
     );
-    // }, 500);
   }
 
   // console.log("activeChildId", activeChildId);
