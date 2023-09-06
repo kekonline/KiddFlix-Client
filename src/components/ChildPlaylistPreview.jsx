@@ -28,7 +28,10 @@ function ChildPlaylistPreview(props) {
       );
       // console.log(firstVideoFromPlaylistRequest.data);
       setUrl(firstVideoFromPlaylistRequest.data);
-      setIsPageLoading(false);
+
+      setTimeout(() => {
+        setIsPageLoading(false);
+      }, 2000);
     } catch (error) {
       console.log(error);
       setIsPageLoading(false);
@@ -64,7 +67,6 @@ function ChildPlaylistPreview(props) {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
     return (
       <div className="mainContainer">
         <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
@@ -80,7 +82,6 @@ function ChildPlaylistPreview(props) {
         </Link>
       </div>
     );
-    // }, 500);
   }
 
   return (
