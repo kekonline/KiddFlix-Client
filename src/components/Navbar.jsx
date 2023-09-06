@@ -10,7 +10,7 @@ import FiberNewIcon from "@mui/icons-material/FiberNew";
 import StarIcon from "@mui/icons-material/Star";
 
 function Navbar() {
-  const [profilePicture, setProfilePicture] = useState(null);
+  // const [profilePicture, setProfilePicture] = useState(null);
   const navigate = useNavigate();
   const {
     parentIsActive,
@@ -18,6 +18,8 @@ function Navbar() {
     childIsActive,
     setChildIsActive,
     setActiveChildId,
+    profilePicture,
+    setProfilePicture,
   } = useContext(AuthContext);
   // console.log(parentIsActive);
 
@@ -44,8 +46,11 @@ function Navbar() {
       const ChildId = await service.get("child/all/");
       // setChildsOfParent(ChildId.data);
       // console.log("childId from navbar", ChildId.data[0]._id);
-      setActiveChildId(ChildId.data[0]._id);
-      setProfilePicture(ChildId.data[0].picture);
+      //setActiveChildId(ChildId.data[0]._id);
+
+      //!testing
+      // setProfilePicture(ChildId.data[0].picture);
+
       // console.log(profilePicture);
     } catch (error) {
       console.log(error);

@@ -217,6 +217,11 @@ function VideoEdit() {
               onChange={handelEditNameInput}
               name="name"
               value={playlistNameInput}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  handelSaveEditName();
+                }
+              }}
             ></TextField>
             <Button variant="contained" onClick={handelSaveEditName}>
               Save
@@ -286,6 +291,11 @@ function VideoEdit() {
             setAddVideo(event.target.value);
             // console.log(event.target.value);
           }}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              handleAddVideo();
+            }
+          }}
         ></TextField>
 
         <Button variant="contained" color="success" onClick={handleAddVideo}>
@@ -300,6 +310,14 @@ function VideoEdit() {
       </form>
       <br />
       <br />
+      <Button
+        variant="contained"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>
       <br />
       <br />
       {/* FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFff */}

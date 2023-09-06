@@ -89,6 +89,11 @@ function PlaylistEdit() {
           type="text"
           name="name"
           value={addPlayList}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              handleAddPlaylist();
+            }
+          }}
           onChange={() => {
             setAddPlayList(
               event.target.value.charAt(0).toUpperCase() +

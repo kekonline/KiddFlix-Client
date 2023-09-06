@@ -7,7 +7,7 @@ import LoadingPic from "../../src/assets/Loading.gif";
 
 function UsersProfile() {
   const navigate = useNavigate();
-  const { setActiveChildId } = useContext(AuthContext);
+  const { setActiveChildId, setProfilePicture } = useContext(AuthContext);
   const [childsOfParent, setChildsOfParent] = useState(null);
   const [parentInfo, setParentInfo] = useState(null);
   const [isPageloading, setIsPageLoading] = useState(true);
@@ -29,8 +29,10 @@ function UsersProfile() {
     }
   };
 
-  const handleSwitchChild = (childId) => {
+  const handleSwitchChild = (childId, picture) => {
     setActiveChildId(childId);
+
+    setProfilePicture(picture);
 
     navigate("/playlist");
   };
@@ -66,7 +68,7 @@ function UsersProfile() {
                 <Button
                   variant="contained"
                   onClick={() => {
-                    handleSwitchChild(eachChild._id);
+                    handleSwitchChild(eachChild._id, eachChild.picture);
                   }}
                 >
                   Switch

@@ -9,6 +9,7 @@ function AuthWrapper(props) {
   const [childIsActive, setChildIsActive] = useState(false);
   const [isPageloading, setIsPageLoading] = useState(true);
   const [activeChildId, setActiveChildId] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
     verifyToken();
@@ -45,7 +46,7 @@ function AuthWrapper(props) {
 
       // console.log(ChildId.data[0]._id);
       setActiveChildId(ChildId.data[0]._id);
-
+      setProfilePicture(ChildId.data[0].picture);
       //!only for dev purpouse
       // setParentIsActive(true);
 
@@ -70,6 +71,8 @@ function AuthWrapper(props) {
     childIsActive,
     setActiveChildId,
     activeChildId,
+    profilePicture,
+    setProfilePicture,
   };
 
   // console.log("activeChildId", activeChildId);
