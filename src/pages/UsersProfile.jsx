@@ -36,13 +36,13 @@ function UsersProfile() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   // console.log(parentInfo);
@@ -90,6 +90,8 @@ function UsersProfile() {
           </Link>
         </div>
       )}
+      <br />
+      <br />
       <br />
       <br />
     </div>

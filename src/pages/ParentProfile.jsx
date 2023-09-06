@@ -160,13 +160,13 @@ function ParentProfile() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   return (
@@ -259,6 +259,13 @@ function ParentProfile() {
         </Alert>
       )}
       <br />
+      <Link to="/parent/tutorial">
+        <Button variant="outlined" color="success">
+          Watch The Tutorial again?
+        </Button>{" "}
+      </Link>
+      <br />
+      <br /> <br />
       <br />
     </div>
   );

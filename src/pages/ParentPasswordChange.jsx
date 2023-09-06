@@ -125,7 +125,8 @@ function ParentPasswordChange() {
           {pass1And2ErrorMessage}
           <br />
         </Alert>
-      )}
+      )}{" "}
+      <br /> <br /> <br /> <br />
     </div>
   );
 }

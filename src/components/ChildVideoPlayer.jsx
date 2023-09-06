@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 import service from "../services/service.config";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { IconButton, Alert } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
+import { Button } from "@mui/material";
 
 function ChildVideoPlay() {
   const { link, videoId } = useParams();
@@ -14,6 +15,7 @@ function ChildVideoPlay() {
   const [filledStar, setFilledStar] = useState(false);
   const [isPageloading, setIsPageLoading] = useState(true);
   const [addMessageTrigger, setAddMessageTrigger] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (window.innerWidth < 800) {
@@ -69,13 +71,13 @@ function ChildVideoPlay() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
   // console.log(filledStar);
   return (
@@ -83,10 +85,8 @@ function ChildVideoPlay() {
       <br />
       <br />
       <ReactPlayer url={link} width={width} height={height} playing controls />
-
       <br />
       <br />
-
       <IconButton size="large" onClick={handleAddToFavorites}>
         {filledStar ? (
           <StarIcon fontSize="inherit" color="action" style={IconStyle} />
@@ -101,6 +101,14 @@ function ChildVideoPlay() {
           <br />
         </Alert>
       )}
+      <br />
+      <Button
+        variant="contained"
+        onClick={() => (event.preventDefault(), navigate(-1))}
+      >
+        Back
+      </Button>{" "}
+      <br /> <br /> <br /> <br />
     </div>
   );
 }

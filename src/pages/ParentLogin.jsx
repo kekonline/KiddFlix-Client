@@ -72,6 +72,11 @@ function ParentLogin() {
           onChange={handleInput}
           value={YOBInput}
           inputProps={{ autoFocus: true }}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              handleLogIn();
+            }
+          }}
         ></TextField>
         <Button variant="contained" color="secondary" onClick={handleLogIn}>
           Login
@@ -83,7 +88,8 @@ function ParentLogin() {
           {invalidLoginErrorMessage}
           <br />
         </Alert>
-      )}
+      )}{" "}
+      <br /> <br /> <br /> <br />
     </div>
   );
 }

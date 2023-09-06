@@ -60,13 +60,13 @@ function ChildEdit() {
   // };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   return (
@@ -138,7 +138,7 @@ function ChildEdit() {
         Back
       </Button>
       <br />
-      <br />
+      <br /> <br /> <br />
     </div>
   );
 }

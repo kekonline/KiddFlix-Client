@@ -64,23 +64,23 @@ function ChildPlaylistPreview(props) {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="mainContainer">
-          <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
-            <div style={topLayer}>
-              <h1 className="playListName">{props.playlistName}</h1>
+    // setTimeout(() => {
+    return (
+      <div className="mainContainer">
+        <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
+          <div style={topLayer}>
+            <h1 className="playListName">{props.playlistName}</h1>
 
-              <Button variant="none">See More See More</Button>
-            </div>
-            <div style={ContainerPlayer}>
-              <img width={width} height={height} src={LoadingPic} />;
-            </div>
-            <br />
-          </Link>
-        </div>
-      );
-    }, 500);
+            <Button variant="none">See More See More</Button>
+          </div>
+          <div style={ContainerPlayer}>
+            <img width={width} height={height} src={LoadingPic} />;
+          </div>
+          <br />
+        </Link>
+      </div>
+    );
+    // }, 500);
   }
 
   return (
@@ -94,7 +94,7 @@ function ChildPlaylistPreview(props) {
         <div style={ContainerPlayer}>
           <ReactPlayer url={url} width="700px" height="400px" style={player} />
         </div>
-        <br />
+        <br /> <br /> <br /> <br />
       </Link>
     </div>
   );

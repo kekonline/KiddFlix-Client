@@ -33,13 +33,13 @@ function ChildVideoCategory() {
   // console.log("video of category", videosOfCategory);
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   return (
@@ -56,7 +56,7 @@ function ChildVideoCategory() {
             </div>
           );
         })}
-      <br />
+      <br /> <br />
     </div>
   );
 }

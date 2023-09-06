@@ -51,20 +51,19 @@ function PlaylistEdit() {
   // console.log(playlistOfChild);
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   return (
     <div className="mainContainer">
       <br />
       <h2>{childName}'s Playlists</h2>
-
       {playlistOfChild &&
         playlistOfChild.map((eachPlaylist) => {
           return (
@@ -119,7 +118,8 @@ function PlaylistEdit() {
         }}
       >
         Back
-      </Button>
+      </Button>{" "}
+      <br /> <br /> <br /> <br />
     </div>
   );
 }

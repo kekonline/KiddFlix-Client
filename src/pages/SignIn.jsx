@@ -56,7 +56,7 @@ function SignIn() {
 
   const handleSignIn = async (event) => {
     let validRequest = true;
-    event.preventDefault();
+    // event.preventDefault();
     if (
       (formObject.name === "email" && !formObject.email.includes("@")) ||
       !formObject.email.includes(".")
@@ -110,7 +110,7 @@ function SignIn() {
       setParentIsActive(true);
       setChildIsActive(false);
 
-      navigate("/parent/home");
+      navigate("/parent/tutorial");
     } catch (error) {
       //   console.log(error.response.data);
       //   console.log(error.response.data.emailValid);
@@ -195,6 +195,11 @@ function SignIn() {
             type="text"
             name="childName"
             onChange={handleAnyInput}
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                handleSignIn();
+              }
+            }}
           ></TextField>
           <br /> <br />
           <div className="videoContainer">
@@ -242,7 +247,7 @@ function SignIn() {
           <br />
         </Alert>
       )}
-      <br />
+      <br /> <br /> <br />
       <br />
     </div>
   );

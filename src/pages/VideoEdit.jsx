@@ -195,13 +195,13 @@ function VideoEdit() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   return (
@@ -241,7 +241,6 @@ function VideoEdit() {
           <br />
         </Alert>
       )}
-
       {videosOfPlaylist &&
         videosOfPlaylist.map((eachVideo) => {
           return (
@@ -308,7 +307,6 @@ function VideoEdit() {
       <h2>Top Most Watched Videos In KiddFlix</h2>
       <br />
       <br />
-
       {topVideosMostSeen &&
         topVideosMostSeen.map((eachVideo) => {
           return (
@@ -341,7 +339,6 @@ function VideoEdit() {
             </div>
           );
         })}
-
       <Button
         variant="contained"
         onClick={() => {
@@ -355,7 +352,6 @@ function VideoEdit() {
       <br />
       <br />
       <br />
-
       {canDeletePlaylist && (
         <Button
           variant="contained"
@@ -365,9 +361,8 @@ function VideoEdit() {
           Delete This Playlist
         </Button>
       )}
-
       <br />
-      <br />
+      <br /> <br /> <br />
     </div>
   );
 }

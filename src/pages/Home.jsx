@@ -31,7 +31,7 @@ function Home() {
 
   const handleLogIn = async (event) => {
     let validRequest = true;
-    event.preventDefault();
+    // event.preventDefault();
     if (!email.includes("@") || !email.includes(".")) {
       setEmailErrorMessage("Introduce a valid email ");
       validRequest = false;
@@ -115,6 +115,11 @@ function Home() {
                   type="password"
                   name="password"
                   onChange={handlePasswordInput}
+                  onKeyPress={(event) => {
+                    if (event.key === "Enter") {
+                      handleLogIn();
+                    }
+                  }}
                 ></TextField>
                 <br />
               </form>
@@ -227,7 +232,7 @@ function Home() {
         </div>
       </div>
       <br />
-      <br />
+      <br /> <br /> <br />
     </div>
   );
 }

@@ -16,16 +16,17 @@ import VideoEdit from "./pages/VideoEdit";
 import ChildVideoInPlaylist from "./pages/ChildVideoInPlaylist";
 import ChildVideoCategory from "./pages/ChildVideoCategory";
 import ParentPasswordChange from "./pages/ParentPasswordChange";
+import ChildEditCard from "./pages/ChildEditCard";
+import ChildPlaylist from "./pages/ChildPlaylist";
+import UsersProfile from "./pages/UsersProfile";
+import ParentLogin from "./pages/ParentLogin";
 
 //components
 import IsKickBack from "./components/IsKickBack";
 import IsChild from "./components/IsChild";
 import IsParent from "./components/IsParent";
-import ChildPlaylist from "./pages/ChildPlaylist";
-import UsersProfile from "./pages/UsersProfile";
-import ParentLogin from "./pages/ParentLogin";
 import ChildVideoPlay from "./components/ChildVideoPlayer";
-import ChildEditCard from "./pages/ChildEditCard";
+import ParentTutorial from "./components/ParentTutorial";
 
 function App() {
   return (
@@ -97,6 +98,15 @@ function App() {
           element={
             <IsParent>
               <VideoEdit />
+            </IsParent>
+          }
+        />
+
+        <Route
+          path="/parent/tutorial"
+          element={
+            <IsParent>
+              <ParentTutorial />
             </IsParent>
           }
         />

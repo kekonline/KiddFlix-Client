@@ -59,19 +59,18 @@ function ChildPlaylist() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
 
   return (
     <div className="mainContainer">
       <br />
-
       <TextField
         variant="filled"
         color="secondary"
@@ -87,7 +86,6 @@ function ChildPlaylist() {
           ),
         }}
       />
-
       <br />
       {allPlaylistsFromChild &&
         allPlaylistsFromChild.map((eachPlaylist) => {
@@ -98,7 +96,8 @@ function ChildPlaylist() {
               playlistName={eachPlaylist.name}
             />
           );
-        })}
+        })}{" "}
+      <br /> <br /> <br /> <br />
     </div>
   );
 }

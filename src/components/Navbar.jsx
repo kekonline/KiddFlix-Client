@@ -62,13 +62,16 @@ function Navbar() {
   };
 
   const toggleStyles = (navInfo) => {
-    return navInfo.isActive === true ? activeStyles : null;
+    return navInfo.isActive === true
+      ? activeStyles
+      : { textDecoration: "none" };
   };
 
   const activeStyles = {
     backgroundColor: "rgba(255, 255, 255, 0.5)",
     borderRadius: "5px",
     padding: "3px",
+    textDecoration: "none",
   };
 
   // console.log("parentIsActive", parentIsActive);
@@ -86,18 +89,18 @@ function Navbar() {
               </NavLink>
             </div>
             <div>
-              <NavLink to="/parent/home" style={toggleStyles}>
-                <Button variant="text" size="small" color="secondary">
+              <Button variant="text" size="small" color="secondary">
+                <NavLink to="/parent/home" style={toggleStyles}>
                   Manage Childs
-                </Button>
-              </NavLink>
+                </NavLink>
+              </Button>
             </div>
             <div>
-              <NavLink to="/parent/profile" style={toggleStyles}>
-                <Button variant="text" size="small" color="secondary">
+              <Button variant="text" size="small" color="secondary">
+                <NavLink to="/parent/profile" style={toggleStyles}>
                   Your Profile
-                </Button>
-              </NavLink>
+                </NavLink>{" "}
+              </Button>
             </div>
             <div>
               <NavLink onClick={handleLogout}>

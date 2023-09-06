@@ -26,13 +26,13 @@ function ParentHome() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
   // console.log(childsOfParent);
 
@@ -71,6 +71,7 @@ function ParentHome() {
         </Link>
       </div>
       <br />
+      <br /> <br />
       <br />
     </div>
   );
