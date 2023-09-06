@@ -33,9 +33,23 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <IsKickBack>
+              <Home />{" "}
+            </IsKickBack>
+          }
+        />
 
-        <Route path="/signin" element={<SignIn />} />
+        <Route
+          path="/signin"
+          element={
+            <IsKickBack>
+              <SignIn />{" "}
+            </IsKickBack>
+          }
+        />
         <Route
           path="/parent/home"
           element={
