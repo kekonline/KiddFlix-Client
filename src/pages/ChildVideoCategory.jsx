@@ -23,9 +23,8 @@ function ChildVideoCategory() {
       );
       //   console.log(requestedVideos.data);
       setVideosOfCategory(requestedVideos.data);
-      setTimeout(() => {
-        setIsPageLoading(false);
-      }, 2000);
+
+      setIsPageLoading(false);
     } catch (error) {
       console.log(error);
       setIsPageLoading(false);
