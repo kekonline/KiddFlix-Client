@@ -25,10 +25,6 @@ function Navbar() {
     smallScreen = true;
   }
 
-  useEffect(() => {
-    getData();
-  });
-
   const handleParentExit = () => {
     setParentIsActive(false);
     setChildIsActive(true);
