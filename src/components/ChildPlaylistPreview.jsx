@@ -78,7 +78,7 @@ function ChildPlaylistPreview(props) {
           <div style={ContainerPlayer}>
             <img width={width} height={height} src={LoadingPic} />;
           </div>
-          <br />
+          <br /> <br /> <br /> <br />
         </Link>
       </div>
     );
@@ -93,7 +93,7 @@ function ChildPlaylistPreview(props) {
           <Button variant="none">See More</Button>
         </div>
         <div style={ContainerPlayer}>
-          <ReactPlayer url={url} width="700px" height="400px" style={player} />
+          <ReactPlayer url={url} width={width} height={height} style={player} />
         </div>
         <br /> <br /> <br /> <br />
       </Link>
