@@ -1,11 +1,10 @@
 import ReactPlayer from "react-player";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button } from "@mui/material";
 
 function ChildVideoPreview(props) {
   // console.log(props);
-  const navigate = useNavigate();
+
   const [link, setLink] = useState("");
   let width = 700;
   let height = 400;
@@ -59,17 +58,8 @@ function ChildVideoPreview(props) {
         />
       </div>
       <br />
-      <div className="mainContainer">
-        <br />
-        <br />
-        <Button
-          variant="contained"
-          onClick={() => (event.preventDefault(), navigate(-1))}
-        >
-          Back
-        </Button>
-      </div>
-      <br /> <br /> <br /> <br />
+      <div className="mainContainer"></div>
+      <br /> <br /> <br />
     </div>
   );
 }
