@@ -36,18 +36,18 @@ function App() {
         <Route
           path="/"
           element={
-            <IsKickBack>
+            // <IsKickBack>
               <Home />{" "}
-            </IsKickBack>
+            {/* </IsKickBack> */}
           }
         />
 
         <Route
           path="/signin"
           element={
-            <IsKickBack>
+            // <IsKickBack>
               <SignIn />{" "}
-            </IsKickBack>
+            {/* </IsKickBack> */}
           }
         />
         <Route
