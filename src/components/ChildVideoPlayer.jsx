@@ -82,6 +82,7 @@ function ChildVideoPlay() {
   // console.log(filledStar);
   return (
     <div className="mainContainer">
+      <br /> <br />
       <br />
       <br />
       <ReactPlayer url={link} width={width} height={height} playing controls />
