@@ -17,9 +17,9 @@ function Navbar() {
     setParentIsActive,
     childIsActive,
     setChildIsActive,
-    setActiveChildId,
+    // setActiveChildId,
     profilePicture,
-    setProfilePicture,
+    // setProfilePicture,
   } = useContext(AuthContext);
   // console.log(parentIsActive);
 
@@ -43,14 +43,12 @@ function Navbar() {
 
   const getData = async () => {
     try {
-      const ChildId = await service.get("child/all/");
+      // const ChildId = await service.get("child/all/");
       // setChildsOfParent(ChildId.data);
       // console.log("childId from navbar", ChildId.data[0]._id);
       //setActiveChildId(ChildId.data[0]._id);
-
       //!testing
       // setProfilePicture(ChildId.data[0].picture);
-
       // console.log(profilePicture);
     } catch (error) {
       console.log(error);
