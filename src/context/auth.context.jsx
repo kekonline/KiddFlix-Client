@@ -29,25 +29,25 @@ function AuthWrapper(props) {
     setIsPageLoading(true);
 
     try {
-      // const verifySession = await service.get("/auth/verify");
-      // // console.log(verifySession);
-      // // console.log("session", verifySession.data._id);
-      // setParentId(verifySession.data._id);
-      // // console.log("parent", parentId);
+      const verifySession = await service.get("/auth/verify");
+      // console.log(verifySession);
+      // console.log("session", verifySession.data._id);
+      setParentId(verifySession.data._id);
+      // console.log("parent", parentId);
 
-      // if (parentIsActive === true) {
-      //   setChildIsActive(false);
-      // } else {
-      //   setChildIsActive(true);
-      // }
+      if (parentIsActive === true) {
+        setChildIsActive(false);
+      } else {
+        setChildIsActive(true);
+      }
 
-      // const ChildId = await service.get("child/all/");
+      const ChildId = await service.get("child/all/");
 
-      // // console.log(ChildId.data[0]._id);
-      // setActiveChildId(ChildId.data[0]._id);
+      // console.log(ChildId.data[0]._id);
+      setActiveChildId(ChildId.data[0]._id);
 
-      // //!only for dev purpouse
-      // // setParentIsActive(true);
+      //!only for dev purpouse
+      // setParentIsActive(true);
 
       setIsPageLoading(false);
     } catch (error) {
