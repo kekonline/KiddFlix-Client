@@ -16,6 +16,9 @@ function ChildVideoCategory() {
   //will update if the param category changes
   useEffect(() => {
     getData();
+    return () => {
+      setIsPageLoading(true);
+    };
   }, [category]);
 
   //depending on the panel category we will receive one type of result from the backend or another

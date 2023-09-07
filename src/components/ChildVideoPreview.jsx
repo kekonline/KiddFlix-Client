@@ -1,11 +1,12 @@
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import LoadingPic from "../../src/assets/Static_TV.gif";
 //this component creates the child preview which after leads to the child player
 function ChildVideoPreview(props) {
   // console.log(props);
   const [link, setLink] = useState("");
+  const [isPageloading, setIsPageLoading] = useState(true);
   let width = 700;
   let height = 400;
 
@@ -16,7 +17,14 @@ function ChildVideoPreview(props) {
 
   useEffect(() => {
     setLink(encodeURIComponent(props.link));
-  });
+    setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2000);
+
+    // return () => {
+    //   setIsPageLoading(true);
+    // };
+  }, []);
 
   const topLayer = {
     color: "white",
@@ -44,11 +52,30 @@ function ChildVideoPreview(props) {
     borderRadius: "30px",
   };
 
+  // if (isPageloading === true) {
+  //   return (
+  //     <div>
+  //       <Link to={`/playlist/video/${link}/${props._id}`}>
+  //         <div style={topLayer}></div>
+  //       </Link>
+  //       <div style={ContainerPlayer}>
+  //         <img width={width} height={height} src={LoadingPic} />;
+  //       </div>
+  //       <br />
+  //       <div className="mainContainer"></div>
+  //       <br /> <br /> <br />
+  //     </div>
+  //   );
+  // }
+
   return (
     <div>
       <Link to={`/playlist/video/${link}/${props._id}`}>
         <div style={topLayer}></div>
       </Link>
+      {isPageloading && (
+        <img width={width} height={height} src={LoadingPic} style={topLayer} />
+      )}
       <div style={ContainerPlayer}>
         <ReactPlayer
           url={props.link}
