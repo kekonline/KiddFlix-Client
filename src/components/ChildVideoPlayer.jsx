@@ -20,8 +20,8 @@ function ChildVideoPlay() {
 
   useEffect(() => {
     if (window.innerWidth < 800) {
-      setWidth(window.innerWidth * 0.9);
-      setHeight((window.innerWidth * 0.9 * 9) / 16);
+      setWidth(window.innerWidth * 0.8);
+      setHeight((window.innerWidth * 0.9 * 8) / 16);
     }
     sendData();
   }, []);
