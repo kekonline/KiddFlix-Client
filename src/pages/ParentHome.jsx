@@ -5,6 +5,7 @@ import service from "../services/service.config";
 import { Button } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 
+//this is the parent's main page
 function ParentHome() {
   const [childsOfParent, setChildsOfParent] = useState(null);
   const [isPageloading, setIsPageLoading] = useState(true);
@@ -13,6 +14,7 @@ function ParentHome() {
     getData();
   }, []);
 
+  //here we get the data of all the parents child
   const getData = async () => {
     try {
       const requestChildsOfParent = await service.get("child/all/");
@@ -33,7 +35,7 @@ function ParentHome() {
     );
   }
   // console.log(childsOfParent);
-
+  //we will visualize all the parents' child with its images and name
   return (
     <div className="mainContainer">
       <br /> <br />

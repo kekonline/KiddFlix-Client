@@ -2,9 +2,9 @@ import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+//this component creates the child preview which after leads to the child player
 function ChildVideoPreview(props) {
   // console.log(props);
-
   const [link, setLink] = useState("");
   let width = 700;
   let height = 400;

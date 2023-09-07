@@ -8,6 +8,7 @@ import LoadingPic from "../../src/assets/Loading.gif";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 
+//this page loads all the playlist for this child
 function ChildPlaylist() {
   const { activeChildId } = useContext(AuthContext);
   const [allPlaylistsFromChild, setAllPlaylistsFromChild] = useState(null);
@@ -40,6 +41,7 @@ function ChildPlaylist() {
     }
   };
 
+  //this page loads all the playlist for this child
   const handleSearch = (event) => {
     setSearchInput(event.target.value);
     const searchResults = backUpPlaylistsFromChild.filter((eachPlaylist) => {
@@ -53,7 +55,6 @@ function ChildPlaylist() {
         return false;
       }
     });
-
     setAllPlaylistsFromChild(searchResults);
   };
 

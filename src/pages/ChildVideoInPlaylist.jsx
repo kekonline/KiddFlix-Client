@@ -6,6 +6,7 @@ import ReactPlayer from "react-player";
 import LoadingPic from "../../src/assets/Loading.gif";
 import { Button } from "@mui/material";
 
+//this page will display the videos in a playlist in which the child has clicked in
 function ChildVideoInPlaylist() {
   const navigate = useNavigate();
   const [playlistOfChild, setPlaylistOfChild] = useState(null);
@@ -19,6 +20,7 @@ function ChildVideoInPlaylist() {
     getData();
   }, []);
 
+  //here we get the data from the playlist the child has clicked in
   const getData = async () => {
     try {
       const allVideosFromPlaylist = await service.get(
@@ -42,6 +44,7 @@ function ChildVideoInPlaylist() {
     );
   }
 
+  //we will show the child the videos of the playlist he has clicked in
   return (
     <div className="mainContainer">
       <h1>{playlistName}</h1>

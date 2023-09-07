@@ -6,16 +6,19 @@ import ChildVideoPreview from "../components/ChildVideoPreview";
 import ReactPlayer from "react-player";
 import LoadingPic from "../../src/assets/Loading.gif";
 
+//this page handles many video types as unwatched random favorites and latest in a dynamic way
 function ChildVideoCategory() {
   const { category } = useParams();
   const { activeChildId } = useContext(AuthContext);
   const [videosOfCategory, setVideosOfCategory] = useState(null);
   const [isPageloading, setIsPageLoading] = useState(true);
 
+  //will update if the param category changes
   useEffect(() => {
     getData();
   }, [category]);
 
+  //depending on the panel category we will receive one type of result from the backend or another
   const getData = async () => {
     try {
       const requestedVideos = await service.get(
@@ -39,6 +42,7 @@ function ChildVideoCategory() {
     );
   }
 
+  //we will first show it a title depending on the param we received and will display the videos receipt from the DB
   return (
     <div className="mainContainer">
       {category === "random" && <h1>Random Videos</h1>}

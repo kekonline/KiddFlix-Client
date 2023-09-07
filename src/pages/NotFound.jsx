@@ -1,3 +1,4 @@
+//effortless page not found page
 function NotFound() {
   return (
     <div>

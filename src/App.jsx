@@ -1,6 +1,7 @@
 import "./App.css";
-
 import { Routes, Route } from "react-router-dom";
+
+// on this page we import all the pages we're going to use in the app Plus give them a route for the user to access
 
 //pages
 import Home from "./pages/Home";

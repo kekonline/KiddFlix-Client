@@ -4,6 +4,7 @@ import service from "../services/service.config";
 import { Alert, Button, TextField } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 
+//this place is used to list all the users playlists for that child and being able to add more plus enter in the playlist that are already made
 function PlaylistEdit() {
   const { childName, childId } = useParams();
   const [playlistOfChild, setPlaylistOfChild] = useState(null);
@@ -11,10 +12,13 @@ function PlaylistEdit() {
   const [inputErrorMessage, setInputErrorMessage] = useState("");
   const [addPlayList, setAddPlayList] = useState("");
   const navigate = useNavigate();
+
+  //on the mount we get the necessary data
   useEffect(() => {
     getData();
   }, []);
 
+  //we get all the playlist of that child
   const getData = async () => {
     try {
       const allPlaylistsFromChild = await service.get(
@@ -28,6 +32,7 @@ function PlaylistEdit() {
     }
   };
 
+  //here we handle the input information for the playlist Name by the user and save it
   const handleAddPlaylist = async () => {
     event.preventDefault();
     if (addPlayList === "") {
@@ -36,7 +41,6 @@ function PlaylistEdit() {
     } else {
       setInputErrorMessage("");
     }
-
     try {
       const newPlaylist = await service.post("/playlist/new/" + childId, {
         name: addPlayList,
@@ -58,6 +62,7 @@ function PlaylistEdit() {
     );
   }
 
+  //here we will list all the playlist of the current child does some add button
   return (
     <div className="mainContainer">
       <br />

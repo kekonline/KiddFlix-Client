@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { Alert, Button, TextField } from "@mui/material";
 
+//this is the signing page
 function SignIn() {
   const navigate = useNavigate();
   const { verifyToken, setParentIsActive, setChildIsActive } =
@@ -25,6 +26,7 @@ function SignIn() {
     childName: "",
   });
 
+  //here we save all the inputs by the user in our object
   const handleAnyInput = (event) => {
     const { name, value } = event.target;
     // console.log(name);
@@ -38,12 +40,14 @@ function SignIn() {
     // console.log(name, formObjectClone[name]);
   };
 
+  //the verification of the two passwords are the same
   const handlePassword2Input = (event) => {
     const { name, value } = event.target;
     setPassword2Input(value);
     // console.log(password2Input);
   };
 
+  //here we checked that the introduced values by the user are correct Plus we try to make the user introduce a strong password once all the data is validated we will proceed to store the receipt tokens by the back end and activate the parent mode put him in to the parents page
   const handleSignIn = async (event) => {
     let validRequest = true;
     // event.preventDefault();
@@ -122,6 +126,7 @@ function SignIn() {
     }
   };
 
+  //here is the visualization of the signing page
   return (
     <div className="mainContainer ">
       <br />

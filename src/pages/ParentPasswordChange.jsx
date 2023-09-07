@@ -2,6 +2,8 @@ import service from "../services/service.config";
 import { Alert, Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
+//on this page we will manage when the parent wants to change his password
 function ParentPasswordChange() {
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
   const [passwordWrongErrorMessage, setPasswordWrongErrorMessage] =
@@ -13,6 +15,7 @@ function ParentPasswordChange() {
     newPassword2: "",
   });
 
+  //here we will go in Saving the inputs introduced by the user
   const navigate = useNavigate();
   const handleAnyInput = (event) => {
     const { name, value } = event.target;
@@ -22,6 +25,7 @@ function ParentPasswordChange() {
     // console.log(formObject);
   };
 
+  //we will check in the necessary fields are filled in and if the passwords match
   const handleEditPassword = async (event) => {
     event.preventDefault();
     let validRequest = true;
@@ -58,6 +62,7 @@ function ParentPasswordChange() {
     }
   };
 
+  //the visualization of the page with the text field and error message
   return (
     <div className="mainContainer ">
       <br />

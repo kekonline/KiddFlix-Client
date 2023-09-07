@@ -7,6 +7,7 @@ import LoadingPic from "../../src/assets/Loading.gif";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { uploadImageService } from "../services/upload.services";
 
+//this page is used to edit the parents profile information as the year of birth and name also you have the ability to change the picture
 function ParentProfile() {
   const { parentId, verifyToken } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -30,17 +31,18 @@ function ParentProfile() {
     setFormObject(formObjectClone);
   };
 
+  //will refresh the page if the image has been uploaded
   useEffect(() => {
     getData();
   }, [isUploading]);
 
+  //if the user does it input any file it will not trigger, not sure if this really works
+  //here we handle the upload of a new picture by the user
   const handleFileUpload = async (event) => {
     if (!event.target.files[0]) {
       return;
     }
-
     setIsUploading(true);
-
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
     try {
@@ -53,6 +55,7 @@ function ParentProfile() {
     }
   };
 
+  //we fetch for the information needed from the user
   const getData = async () => {
     try {
       // console.log(parentId);
@@ -73,6 +76,7 @@ function ParentProfile() {
     }
   };
 
+  //here we handle all the information introduced by the user to update it to the DB
   const handleEditProfile = async (event) => {
     let validRequest = true;
     event.preventDefault();
@@ -86,7 +90,6 @@ function ParentProfile() {
     } else {
       setyearOfBirthErrorMessage(false);
     }
-
     if (!formObject.name || !formObject.yearOfBirth) {
       setBlancFieldsErrorMessage("All fields are required");
       validRequest = false;
@@ -115,6 +118,7 @@ function ParentProfile() {
     );
   }
 
+  //the visualization
   return (
     <div className="mainContainer ">
       <br />

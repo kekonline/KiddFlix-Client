@@ -4,10 +4,10 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import Button from "@mui/material/Button";
 import KiddFlixLogo from "../../src/assets/KiddFlix_Logo.png";
-
 import { AuthContext } from "../context/auth.context";
 import { TextField, Alert, Button } from "@mui/material";
 
+//this is the homepage with the logo and the Page information it will also display a little login box
 function Home() {
   const [invalidLoginErrorMessage, setInvalidLoginErrorMessage] =
     useState(false);
@@ -16,6 +16,7 @@ function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //we will check if the user has a token to push him into the child's user page
   const { verifyToken, setParentIsActive, setChildIsActive } =
     useContext(AuthContext);
 
@@ -29,6 +30,7 @@ function Home() {
     setPassword(event.target.value);
   };
 
+  //here we do the input verification and we will get the token back once the login process is correct if so we will save the token on the local storage
   const handleLogIn = async (event) => {
     let validRequest = true;
     if (!email.includes("@") || !email.includes(".")) {
@@ -66,6 +68,7 @@ function Home() {
     }
   };
 
+  //here we visualize the all the home page
   return (
     <div>
       <br />

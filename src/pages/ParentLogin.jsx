@@ -3,9 +3,10 @@ import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, TextField } from "@mui/material";
+
+//this is the page where the parent can re login into parent mode once in child mode
 function ParentLogin() {
   const navigate = useNavigate();
-
   const [YOBInput, setYOBInput] = useState("");
   const [invalidLoginErrorMessage, setInvalidLoginErrorMessage] =
     useState(false);
@@ -17,6 +18,8 @@ function ParentLogin() {
     setYOBInput(event.target.value);
   };
 
+  //we check if the year of date introduced by the parent is the one in his profile
+  //if so we will set the child as inactive and the parent as active this will trigger the navbar to change too
   const handleLogIn = async () => {
     event.preventDefault();
     let validRequest = true;
@@ -52,6 +55,7 @@ function ParentLogin() {
     }
   };
 
+  //simple input page but has also the functionality of retrieved with the enter key
   return (
     <div className="mainContainer">
       <br />

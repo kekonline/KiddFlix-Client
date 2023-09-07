@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 
+//this page will be shown when the child clicks on his profile picture to make him able to switch to another child in the profile or a parent to switch into parent mode again
 function UsersProfile() {
   const navigate = useNavigate();
   const { setActiveChildId, setProfilePicture } = useContext(AuthContext);
@@ -16,6 +17,7 @@ function UsersProfile() {
     getData();
   }, []);
 
+  //he will search for the information of the child and the current parents
   const getData = async () => {
     try {
       const allParentsChilds = await service.get("child/all/");
@@ -30,6 +32,7 @@ function UsersProfile() {
     }
   };
 
+  //here we will save the picture of the current user so the navbar gets updated
   const handleSwitchChild = (childId, picture) => {
     setActiveChildId(childId);
     setProfilePicture(picture);
@@ -46,6 +49,7 @@ function UsersProfile() {
 
   // console.log(parentInfo);
 
+  //here we will visualize all the profiles with the switch button we will let us switch from one profile to another
   return (
     <div className="mainContainer">
       <h2>Switch Users</h2>

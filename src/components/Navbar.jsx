@@ -9,6 +9,7 @@ import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import FiberNewIcon from "@mui/icons-material/FiberNew";
 import StarIcon from "@mui/icons-material/Star";
 
+//this component visualizes the navbar
 function Navbar() {
   const navigate = useNavigate();
   const {
@@ -25,12 +26,14 @@ function Navbar() {
     smallScreen = true;
   }
 
+  //when parents exit parent mode we change the navbar for childs
   const handleParentExit = () => {
     setParentIsActive(false);
     setChildIsActive(true);
     navigate("/playlist");
   };
 
+  //here we handle when the parent clicks on log out
   const handleLogout = () => {
     setParentIsActive(false);
     setChildIsActive(false);
@@ -38,12 +41,14 @@ function Navbar() {
     navigate("/");
   };
 
+  //when an element of the number is active we add some Style
   const toggleStyles = (navInfo) => {
     return navInfo.isActive === true
       ? activeStyles
       : { textDecoration: "none" };
   };
 
+  //these are the stars applied with an element is active
   const activeStyles = {
     backgroundColor: "rgba(255, 255, 255, 0.5)",
     borderRadius: "5px",
@@ -56,6 +61,7 @@ function Navbar() {
   return (
     <div>
       <nav>
+        {/* this part of the navbar is for parents */}
         {parentIsActive === true ? (
           <div className="ParentNavBar">
             <div>
@@ -88,6 +94,7 @@ function Navbar() {
             </div>
           </div>
         ) : null}
+        {/* this part of navbar is for children's with large screen devices */}
         {childIsActive === true && smallScreen === false ? (
           <div className="ParentNavBar">
             <NavLink to="/video/favorite" style={toggleStyles}>
@@ -95,7 +102,6 @@ function Navbar() {
                 favorites
               </Button>
             </NavLink>
-
             <NavLink to="/playlist" style={toggleStyles}>
               <Button
                 variant="text"
@@ -131,6 +137,7 @@ function Navbar() {
             </NavLink>
           </div>
         ) : null}
+        {/* this part of navbar is for children's with small screen devices */}
         {childIsActive === true && smallScreen === true ? (
           <div className="ParentNavBar">
             <NavLink to="/video/favorite" style={toggleStyles}>
@@ -170,6 +177,7 @@ function Navbar() {
             </NavLink>
           </div>
         ) : null}
+        {/* this part of the number is for non active users */}
         {parentIsActive === false && childIsActive === false ? (
           <div>
             <div className="ParentNavBar">

@@ -2,6 +2,7 @@ import ReactPlayer from "react-player";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+//this is the tutorial for the parents on how to use the app
 function ParentTutorial() {
   const navigate = useNavigate();
   const width = window.innerWidth * 0.9;

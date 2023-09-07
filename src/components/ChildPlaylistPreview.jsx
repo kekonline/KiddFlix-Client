@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import LoadingPic from "../../src/assets/Static_TV.gif";
 
+//this component creates the playlist preview for the child
 function ChildPlaylistPreview(props) {
   const [isPageloading, setIsPageLoading] = useState(true);
   const [url, setUrl] = useState("");
@@ -21,6 +22,7 @@ function ChildPlaylistPreview(props) {
     getData();
   }, []);
 
+  //here we get the necessary data
   const getData = async () => {
     try {
       const firstVideoFromPlaylistRequest = await service.get(
@@ -28,7 +30,6 @@ function ChildPlaylistPreview(props) {
       );
       // console.log(firstVideoFromPlaylistRequest.data);
       setUrl(firstVideoFromPlaylistRequest.data);
-
       setTimeout(() => {
         setIsPageLoading(false);
       }, 2000);
@@ -66,6 +67,7 @@ function ChildPlaylistPreview(props) {
     borderRadius: "30px",
   };
 
+  //we have to visualizations one while we're getting the data and one after the data is received
   if (isPageloading === true) {
     return (
       <div className="mainContainer">

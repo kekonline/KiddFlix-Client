@@ -6,6 +6,7 @@ import LoadingPic from "../../src/assets/Loading.gif";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { uploadImageService } from "../services/upload.services";
 
+//here is where we can edit our child's info
 function ChildEditCard() {
   const [inputErrorMessage, setInputErrorMessage] = useState("");
   const [isPageloading, setIsPageLoading] = useState(true);
@@ -16,6 +17,7 @@ function ChildEditCard() {
   const navigate = useNavigate();
   const [isUploading, setIsUploading] = useState(false);
 
+  //here we get the necessary data we also check the number of child the parent has so he cannot delete the child if he only has one and every time a user updates the photo the page will be reloaded
   useEffect(() => {
     getData();
     checkNumberChilds();
@@ -45,6 +47,7 @@ function ChildEditCard() {
     }
   };
 
+  //here we handle the delete child
   const handleDeleteChild = async (childId) => {
     event.preventDefault();
     try {
@@ -60,6 +63,7 @@ function ChildEditCard() {
     setNameInput(event.target.value);
   };
 
+  //here we handle save the new information
   const handleSave = async () => {
     event.preventDefault();
     if (nameInput === "") {
@@ -78,6 +82,7 @@ function ChildEditCard() {
     }
   };
 
+  //here we handle the picture upload
   const handleFileUpload = async (event) => {
     // console.log("The file to be uploaded is: ", e.target.files[0]);
     if (!event.target.files[0]) {
@@ -174,6 +179,7 @@ function ChildEditCard() {
       <br />
       <br />
       <br />
+      {/* we will only visualize the delete button if the parent has more than one child */}
       {canDeleteChild && (
         <Button
           color="error"

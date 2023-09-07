@@ -8,6 +8,14 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
+//this page was the most fun to do plus I'm really proud of how it came out
+//the function of this page is to let the parent be able to edit a playlist and giving him many functional abilities
+//the main functions of this page are
+//changing the name of the playlist
+//giving the user's ability to add links to YouTube pages and delete YouTube videos he doesn't want anymore
+//the user will be able to delete the playlist if he has more than one
+//the user will be recommended with videos of other users to add in his playlist with a simple click thank you to my teacher Jorge for providing this idea
+
 function VideoEdit() {
   const { playlistName, playlistId } = useParams();
   const [videosOfPlaylist, setVideosOfPlaylist] = useState(null);
@@ -24,6 +32,7 @@ function VideoEdit() {
 
   const navigate = useNavigate();
 
+  //get the needed information as the videos of the current playlist will, the number of the playlists the child has for the ability to delete the playlist and videos that this child doesn't have and recommend them
   useEffect(() => {
     getData();
     getNumberOfPlaylist();
@@ -79,6 +88,7 @@ function VideoEdit() {
     }
   };
 
+  //here we handle add a new video checking that is not an empty string plus we split the final part of the string as it only has the channel from YouTube and we don't need it
   const handleAddVideo = async () => {
     event.preventDefault();
     if (addVideo === "") {
@@ -102,6 +112,7 @@ function VideoEdit() {
     }
   };
 
+  // here we handle the delete videos and fit for new updated DB information
   const handleDeleteVideo = async (videoId) => {
     try {
       await service.delete("/video/" + videoId);
@@ -111,6 +122,7 @@ function VideoEdit() {
     }
   };
 
+  //here we handle when the parent clicks on a recommended video and we added to the current playlist Plus we update the information in both playlists
   const handleAddVideoFromTop = async (videoLink) => {
     try {
       const newVideo = await service.post("/video/new/", {
@@ -125,10 +137,13 @@ function VideoEdit() {
     }
   };
 
+  //we use this state to activate the text field to let the user edit the name of the playlist
   const handelActiveButton = () => {
     setActiveEditName(true);
   };
 
+  //here we handle the save edit button checking for required information and updating the DB if all is correct
+  //we also do more stuff
   const handelSaveEditName = async () => {
     event.preventDefault();
     let validRequest = true;
@@ -153,15 +168,18 @@ function VideoEdit() {
     setActiveEditName(false);
   };
 
+  //we handle the cancel button in the edit name and put back its original value
   const handelCancelEditName = () => {
     setActiveEditName(false);
     setPlaylistNameInput(backUpPlaylistName);
   };
 
+  //here we handle the input information of the name by the user
   const handelEditNameInput = (event) => {
     setPlaylistNameInput(event.target.value);
   };
 
+  //here we handle the delete of the current playlist
   const handleDeletePlaylist = async () => {
     event.preventDefault();
     try {
@@ -172,6 +190,7 @@ function VideoEdit() {
     }
   };
 
+  //Icon color for the add recommended video button
   const IconStyle = {
     color: "green",
   };
@@ -186,6 +205,7 @@ function VideoEdit() {
     // }, 500);
   }
 
+  //here we visualize all the edit playlist page the first section we manage if the title of the playlist or name can be edited or not and all the functions for it after we will display all the current play videos in the current playlist and after we will show the recommended videos that the child doesn't have if the user child has more than one playlist we will also show the delete button for the current playlist
   return (
     <div className="mainContainer">
       {activeEditName === true ? (

@@ -8,6 +8,7 @@ import { IconButton, Alert } from "@mui/material";
 import LoadingPic from "../../src/assets/Loading.gif";
 import { Button } from "@mui/material";
 
+//this component is the child video player well he will be able to add to favorites and we will Mark as watched
 function ChildVideoPlay() {
   const { link, videoId } = useParams();
   const [width, setWidth] = useState(700);
@@ -22,7 +23,6 @@ function ChildVideoPlay() {
       setWidth(window.innerWidth * 0.9);
       setHeight((window.innerWidth * 0.9 * 9) / 16);
     }
-
     sendData();
   }, []);
 
@@ -35,6 +35,7 @@ function ChildVideoPlay() {
     fontSize: "1rem",
   };
 
+  //here we check if the video has started or not
   const sendData = async () => {
     try {
       const CheckForStar = await service.put("/video/" + videoId, {
@@ -49,6 +50,7 @@ function ChildVideoPlay() {
     }
   };
 
+  //here we handle the favorite when the child passes the button and we update the DB
   const handleAddToFavorites = async () => {
     setFilledStar(!filledStar);
     try {

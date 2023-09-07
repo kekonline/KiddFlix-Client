@@ -3,6 +3,7 @@ import service from "../services/service.config";
 const AuthContext = createContext();
 import LoadingPic from "../../src/assets/Loading.gif";
 
+//here we do load of stuff let me explain what is going on
 function AuthWrapper(props) {
   const [parentId, setParentId] = useState(null);
   const [parentIsActive, setParentIsActive] = useState(false);
@@ -11,13 +12,14 @@ function AuthWrapper(props) {
   const [activeChildId, setActiveChildId] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
 
+  //on start we verify the token
   useEffect(() => {
     verifyToken();
   }, []);
 
+  //if we get to token we set the user ID and the Child ID with its image if not we set active users to false and we kick them back to the home screen
   const verifyToken = async () => {
     setIsPageLoading(true);
-
     try {
       const verifySession = await service.get("/auth/verify");
       // console.log(verifySession);
