@@ -10,6 +10,8 @@ function SignIn() {
     useContext(AuthContext);
   const [invalidEmailErrorMessage, setInvalidEmailErrorMessage] =
     useState(false);
+  const [strongPasswordErrorMessage, setStrongPasswordErrorMessage] =
+    useState(false);
   const [blancFieldsErrorMessage, setBlancFieldsErrorMessage] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState(false);
   const [yearOfBirthErrorMessage, setyearOfBirthErrorMessage] = useState(false);
@@ -63,11 +65,23 @@ function SignIn() {
     } else {
       setyearOfBirthErrorMessage(false);
     }
-
+    const regexPassword =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{5,}$/gm;
+    if (regexPassword.test(formObject.password) === false) {
+      validRequest = false;
+      setStrongPasswordErrorMessage(
+        "Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter and one number"
+      );
+    } else {
+      setStrongPasswordErrorMessage(false);
+    }
     if (password2Input !== formObject.password) {
       setPasswordErrorMessage("Passwords do not match");
       validRequest = false;
+    } else {
+      setPasswordErrorMessage(false);
     }
+
     if (
       !formObject.name ||
       !formObject.email ||
@@ -81,6 +95,7 @@ function SignIn() {
     } else {
       setBlancFieldsErrorMessage(false);
     }
+
     //  console.log(formObject);
     if (!validRequest) {
       return;
@@ -222,6 +237,13 @@ function SignIn() {
       {passwordErrorMessage && (
         <Alert variant="filled" severity="error">
           {passwordErrorMessage}
+          <br />
+        </Alert>
+      )}{" "}
+      <br />
+      {strongPasswordErrorMessage && (
+        <Alert variant="filled" severity="error">
+          {strongPasswordErrorMessage}
           <br />
         </Alert>
       )}
