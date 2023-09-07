@@ -19,7 +19,7 @@ function ChildVideoPreview(props) {
     setLink(encodeURIComponent(props.link));
     setTimeout(() => {
       setIsPageLoading(false);
-    }, 2000);
+    }, Math.floor(Math.random() * (3000 - 800 + 1)) + 800);
 
     // return () => {
     //   setIsPageLoading(true);

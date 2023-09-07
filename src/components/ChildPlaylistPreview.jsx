@@ -32,7 +32,7 @@ function ChildPlaylistPreview(props) {
       setUrl(firstVideoFromPlaylistRequest.data);
       setTimeout(() => {
         setIsPageLoading(false);
-      }, 2000);
+      }, Math.floor(Math.random() * (3000 - 800 + 1)) + 800);
     } catch (error) {
       console.log(error);
       setIsPageLoading(false);
