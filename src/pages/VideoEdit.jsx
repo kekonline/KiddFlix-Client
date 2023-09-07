@@ -196,13 +196,13 @@ function VideoEdit() {
   };
 
   if (isPageloading === true) {
-    // setTimeout(() => {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
-    // }, 500);
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   //here we visualize all the edit playlist page the first section we manage if the title of the playlist or name can be edited or not and all the functions for it after we will display all the current play videos in the current playlist and after we will show the recommended videos that the child doesn't have if the user child has more than one playlist we will also show the delete button for the current playlist

@@ -49,11 +49,13 @@ function ChildEdit() {
   };
 
   if (isPageloading === true) {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   //here we list on the user side the child the parent has and add buttons and error messages

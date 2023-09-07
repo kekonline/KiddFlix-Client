@@ -52,22 +52,6 @@ function ChildVideoPreview(props) {
     borderRadius: "30px",
   };
 
-  // if (isPageloading === true) {
-  //   return (
-  //     <div>
-  //       <Link to={`/playlist/video/${link}/${props._id}`}>
-  //         <div style={topLayer}></div>
-  //       </Link>
-  //       <div style={ContainerPlayer}>
-  //         <img width={width} height={height} src={LoadingPic} />;
-  //       </div>
-  //       <br />
-  //       <div className="mainContainer"></div>
-  //       <br /> <br /> <br />
-  //     </div>
-  //   );
-  // }
-
   return (
     <div>
       <Link to={`/playlist/video/${link}/${props._id}`}>

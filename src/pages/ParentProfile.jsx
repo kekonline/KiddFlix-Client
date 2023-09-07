@@ -111,11 +111,13 @@ function ParentProfile() {
   };
 
   if (isPageloading === true) {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   //the visualization

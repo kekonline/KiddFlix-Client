@@ -28,11 +28,13 @@ function ParentHome() {
   };
 
   if (isPageloading === true) {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
   // console.log(childsOfParent);
   //we will visualize all the parents' child with its images and name

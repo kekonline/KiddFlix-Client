@@ -38,11 +38,13 @@ function ChildVideoCategory() {
   };
 
   if (isPageloading === true) {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   //we will first show it a title depending on the param we received and will display the videos receipt from the DB

@@ -55,11 +55,13 @@ function PlaylistEdit() {
   // console.log(playlistOfChild);
 
   if (isPageloading === true) {
-    return (
-      <div className="loadingContainer">
-        <img className="loadingImage" src={LoadingPic} />;
-      </div>
-    );
+    setTimeout(() => {
+      return (
+        <div className="loadingContainer">
+          <img className="loadingImage" src={LoadingPic} />;
+        </div>
+      );
+    }, 500);
   }
 
   //here we will list all the playlist of the current child does some add button

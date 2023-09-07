@@ -69,6 +69,7 @@ function ChildPlaylistPreview(props) {
 
   //we have to visualizations one while we're getting the data and one after the data is received
   if (isPageloading === true) {
+    // setTimeout(() => {
     return (
       <div className="mainContainer">
         <Link to={`/playlist/${props.playlistName}/${props.playlistId}`}>
@@ -83,6 +84,7 @@ function ChildPlaylistPreview(props) {
         </Link>
       </div>
     );
+    // }, 500);
   }
 
   return (
