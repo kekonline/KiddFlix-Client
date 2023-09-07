@@ -21,9 +21,9 @@ function ChildVideoPreview(props) {
       setIsPageLoading(false);
     }, Math.floor(Math.random() * (3000 - 800 + 1)) + 800);
 
-    // return () => {
-    //   setIsPageLoading(true);
-    // };
+    return () => {
+      setIsPageLoading(true);
+    };
   }, []);
 
   const topLayer = {
