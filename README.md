@@ -145,24 +145,6 @@ HTML, CSS, Javascript, Express, React, axios, bcryptjs, cloudinary, xpress-jwt,m
 - ParentTutorial
 - IsKickBack
 
-## Services
-
-- Auth Service
-
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.verify()
-
-- Backlog Service
-  - game.filter(type, status)
-  - game.detail(id)
-  - game.add(id)
-  - game.delete(id)
-  - game.update(id)
-- External API
-  - gameApi.details
-  - gameApi.list
-
 ## Context
 
 - auth.context
