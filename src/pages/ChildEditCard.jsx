@@ -29,7 +29,7 @@ function ChildEditCard() {
       setOneChildInfo(requestOneChild.data);
       setNameInput(requestOneChild.data.name);
       setIsPageLoading(false);
-      // console.log(requestOneChild.data);
+      console.log(requestOneChild.data.picture);
     } catch (error) {
       console.log(error);
     }
@@ -103,14 +103,16 @@ function ChildEditCard() {
   };
 
   if (isPageloading === true) {
-    setTimeout(() => {
-      return (
-        <div className="loadingContainer">
-          <img className="loadingImage" src={LoadingPic} />;
-        </div>
-      );
-    }, 500);
+    // setTimeout(() => {
+    return (
+      <div className="loadingContainer">
+        <img className="loadingImage" src={LoadingPic} />;
+      </div>
+    );
+    // }, 500);
   }
+
+  // console.log(oneChildInfo.picture);
 
   return (
     <div className="mainContainer">
