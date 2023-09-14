@@ -6,6 +6,8 @@
 
 ## Description
 
+This web application allows parent-administrator users to create playlists containing YouTube video links. The parent can then activate a 'Children Mode' which grants access to the curated playlists for the children. In this mode, children can view and enjoy the videos and playlists selected by their parent-administrator.
+
 Empowering parents with a personalized app, curate tailored playlists for your child's learning and entertainment, ensuring a safe and enriching digital experience.
 
 #### [Client Repo here](https://github.com/kekonline/KiddFlix-Client)
