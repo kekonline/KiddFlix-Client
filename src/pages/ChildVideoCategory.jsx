@@ -15,8 +15,8 @@ function ChildVideoCategory() {
 
   //will update if the param category changes
   useEffect(() => {
-    scrollToTop();
     getData();
+    scrollToTop();
     return () => {
       setIsPageLoading(true);
     };
