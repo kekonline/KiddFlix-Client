@@ -21,6 +21,14 @@ function ChildVideoCategory() {
     };
   }, [category]);
 
+  //here we will scroll the page to the top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   //depending on the panel category we will receive one type of result from the backend or another
   const getData = async () => {
     try {
